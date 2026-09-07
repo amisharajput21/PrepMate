@@ -22,6 +22,18 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
+
+    public User updateUser(Long id, User updatedUser) {
+
+    User user = userRepository.findById(id)
+            .orElseThrow(() -> new RuntimeException("User not found"));
+
+    user.setName(updatedUser.getName());
+    user.setEmail(updatedUser.getEmail());
+
+    return userRepository.save(user);
+}
+
     public User loginUser(String email, String password) {
 
     Optional<User> optionalUser = userRepository.findByEmail(email);

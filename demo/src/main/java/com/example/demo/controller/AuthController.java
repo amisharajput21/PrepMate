@@ -31,4 +31,14 @@ public class AuthController {
 
         return ResponseEntity.ok(loggedInUser);
     }
+
+    @PutMapping("/profile/{id}")
+public ResponseEntity<User> updateProfile(
+        @PathVariable Long id,
+        @RequestBody User user) {
+
+    User updatedUser = userService.updateUser(id, user);
+
+    return ResponseEntity.ok(updatedUser);
+}
 }

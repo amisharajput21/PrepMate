@@ -1,0 +1,172 @@
+.profile-page {
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: #1f2937;
+}
+
+.profile-header {
+  background: white;
+  padding: 45px 8%;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-label {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #6366f1;
+  margin-bottom: 8px;
+}
+
+.profile-header h1 {
+  font-size: 36px;
+  margin: 0 0 10px;
+}
+
+.profile-header p:last-child {
+  color: #6b7280;
+  margin: 0;
+}
+
+.profile-content {
+  width: 84%;
+  max-width: 700px;
+  margin: 40px auto;
+}
+
+.profile-card {
+  background: white;
+  padding: 40px;
+  border-radius: 18px;
+  border: 1px solid #e5e7eb;
+  text-align: center;
+}
+
+.profile-avatar {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111827;
+  color: white;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.profile-card h2 {
+  margin: 5px 0;
+}
+
+.profile-role {
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+.profile-info {
+  display: grid;
+  gap: 15px;
+  text-align: left;
+  margin-bottom: 30px;
+}
+
+.profile-info div {
+  padding: 15px;
+  border-radius: 10px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+.profile-info span {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.profile-info strong {
+  font-size: 15px;
+}
+
+.profile-card button {
+  padding: 11px 20px;
+  border: none;
+  border-radius: 8px;
+  background: #111827;
+  color: white;
+  cursor: pointer;
+}
+
+.profile-card button:hover {
+  background: #374151;
+}
+
+@media (max-width: 700px) {
+  .profile-content {
+    width: 90%;
+  }
+
+  .profile-card {
+    padding: 25px;
+  }
+}
+.edit-form {
+  text-align: left;
+  margin-bottom: 25px;
+  padding: 20px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+}
+
+.edit-form label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.edit-form input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 12px;
+  margin-bottom: 16px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  outline: none;
+}
+
+.edit-form input:focus {
+  border-color: #6366f1;
+}
+
+.save-profile-btn {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 8px;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.save-profile-btn:hover {
+  background: #4f46e5;
+}
+
+.edit-profile-btn {
+  padding: 11px 18px;
+  margin-right: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.edit-profile-btn:hover {
+  background: #f3f4f6;
+}
