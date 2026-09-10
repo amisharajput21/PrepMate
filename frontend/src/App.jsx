@@ -4,7 +4,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
 import DSA from "./components/DSA";
-import ArrayPractice from "./components/ArrayPractice";
+import TopicPractice from "./components/TopicPractice";
 import Question from "./components/Question";
 import Aptitude from "./components/Aptitude";
 import Technical from "./components/Technical";
@@ -15,6 +15,9 @@ function App() {
   const [page, setPage] = useState("login");
   const [user, setUser] = useState(null);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+
+
+const handleOpenStrings = () => setPage("strings");
 
   const handleLogin = (userData) => {
     setUser(userData);
@@ -86,15 +89,18 @@ const handleBackToArrays = () => {
       )}
 
       {page === "dsa" && (
-  <DSA onOpenArrays={handleOpenArrays} />
+ <DSA
+  onOpenArrays={handleOpenArrays}
+  onOpenStrings={handleOpenStrings}
+/>
 )}
 
 {page === "aptitude" && (
-  <Aptitude />
+  <Aptitude onBack={() => setPage("dashboard")} />
 )}
 
 {page === "technical" && (
-  <Technical />
+  <Technical onBack={() => setPage("dashboard")} />
 )}
 
 {page === "company" && (
@@ -109,10 +115,19 @@ const handleBackToArrays = () => {
 )}
 
 {page === "arrays" && (
-  <ArrayPractice onOpenQuestion={handleOpenQuestion} />
+  <TopicPractice
+    topic="Arrays"
+    onOpenQuestion={handleOpenQuestion}
+    onBack={() => setPage("dsa")}
+  />
 )}
-{page === "arrays" && (
-  <ArrayPractice onOpenQuestion={handleOpenQuestion} />
+
+{page === "strings" && (
+  <TopicPractice
+    topic="Strings"
+    onOpenQuestion={handleOpenQuestion}
+    onBack={() => setPage("dsa")}
+  />
 )}
 
 {page === "question" && (

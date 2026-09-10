@@ -1,78 +1,126 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./ArrayPractice.css";
 
 function ArrayPractice({ onOpenQuestion }) {
-    const [solved, setSolved] = useState(
-  localStorage.getItem("twoSumSolved") === "true"
-);
+
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("http://localhost:8080/api/questions/topic/Arrays")
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch questions");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setQuestions(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error(error);
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="array-page">
 
-      <header className="array-header">
-        <p className="array-label">DSA PRACTICE</p>
+      <div className="array-header">
         <h1>Arrays</h1>
-        <p>Practice important array problems for placements.</p>
-      </header>
+        <p>
+          Master array problems step-by-step and prepare for coding interviews.
+        </p>
+      </div>
 
-      <main className="array-content">
-
-        <div className="array-progress">
-          <div>
-           <h3>{solved ? "1 / 10" : "0 / 10"}</h3>
-            <p>Problems Solved</p>
-          </div>
-
-          <div>
-            <h3>{solved ? "10%" : "0%"}</h3>
-            <p>Progress</p>
-          </div>
+      {loading && (
+        <div className="loading">
+          Loading questions...
         </div>
+      )}
 
-        <section className="questions-section">
-          <h2>Array Problems</h2>
-          <p>Start with these placement-focused questions.</p>
+      {!loading && questions.length === 0 && (
+        <div className="loading">
+          No questions available.
+        </div>
+      )}
 
-          <div className="question-card">
-            <span className="question-number">1</span>
+      <div className="question-list">
 
-            <div>
-              <h3>Two Sum</h3>
-              <p>Find two numbers in an array that add up to a target.</p>
-              <span className="difficulty easy">Easy</span>
+        {questions.map((question, index) => (
+
+          <div className="question-card" key={question.id}>
+
+            <div className="question-number">
+              {index + 1}
             </div>
 
-            <button onClick={onOpenQuestion}>Solve →</button>
-          </div>
+            <div className="question-content">
 
-          <div className="question-card">
-            <span className="question-number">2</span>
+              <h2>{question.title}</h2>
 
-            <div>
-              <h3>Maximum Subarray</h3>
-              <p>Find the contiguous subarray with the largest sum.</p>
-              <span className="difficulty medium">Medium</span>
+              <div className="question-info">
+
+                <span className="difficulty">
+                  {question.difficulty}
+                </span>
+
+                <span>
+                  Topic: {question.topic}
+                </span>
+
+              </div>
+
+              <p>
+                {question.questionText}
+              </p>
+
+              <div className="question-actions">
+
+                <button
+                  onClick={() => onOpenQuestion(question)}
+                >
+                  Practice Question
+                </button>
+
+                {question.leetcodeLink && (
+                  <a
+                    href={question.leetcodeLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    LeetCode ↗
+                  </a>
+                )}
+
+                {question.gfgLink && (
+                  <a
+                    href={question.gfgLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    GFG ↗
+                  </a>
+                )}
+
+              </div>
+
+              <div className="companies">
+
+                <strong>Asked by:</strong>{" "}
+                {question.companies}
+
+              </div>
+
             </div>
 
-            <button onClick={() => onOpenQuestion("maximumSubarray")}>
-  Solve →
-</button>
           </div>
 
-          <div className="question-card">
-            <span className="question-number">3</span>
+        ))}
 
-            <div>
-              <h3>Best Time to Buy and Sell Stock</h3>
-              <p>Find the maximum profit from buying and selling a stock.</p>
-              <span className="difficulty easy">Easy</span>
-            </div>
+      </div>
 
-            <button>Solve →</button>
-          </div>
-
-        </section>
-
-      </main>
     </div>
   );
 }
