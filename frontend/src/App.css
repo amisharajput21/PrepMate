@@ -695,3 +695,122 @@ button {
   }
 }
 
+/* ================= GLOBAL DARK MODE ================= */
+
+.app-dark-mode {
+  min-height: 100vh;
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* DSA */
+.app-dark-mode .dsa-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* Aptitude */
+.app-dark-mode .aptitude-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* Technical */
+.app-dark-mode .technical-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* Profile */
+.app-dark-mode .profile-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* Array Practice */
+.app-dark-mode .array-practice-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* Question */
+.app-dark-mode .question-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+/* Topic Practice */
+.app-dark-mode .topic-practice-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+
+/* ================= COMMON CARDS ================= */
+
+.app-dark-mode .aptitude-test-card,
+.app-dark-mode .aptitude-topic-sidebar,
+.app-dark-mode .technical-topic-sidebar,
+.app-dark-mode .technical-content,
+.app-dark-mode .profile-card,
+.app-dark-mode .question-card {
+  background: #20241f;
+  border-color: #30352f;
+}
+
+
+/* ================= COMMON TEXT ================= */
+
+.app-dark-mode h1,
+.app-dark-mode h2,
+.app-dark-mode h3,
+.app-dark-mode h4,
+.app-dark-mode strong {
+  color: #f4f5f0;
+}
+
+.app-dark-mode p,
+.app-dark-mode span {
+  color: #b7bdb4;
+}
+
+
+/* ================= BACK BUTTONS ================= */
+
+.app-dark-mode .aptitude-back-btn,
+.app-dark-mode .technical-back-btn,
+.app-dark-mode .profile-back-btn,
+.app-dark-mode .dsa-back-btn {
+  color: #dce1d9;
+}
+
+
+/* ================= INPUT / TEXTAREA ================= */
+
+.app-dark-mode input,
+.app-dark-mode textarea {
+  background: #1b1f1a;
+  color: #f4f5f0;
+  border-color: #363c34;
+}
+
+.app-dark-mode input::placeholder,
+.app-dark-mode textarea::placeholder {
+  color: #858c82;
+}
+
+
+/* ================= SCROLLBAR ================= */
+
+.app-dark-mode ::-webkit-scrollbar {
+  width: 7px;
+}
+
+.app-dark-mode ::-webkit-scrollbar-track {
+  background: #171a16;
+}
+
+.app-dark-mode ::-webkit-scrollbar-thumb {
+  background: #41483e;
+  border-radius: 10px;
+}

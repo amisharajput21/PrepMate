@@ -1,0 +1,398 @@
+.phase-page {
+  min-height: 100vh;
+  background: #f4f5f0;
+  color: #30332d;
+  padding: 0 42px 50px;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.phase-page-header {
+  min-height: 245px;
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  gap: 50px;
+  align-items: center;
+  padding: 32px 0;
+  border-bottom: 1px solid #e2e3dd;
+}
+
+.phase-header-left {
+  max-width: 720px;
+}
+
+.phase-back-btn {
+  display: block;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 25px;
+  color: #777a70;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.phase-back-btn:hover {
+  color: #30332d;
+}
+
+.phase-label {
+  color: #999d58;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.phase-header-left h1 {
+  margin: 8px 0 8px;
+  color: #292c26;
+  font-size: 38px;
+  line-height: 1.1;
+  font-weight: 850;
+  letter-spacing: -1px;
+}
+
+.phase-header-left p {
+  max-width: 620px;
+  margin: 0;
+  color: #7d8077;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+.phase-progress {
+  padding: 22px;
+  background: #252922;
+  color: #fff;
+  border-radius: 14px;
+}
+
+.phase-progress > span {
+  display: block;
+  margin-bottom: 18px;
+  color: #b5b87a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.phase-progress strong {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 30px;
+}
+
+.phase-progress-bar {
+  width: 100%;
+  height: 5px;
+  overflow: hidden;
+  background: #45493e;
+  border-radius: 20px;
+}
+
+.phase-progress-bar div {
+  height: 100%;
+  background: #b5b87a;
+  border-radius: 20px;
+}
+
+.phase-progress small {
+  display: block;
+  margin-top: 9px;
+  color: #92968b;
+  font-size: 10px;
+}
+
+
+/* =========================
+   SHEET HEADER
+========================= */
+
+.phase-content {
+  padding-top: 30px;
+}
+
+.phase-sheet-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 30px;
+  margin-bottom: 20px;
+}
+
+.phase-sheet-heading span {
+  color: #999d58;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.phase-sheet-heading h2 {
+  margin: 5px 0 0;
+  color: #30332d;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.phase-sheet-heading p {
+  max-width: 360px;
+  margin: 0;
+  color: #888b82;
+  font-size: 11px;
+  line-height: 1.5;
+  text-align: right;
+}
+
+
+/* =========================
+   PATTERN TABLE
+========================= */
+
+.pattern-table {
+  width: 100%;
+  border-top: 1px solid #dcded6;
+}
+
+.pattern-table-header {
+  min-height: 42px;
+  display: grid;
+  grid-template-columns: 60px 1fr 100px 120px 120px;
+  align-items: center;
+  gap: 15px;
+  padding: 0 18px;
+  border-bottom: 1px solid #dcded6;
+  color: #999c91;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+}
+
+.pattern-row {
+  min-height: 82px;
+  display: grid;
+  grid-template-columns: 60px 1fr 100px 120px 120px;
+  align-items: center;
+  gap: 15px;
+  padding: 12px 18px;
+  border-bottom: 1px solid #dfe0da;
+  transition: background 0.2s ease;
+}
+
+.pattern-row:hover {
+  background: #eeefe9;
+}
+
+.pattern-number {
+  color: #a0a398;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.pattern-info h3 {
+  margin: 0 0 4px;
+  color: #30332d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.pattern-info span {
+  color: #969990;
+  font-size: 10px;
+}
+
+.pattern-questions {
+  color: #55594e;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pattern-difficulty span {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 8px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.pattern-difficulty .easy {
+  background: #e5e9d4;
+  color: #707641;
+}
+
+.pattern-difficulty .easy-medium {
+  background: #e9e5d4;
+  color: #81764b;
+}
+
+.pattern-difficulty .medium {
+  background: #e5e3dc;
+  color: #6f6c61;
+}
+
+.pattern-difficulty .medium-hard {
+  background: #e3e1dc;
+  color: #66645d;
+}
+
+.pattern-difficulty .hard {
+  background: #dfded9;
+  color: #5e5d57;
+}
+
+.pattern-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.pattern-action button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: none;
+  background: transparent;
+  color: #676b56;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.pattern-action button span {
+  font-size: 15px;
+  transition: transform 0.2s ease;
+}
+
+.pattern-action button:hover span {
+  transform: translateX(4px);
+}
+
+.pattern-coming {
+  color: #a2a49c;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+/* =========================
+   TIP
+========================= */
+
+.phase-sheet-tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+  padding-top: 17px;
+  border-top: 1px solid #dedfd9;
+}
+
+.phase-sheet-tip > span {
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e5e8d6;
+  color: #74794c;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.phase-sheet-tip p {
+  margin: 0;
+  color: #898c83;
+  font-size: 10px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+  .phase-page {
+    padding: 0 24px 40px;
+  }
+
+  .phase-page-header {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+
+  .phase-progress {
+    max-width: 350px;
+  }
+
+  .pattern-table-header {
+    display: none;
+  }
+
+  .pattern-row {
+    grid-template-columns: 45px 1fr auto;
+  }
+
+  .pattern-questions,
+  .pattern-difficulty {
+    display: none;
+  }
+
+  .pattern-action {
+    justify-content: flex-end;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .phase-page {
+    padding: 0 16px 30px;
+  }
+
+  .phase-header-left h1 {
+    font-size: 30px;
+  }
+
+  .phase-sheet-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .phase-sheet-heading p {
+    text-align: left;
+  }
+
+  .pattern-row {
+    grid-template-columns: 32px 1fr auto;
+    gap: 8px;
+    padding: 12px 6px;
+  }
+
+  .pattern-info h3 {
+    font-size: 13px;
+  }
+
+  .pattern-info span {
+    font-size: 9px;
+  }
+
+  .pattern-action button {
+    font-size: 0;
+  }
+
+  .pattern-action button span {
+    font-size: 18px;
+  }
+}

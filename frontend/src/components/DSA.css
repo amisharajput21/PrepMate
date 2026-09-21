@@ -1,192 +1,558 @@
 .dsa-page {
   min-height: 100vh;
-  padding: 40px 7%;
-  background: #f7f9fc;
-  color: #172033;
+  background: #f4f5f0;
+  color: #30332d;
+  padding: 0 42px 50px;
+  font-family: inherit;
 }
 
+/* =========================
+   HEADER
+========================= */
+
 .dsa-header {
-  display: flex;
-  justify-content: space-between;
+  width: 100%;
+  min-height: 270px;
+  display: grid;
+  grid-template-columns: 1fr 270px;
+  gap: 50px;
   align-items: center;
-  gap: 30px;
-  margin-bottom: 35px;
+  padding: 35px 0 32px;
+  border-bottom: 1px solid #e2e3dd;
+}
+
+.dsa-header-left {
+  max-width: 720px;
+}
+
+.dsa-back-btn {
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin-bottom: 30px;
+  color: #777b6b;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.dsa-back-btn:hover {
+  color: #30332d;
 }
 
 .dsa-label {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #5267d9;
-  margin-bottom: 8px;
+  display: block;
+  margin-bottom: 10px;
+  color: #999d58;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
 }
 
 .dsa-header h1 {
-  font-size: 34px;
-  margin: 0 0 10px;
+  margin: 0;
+  color: #292c26;
+  font-size: 42px;
+  line-height: 1.08;
+  font-weight: 850;
+  letter-spacing: -1.5px;
 }
 
-.dsa-header p {
-  max-width: 650px;
-  color: #687386;
-  line-height: 1.6;
+.dsa-header h1 span {
+  color: #a7aa61;
 }
 
-.dsa-progress {
-  min-width: 190px;
-  padding: 22px;
-  background: white;
-  border-radius: 16px;
-  box-shadow: 0 8px 25px rgba(30, 45, 80, 0.08);
+.dsa-header-left > p {
+  max-width: 600px;
+  margin: 18px 0 0;
+  color: #777a70;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
-.dsa-progress span,
-.dsa-progress small {
+/* =========================
+   PROGRESS CARD
+========================= */
+
+.dsa-progress-card {
+  min-height: 190px;
+  padding: 23px;
+  background: #252922;
+  color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(35, 39, 31, 0.08);
+}
+
+.dsa-progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.dsa-progress-top > span {
+  color: #b5b87a;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.dsa-progress-icon {
+  font-size: 17px;
+}
+
+.dsa-progress-card > strong {
   display: block;
-  color: #7a8496;
+  margin-bottom: 3px;
+  font-size: 31px;
+  line-height: 1;
 }
 
-.dsa-progress strong {
-  display: block;
-  font-size: 25px;
-  margin: 7px 0;
+.dsa-progress-card > p {
+  margin: 0;
+  color: #aeb1a8;
+  font-size: 11px;
+}
+
+.dsa-mini-bar {
+  width: 100%;
+  height: 5px;
+  margin: 20px 0 9px;
+  overflow: hidden;
+  background: #45493e;
+  border-radius: 20px;
+}
+
+.dsa-mini-bar > div {
+  height: 100%;
+  background: #b5b87a;
+  border-radius: 20px;
+}
+
+.dsa-progress-card small {
+  color: #92968b;
+  font-size: 10px;
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.dsa-toolbar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 18px;
+  margin: 30px 0 22px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid #e4e5df;
+}
+
+.dsa-toolbar-title > span {
+  display: none;
+}
+
+.dsa-toolbar-title h2 {
+  margin: 0;
+  color: #30332d;
+  font-size: 18px;
+  font-weight: 800;
 }
 
 .level-filter {
   display: flex;
-  gap: 10px;
-  margin-bottom: 35px;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .level-filter button {
-  border: 1px solid #dfe4ed;
-  background: white;
-  padding: 10px 20px;
-  border-radius: 22px;
+  border: 1px solid #dfe1d8;
+  background: transparent;
+  color: #777a70;
+  padding: 7px 13px;
+  border-radius: 7px;
+  font-size: 11px;
+  font-weight: 700;
   cursor: pointer;
-  font-weight: 600;
-  color: #5d6678;
+  transition: all 0.2s ease;
+}
+
+.level-filter button:hover {
+  border-color: #b5b87a;
+  color: #555943;
 }
 
 .level-filter button.active {
-  background: #5267d9;
-  color: white;
-  border-color: #5267d9;
+  background: #2b2e27;
+  border-color: #2b2e27;
+  color: #fff;
 }
 
-.roadmap {
-  max-width: 900px;
-}
+/* =========================
+   ROADMAP
+========================= */
 
-.roadmap-item {
+.dsa-roadmap {
+  width: 100%;
   display: flex;
-  position: relative;
-  gap: 18px;
+  flex-direction: column;
+  gap: 15px;
 }
 
-.roadmap-number {
+.dsa-phase {
+  position: relative;
+  padding: 22px 0 60px;
+}
+
+/* Each phase header */
+
+.dsa-phase-header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 42px 1fr auto;
+  align-items: center;
+  gap: 18px;
+  padding: 18px 16px;
+  box-sizing: border-box;
+  border-bottom: 1px solid #e1e2dc;
+  transition: background 0.2s ease;
+  cursor: pointer;
+}
+
+.dsa-phase-header:hover {
+  background: #eeefe9;
+}
+
+/* Phase number */
+
+.phase-number {
   width: 42px;
   height: 42px;
-  min-width: 42px;
-  border-radius: 50%;
-  background: #5267d9;
-  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  z-index: 2;
+  flex-shrink: 0;
+  border: 1px solid #d9dbd1;
+  color: #979b87;
+  font-size: 11px;
+  font-weight: 800;
+  border-radius: 10px;
 }
 
-.roadmap-line {
-  position: absolute;
-  left: 20px;
-  top: 42px;
-  width: 2px;
-  height: calc(100% - 5px);
-  background: #dce1eb;
+/* Phase information */
+
+.dsa-phase-info {
+  min-width: 0;
 }
 
-.roadmap-item:last-child .roadmap-line {
-  display: none;
+.dsa-phase-info > span {
+  color: #9b9f61;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
 }
 
-.topic-card {
-  width: 100%;
-  margin-bottom: 22px;
-  padding: 22px 25px;
-  background: white;
-  border: 1px solid #e7eaf0;
-  border-radius: 16px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  box-shadow: 0 6px 20px rgba(30, 45, 80, 0.05);
-  transition: 0.2s ease;
+.dsa-phase-info h2 {
+  margin: 5px 0 5px;
+  color: #30332d;
+  font-size: 22px;
+  font-weight: 800;
 }
 
-.topic-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(30, 45, 80, 0.09);
-}
-
-.topic-level {
-  font-size: 12px;
-  font-weight: 700;
-  color: #5267d9;
-  background: #eef0ff;
-  padding: 5px 10px;
-  border-radius: 12px;
-}
-
-.topic-info h2 {
-  margin: 10px 0 5px;
-  font-size: 21px;
-}
-
-.topic-info p {
+.dsa-phase-info p {
   margin: 0;
-  color: #7a8496;
+  color: #999c93;
+  font-size: 10px;
+  line-height: 1.5;
 }
 
-.topic-action button {
-  border: none;
-  padding: 11px 18px;
-  border-radius: 9px;
-  background: #5267d9;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
+/* View Practice Sheet */
+
+.dsa-phase-open {
   white-space: nowrap;
+  margin-left: 20px;
+  color: #686c56;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
 }
 
-.topic-action button:hover {
-  background: #4054c5;
+.dsa-phase-open:hover {
+  color: #30332d;
 }
 
-.topic-action button:disabled {
-  background: #e4e7ed;
-  color: #8a92a1;
-  cursor: not-allowed;
+/* =========================
+   OLD TOPIC LIST
+========================= */
+
+.dsa-topic-list {
+  margin-left: 60px;
+  border-left: 1px solid #dfe1d9;
 }
 
-@media (max-width: 700px) {
+.dsa-topic-card {
+  position: relative;
+  min-height: 76px;
+  display: grid;
+  grid-template-columns: 48px 1fr auto;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 16px 14px 20px;
+  border-bottom: 1px solid #e1e2dc;
+  transition: all 0.2s ease;
+}
+
+.dsa-topic-card:first-child {
+  border-top: 1px solid #e1e2dc;
+}
+
+.dsa-topic-card.available {
+  cursor: pointer;
+}
+
+.dsa-topic-card.available:hover {
+  background: #eeefe9;
+}
+
+.dsa-topic-card.coming {
+  opacity: 0.58;
+}
+
+.dsa-topic-number {
+  color: #a2a59b;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.dsa-topic-info {
+  min-width: 0;
+}
+
+.dsa-topic-meta {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 5px;
+}
+
+.dsa-topic-level {
+  padding: 3px 7px;
+  border-radius: 5px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.dsa-topic-level.beginner {
+  background: #e5e9d4;
+  color: #707641;
+}
+
+.dsa-topic-level.intermediate {
+  background: #e9e5d4;
+  color: #83784b;
+}
+
+.dsa-topic-level.advanced {
+  background: #e5e2dc;
+  color: #69665e;
+}
+
+.topic-status {
+  color: #8d925f;
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.coming-text {
+  color: #a2a49d;
+}
+
+.dsa-topic-info h3 {
+  margin: 0;
+  color: #30332d;
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.dsa-topic-info p {
+  margin: 4px 0 0;
+  color: #999c93;
+  font-size: 10px;
+}
+
+.dsa-topic-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dsa-topic-action button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border: none;
+  background: transparent;
+  color: #676b56;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.dsa-topic-action button span {
+  font-size: 15px;
+  transition: transform 0.2s ease;
+}
+
+.dsa-topic-card.available:hover .dsa-topic-action button span {
+  transform: translateX(4px);
+}
+
+.topic-lock {
+  color: #aaa;
+  font-size: 13px;
+}
+
+/* =========================
+   PHASE CONNECTOR
+========================= */
+
+.phase-connector {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  color: #a5a88c;
+  font-size: 18px;
+}
+
+/* =========================
+   TIP
+========================= */
+
+.dsa-tip {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 13px;
+  margin-top: 15px;
+  padding: 18px 20px;
+  border-top: 1px solid #dedfd9;
+  background: transparent;
+}
+
+.dsa-tip > span {
+  font-size: 18px;
+  line-height: 1;
+}
+
+.dsa-tip strong {
+  display: block;
+  margin-bottom: 4px;
+  color: #4c5044;
+  font-size: 12px;
+}
+
+.dsa-tip p {
+  margin: 0;
+  color: #898c83;
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
   .dsa-page {
-    padding: 25px 5%;
+    padding: 0 24px 40px;
   }
 
   .dsa-header {
-    flex-direction: column;
-    align-items: flex-start;
+    grid-template-columns: 1fr;
+    gap: 25px;
   }
 
-  .topic-card {
-    flex-direction: column;
-    align-items: flex-start;
+  .dsa-progress-card {
+    max-width: 350px;
+  }
+}
+
+@media (max-width: 650px) {
+  .dsa-page {
+    padding: 0 16px 30px;
   }
 
-  .level-filter {
-    flex-wrap: wrap;
+  .dsa-header {
+    padding-top: 25px;
   }
+
+  .dsa-header h1 {
+    font-size: 32px;
+  }
+
+  .dsa-toolbar {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+ .dsa-phase {
+  position: relative;
+  padding: 0;
+}
+
+  .dsa-phase-header {
+    grid-template-columns: 38px 1fr;
+    gap: 14px;
+    padding: 16px 10px;
+  }
+
+  .dsa-phase-open {
+  white-space: nowrap;
+  margin-left: 20px;
+  color: #686c56;
+  font-size: 13px;
+  font-weight: 800;
+  cursor: pointer;
+  padding: 8px 4px;
+}
+
+.dsa-phase-open:hover {
+  color: #30332d;
+}
+
+  .dsa-topic-list {
+    margin-left: 15px;
+  }
+
+  .dsa-topic-card {
+    grid-template-columns: 30px 1fr auto;
+    gap: 10px;
+    padding-left: 12px;
+  }
+
+  .dsa-topic-action button {
+    font-size: 0;
+  }
+
+  .dsa-topic-action button span {
+    font-size: 18px;
+  }
+}
+.dsa-phase-info p {
+  margin: 2px 0 0;
+  color: #999c93;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.dsa-phase-info h2 {
+  margin: 4px 0 3px;
 }

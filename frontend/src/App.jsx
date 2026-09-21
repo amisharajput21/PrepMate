@@ -4,6 +4,7 @@ import Register from "./components/Register";
 import Dashboard from "./components/Dashboard";
 import "./App.css";
 import DSA from "./components/DSA";
+import ArrayPractice from "./components/ArrayPractice";
 import TopicPractice from "./components/TopicPractice";
 import Question from "./components/Question";
 import Aptitude from "./components/Aptitude";
@@ -14,6 +15,18 @@ import Profile from "./components/Profile";
 function App() {
   const [page, setPage] = useState("login");
   const [user, setUser] = useState(null);
+  
+const [darkMode, setDarkMode] = useState(() => {
+  return localStorage.getItem("theme") === "dark";
+});
+
+const toggleTheme = () => {
+  const newMode = !darkMode;
+  setDarkMode(newMode);
+  localStorage.setItem("theme", newMode ? "dark" : "light");
+};
+
+
   const [selectedQuestion, setSelectedQuestion] = useState(null);
 
 
@@ -49,6 +62,10 @@ const handleOpenProfile = () => {
   setPage("profile");
 };
 
+const handleOpenProgress = () => {
+  setPage("progress");
+};
+
 const handleOpenArrays = () => {
   setPage("arrays");
 };
@@ -60,8 +77,11 @@ const handleBackToArrays = () => {
   setPage("arrays");
 };
 
-  return (
-    <>
+  
+return (
+  <div className={darkMode ? "app-dark-mode" : "app-light-mode"}>
+
+
       {page === "login" && (
         <Login
           onLogin={handleLogin}
@@ -77,15 +97,19 @@ const handleBackToArrays = () => {
       )}
 
       {page === "dashboard" && (
-        <Dashboard
-  user={user}
+      
+<Dashboard 
+  user={user} 
   onLogout={handleLogout}
   onOpenDSA={handleOpenDSA}
   onOpenAptitude={handleOpenAptitude}
   onOpenTechnical={handleOpenTechnical}
-  onOpenCompany={handleOpenCompany}
   onOpenProfile={handleOpenProfile}
+  darkMode={darkMode}
+  toggleTheme={toggleTheme}
 />
+
+
       )}
 
       {page === "dsa" && (
@@ -115,10 +139,8 @@ const handleBackToArrays = () => {
 )}
 
 {page === "arrays" && (
-  <TopicPractice
-    topic="Arrays"
+  <ArrayPractice
     onOpenQuestion={handleOpenQuestion}
-    onBack={() => setPage("dsa")}
   />
 )}
 
@@ -130,14 +152,18 @@ const handleBackToArrays = () => {
   />
 )}
 
+
 {page === "question" && (
   <Question
     question={selectedQuestion}
+    user={user}
     onBack={handleBackToArrays}
   />
 )}
-    </>
+
+    </div>
   );
+
 }
 
 export default App;

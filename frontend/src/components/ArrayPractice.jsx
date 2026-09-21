@@ -27,99 +27,194 @@ function ArrayPractice({ onOpenQuestion }) {
   return (
     <div className="array-page">
 
-      <div className="array-header">
-        <h1>Arrays</h1>
+      {/* Header */}
+
+      <header className="array-header">
+
+        <div className="array-header-left">
+
+          <button
+            className="array-back-btn"
+            onClick={() => window.history.back()}
+          >
+            ← DSA Roadmap
+          </button>
+
+          <span className="array-label">
+            DSA • ARRAYS
+          </span>
+
+          <h1>
+            Arrays,<br />
+            <span>build your foundation.</span>
+          </h1>
+
+          <p>
+            Practice array problems step-by-step and strengthen
+            the problem-solving skills needed for coding interviews.
+          </p>
+
+        </div>
+
+        <div className="array-summary">
+
+          <span className="summary-label">
+            PRACTICE SET
+          </span>
+
+          <strong>
+            {questions.length}
+          </strong>
+
+          <p>
+            Questions available
+          </p>
+
+          <div className="summary-line"></div>
+
+          <small>
+            Beginner Level
+          </small>
+
+        </div>
+
+      </header>
+
+
+      {/* Questions Heading */}
+
+      <div className="array-section-header">
+
+        <div>
+          <span>
+            PRACTICE
+          </span>
+
+          <h2>
+            Array Questions
+          </h2>
+        </div>
+
         <p>
-          Master array problems step-by-step and prepare for coding interviews.
+          Solve each problem and mark your progress.
         </p>
+
       </div>
 
+
+      {/* Loading */}
+
       {loading && (
-        <div className="loading">
+        <div className="array-loading">
+          <div className="loading-dot"></div>
           Loading questions...
         </div>
       )}
 
+
+      {/* Empty */}
+
       {!loading && questions.length === 0 && (
-        <div className="loading">
-          No questions available.
+        <div className="array-empty">
+          <div>📚</div>
+          <h3>No questions available</h3>
+          <p>
+            Array questions will appear here once they are added.
+          </p>
         </div>
       )}
 
-      <div className="question-list">
 
-        {questions.map((question, index) => (
+      {/* Question List */}
 
-          <div className="question-card" key={question.id}>
+      {!loading && questions.length > 0 && (
 
-            <div className="question-number">
-              {index + 1}
-            </div>
+        <div className="array-question-list">
 
-            <div className="question-content">
+          {questions.map((question, index) => (
 
-              <h2>{question.title}</h2>
+            <article
+              className="array-question-card"
+              key={question.id}
+            >
 
-              <div className="question-info">
-
-                <span className="difficulty">
-                  {question.difficulty}
-                </span>
-
-                <span>
-                  Topic: {question.topic}
-                </span>
-
+              <div className="array-question-number">
+                {String(index + 1).padStart(2, "0")}
               </div>
 
-              <p>
-                {question.questionText}
-              </p>
+              <div className="array-question-main">
 
-              <div className="question-actions">
+                <div className="array-question-top">
 
-                <button
-                  onClick={() => onOpenQuestion(question)}
-                >
-                  Practice Question
-                </button>
+                  <span className="array-difficulty">
+                    {question.difficulty}
+                  </span>
 
-                {question.leetcodeLink && (
-                  <a
-                    href={question.leetcodeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <span className="array-topic">
+                    {question.topic}
+                  </span>
+
+                </div>
+
+                <h3>
+                  {question.title}
+                </h3>
+
+                <div className="array-question-footer">
+
+                  <div className="array-links">
+
+                    {question.leetcodeLink && (
+                      <a
+                        href={question.leetcodeLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        LeetCode ↗
+                      </a>
+                    )}
+
+                    {question.gfgLink && (
+                      <a
+                        href={question.gfgLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        GFG ↗
+                      </a>
+                    )}
+
+                  </div>
+
+                  <button
+                    className="practice-btn"
+                    onClick={() => onOpenQuestion(question)}
                   >
-                    LeetCode ↗
-                  </a>
-                )}
+                    Practice
+                    <span>→</span>
+                  </button>
 
-                {question.gfgLink && (
-                  <a
-                    href={question.gfgLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    GFG ↗
-                  </a>
-                )}
+                </div>
 
-              </div>
+                <div className="array-companies">
 
-              <div className="companies">
+                  <span>Asked by</span>
 
-                <strong>Asked by:</strong>{" "}
-                {question.companies}
+                  <strong>
+                    {question.companies || "Various Companies"}
+                  </strong>
+
+                </div>
 
               </div>
 
-            </div>
+            </article>
 
-          </div>
+          ))}
 
-        ))}
+        </div>
 
-      </div>
+      )}
 
     </div>
   );

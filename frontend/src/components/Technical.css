@@ -1,244 +1,521 @@
 .technical-page {
-  min-height: 100vh;
-  background: #f8fafc;
-  color: #1f2937;
+  height: 100vh;
+  overflow: hidden;
+  background: #f4f5f0;
+  color: #30332d;
+  padding: 0 42px 25px;
+  box-sizing: border-box;
 }
 
-.technical-header {
-  text-align: center;
-  padding: 55px 20px 35px;
-}
-
-.technical-label {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: #6366f1;
-  margin-bottom: 10px;
-}
-
-.technical-header h1 {
-  font-size: 36px;
-  margin: 0;
-}
-
-.technical-header p:last-child {
-  margin-top: 10px;
-  color: #6b7280;
-  font-size: 15px;
-}
-
-.technical-content {
-  width: 90%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding-bottom: 50px;
-}
-
-.technical-topics h2 {
-  font-size: 24px;
-  margin-bottom: 6px;
-}
-
-.technical-topics > p {
-  color: #6b7280;
-  margin-bottom: 25px;
-}
-
-/* Subject Cards */
-
-.technical-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-.technical-card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 15px;
-  padding: 28px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
-  transition: 0.2s;
-}
-
-.technical-card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-}
-
-.technical-icon {
-  font-size: 34px;
-}
-
-.technical-card h3 {
-  font-size: 20px;
-  margin: 15px 0 8px;
-}
-
-.technical-card p {
-  color: #6b7280;
-  line-height: 1.5;
-  font-size: 14px;
-  min-height: 42px;
-}
-
-.technical-card button,
-.technical-next-btn,
-.technical-restart-btn {
-  margin-top: 18px;
-  padding: 11px 20px;
-  border: none;
-  border-radius: 8px;
-  background: #6366f1;
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.technical-card button:hover,
-.technical-next-btn:hover,
-.technical-restart-btn:hover {
-  background: #4f46e5;
-}
-
-/* Question */
-
-.technical-question-card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 35px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-}
-
-.technical-question-top {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  color: #6b7280;
-  font-size: 14px;
-  font-weight: 600;
-  margin-bottom: 28px;
-}
-
-.technical-question-card h2 {
-  font-size: 22px;
-  line-height: 1.5;
-  margin-bottom: 25px;
-}
-
-.technical-options {
-  display: flex;
-  flex-direction: column;
-  gap: 13px;
-}
-
-.technical-option {
-  width: 100%;
-  padding: 15px 18px;
-  text-align: left;
-  background: white;
-  border: 1px solid #d1d5db;
-  border-radius: 9px;
-  color: #374151;
-  font-size: 15px;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-.technical-option:hover {
-  border-color: #6366f1;
-  background: #f5f3ff;
-}
-
-.technical-option.selected {
-  border-color: #6366f1;
-  background: #eef2ff;
-  color: #4338ca;
-  font-weight: 600;
-}
-
-.technical-next-btn {
-  display: block;
-  margin-left: auto;
-}
-
-/* Back Button */
+/* BACK */
 
 .technical-back-btn {
-  display: block;
-  margin-top: 22px;
-  padding: 10px 17px;
-  border: 1px solid #d1d5db;
-  border-radius: 8px;
-  background: white;
-  color: #374151;
-  font-weight: 600;
+  border: none;
+  background: transparent;
+  padding: 22px 0 16px;
+  color: #777a70;
+  font-size: 13px;
+  font-weight: 700;
   cursor: pointer;
 }
 
 .technical-back-btn:hover {
-  background: #f3f4f6;
+  color: #30332d;
 }
 
-/* Result */
 
-.technical-result-card {
-  background: white;
-  border: 1px solid #e5e7eb;
-  border-radius: 16px;
-  padding: 50px 30px;
-  text-align: center;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+/* MAIN */
+
+.technical-main {
+  height: calc(100vh - 65px);
+  overflow: hidden;
 }
 
-.technical-result-icon {
-  font-size: 48px;
-  margin-bottom: 15px;
+
+/* SUBJECTS TOP */
+
+.technical-subjects {
+  padding: 8px 0 18px;
+  border-bottom: 1px solid #dfe1d9;
 }
 
-.technical-result-card h2 {
-  font-size: 28px;
-  margin-bottom: 8px;
+.technical-sidebar-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5px 10px;
 }
 
-.technical-result-card p {
-  color: #6b7280;
+.technical-sidebar-title span {
+  color: #777b4c;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.7px;
 }
 
-.technical-result-card strong {
-  display: block;
-  font-size: 38px;
-  color: #6366f1;
-  margin: 10px 0;
+.technical-sidebar-title small {
+  color: #a0a398;
+  font-size: 8px;
+  font-weight: 700;
 }
 
-.technical-result-card .technical-back-btn {
-  margin: 15px auto 0;
+
+/* SUBJECT BUTTONS */
+
+.technical-subject-list {
+  display: flex;
+  gap: 9px;
+  overflow-x: auto;
+  padding: 2px 2px 5px;
 }
 
-/* Mobile */
+.technical-subject-list::-webkit-scrollbar {
+  height: 4px;
+}
 
-@media (max-width: 700px) {
-  .technical-header {
-    padding: 40px 15px 25px;
+.technical-subject-list::-webkit-scrollbar-thumb {
+  background: #d0d2c8;
+  border-radius: 10px;
+}
+
+.technical-subject {
+  flex: 0 0 auto;
+
+  min-width: 105px;
+  height: 46px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  border: 1px solid #dfe1d9;
+  border-radius: 7px;
+
+  background: #eeefe9;
+
+  padding: 0 13px;
+
+  color: #858980;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.technical-subject:hover {
+  background: #e7e9dc;
+  border-color: #c9ccb9;
+  color: #30332d;
+}
+
+.technical-subject.active {
+  background: #30332d;
+  border-color: #30332d;
+  color: #f4f5f0;
+  box-shadow: 0 4px 12px rgba(48, 51, 45, 0.12);
+}
+
+.technical-subject-number {
+  color: #a2a49b;
+  font-size: 9px;
+  font-weight: 850;
+}
+
+.technical-subject.active .technical-subject-number {
+  color: #c4c78b;
+}
+
+.technical-subject-name {
+  font-size: 11px;
+  font-weight: 800;
+}
+
+
+/* TOPICS + CONTENT */
+
+.technical-study-area {
+  height: calc(100% - 90px);
+
+  display: grid;
+  grid-template-columns: 245px minmax(0, 1fr);
+
+  gap: 28px;
+
+  overflow: hidden;
+}
+
+
+/* TOPIC SIDEBAR */
+
+.technical-topic-sidebar {
+  min-width: 0;
+  overflow-y: auto;
+
+  padding: 22px 20px 30px 0;
+
+  border-right: 1px solid #dfe1d9;
+}
+
+.technical-topic-sidebar::-webkit-scrollbar,
+.technical-content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.technical-topic-sidebar::-webkit-scrollbar-thumb,
+.technical-content::-webkit-scrollbar-thumb {
+  background: #d0d2c8;
+  border-radius: 10px;
+}
+
+.technical-topic-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 5px 13px;
+
+  border-bottom: 1px solid #dcded6;
+}
+
+.technical-topic-heading span {
+  color: #999d58;
+  font-size: 9px;
+  font-weight: 850;
+  letter-spacing: 1.5px;
+}
+
+.technical-topic-heading small {
+  color: #a0a398;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.technical-topic-list {
+  margin-top: 8px;
+}
+
+.technical-topic {
+  width: 100%;
+  min-height: 52px;
+
+  display: grid;
+  grid-template-columns: 27px 1fr 14px;
+
+  align-items: center;
+  gap: 7px;
+
+  border: none;
+  border-bottom: 1px solid #e3e4de;
+
+  border-radius: 0;
+
+  background: transparent;
+
+  padding: 6px 5px;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  color: #858980;
+
+  transition: all 0.2s ease;
+}
+
+.technical-topic:hover {
+  background: #eeefe9;
+}
+
+.technical-topic.active {
+  background: #e7e9dc;
+  color: #30332d;
+}
+
+.technical-topic > span {
+  color: #a2a49b;
+  font-size: 9px;
+  font-weight: 800;
+}
+
+.technical-topic.active > span {
+  color: #777b4c;
+}
+
+.technical-topic strong {
+  font-size: 11px;
+  line-height: 1.35;
+  font-weight: 750;
+}
+
+.technical-topic b {
+  color: #aaaD9f;
+  font-size: 12px;
+}
+
+.technical-topic.active b {
+  color: #676b56;
+}
+
+
+/* CONTENT */
+
+.technical-content {
+  min-width: 0;
+
+  overflow-y: auto;
+
+  padding: 28px 28px 60px 5px;
+}
+
+.technical-content-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+
+  padding-bottom: 14px;
+
+  border-bottom: 1px solid #dcded6;
+}
+
+.technical-content-top span {
+  color: #999d58;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.technical-content-top small {
+  color: #9b9e94;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.technical-content > h1 {
+  margin: 25px 0 30px;
+
+  color: #292c26;
+
+  font-size: 31px;
+  line-height: 1.15;
+  font-weight: 850;
+
+  letter-spacing: -0.7px;
+}
+
+.technical-content-section {
+  margin-bottom: 30px;
+}
+
+.technical-content-section h2 {
+  margin: 0 0 10px;
+
+  color: #3b3e35;
+
+  font-size: 13px;
+  font-weight: 850;
+}
+
+.technical-content-section p {
+  max-width: 780px;
+
+  margin: 0;
+
+  color: #70746a;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.technical-content-section ul {
+  max-width: 780px;
+
+  margin: 0;
+
+  padding-left: 18px;
+}
+
+.technical-content-section li {
+  margin-bottom: 7px;
+
+  color: #70746a;
+
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+
+/* CODE */
+
+.technical-content-section pre {
+  max-width: 780px;
+
+  margin: 0;
+
+  padding: 18px 20px;
+
+  overflow-x: auto;
+
+  background: #292c26;
+
+  border-radius: 8px;
+}
+
+.technical-content-section code {
+  color: #e9eadf;
+
+  font-family: "Consolas", "Courier New", monospace;
+
+  font-size: 11px;
+
+  line-height: 1.65;
+}
+
+
+/* INTERVIEW QUESTIONS */
+
+.interview-section {
+  padding-bottom: 30px;
+}
+
+.interview-question {
+  max-width: 780px;
+
+  min-height: 52px;
+
+  display: grid;
+
+  grid-template-columns: 35px 1fr;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-bottom: 1px solid #dedfd9;
+}
+
+.interview-question span {
+  color: #a0a398;
+
+  font-size: 9px;
+
+  font-weight: 800;
+}
+
+.interview-question p {
+  margin: 0;
+
+  color: #4f5249;
+
+  font-size: 11px;
+
+  font-weight: 650;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+  .technical-page {
+    padding: 0 25px 20px;
   }
 
-  .technical-header h1 {
-    font-size: 28px;
+  .technical-study-area {
+    grid-template-columns: 210px minmax(0, 1fr);
+
+    gap: 20px;
   }
 
-  .technical-grid {
+  .technical-content {
+    padding-left: 5px;
+  }
+}
+
+
+@media (max-width: 750px) {
+
+  .technical-page {
+    height: auto;
+
+    min-height: 100vh;
+
+    overflow: visible;
+  }
+
+  .technical-main {
+    height: auto;
+
+    overflow: visible;
+  }
+
+  .technical-subject-list {
+    overflow-x: auto;
+  }
+
+  .technical-study-area {
+    height: auto;
+
+    grid-template-columns: 1fr;
+
+    overflow: visible;
+  }
+
+  .technical-topic-sidebar {
+    overflow: visible;
+
+    border-right: none;
+
+    padding: 18px 0 0;
+  }
+
+  .technical-topic-list {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 5px;
+  }
+
+  .technical-topic {
+    border: 1px solid #e3e4de;
+
+    border-radius: 6px;
+  }
+
+  .technical-content {
+    overflow: visible;
+
+    padding: 25px 0 40px;
+  }
+}
+
+
+@media (max-width: 500px) {
+
+  .technical-page {
+    padding: 0 16px 20px;
+  }
+
+  .technical-subject {
+    min-width: 95px;
+
+    height: 44px;
+
+    padding: 0 10px;
+  }
+
+  .technical-subject-name {
+    font-size: 10px;
+  }
+
+  .technical-topic-list {
     grid-template-columns: 1fr;
   }
 
-  .technical-question-card {
-    padding: 25px 20px;
-  }
-
-  .technical-question-top {
-    flex-wrap: wrap;
+  .technical-content > h1 {
+    font-size: 26px;
   }
 }

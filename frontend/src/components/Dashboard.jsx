@@ -1,4 +1,6 @@
+import React, { useState } from "react";
 import "./Dashboard.css";
+
 
 function Dashboard({
   user,
@@ -6,180 +8,413 @@ function Dashboard({
   onOpenDSA,
   onOpenAptitude,
   onOpenTechnical,
-  onOpenCompany,
-  onOpenProfile
-}) {
+  onOpenProfile,
+  darkMode,
+  toggleTheme,
+}) 
+ {
+  const [activeTab, setActiveTab] = useState("dashboard");
 
- const solvedQuestions =
-  localStorage.getItem("twoSumSolved") === "true" ? 1 : 0;
-
-const aptitudeSolved =
-  Number(localStorage.getItem("aptitudeSolved") || 0);
-
-const technicalSolved =
-  Number(localStorage.getItem("technicalSolved") || 0);
-
-const companySolved =
-  Number(localStorage.getItem("companySolved") || 0);
-
-const totalQuestions = 40;
-
-const totalSolved =
-  solvedQuestions +
-  aptitudeSolved +
-  technicalSolved +
-  companySolved;
-
-const progress = Math.round(
-  (totalSolved / totalQuestions) * 100
-);
+  const [selectedSheet, setSelectedSheet] = useState(1);
 
   return (
-    <div className="dashboard-page">
+    
+<div className={`dashboard-layout ${darkMode ? "dark-mode" : ""}`}>
 
-      {/* Navbar */}
-      <header className="dashboard-navbar">
-        <div className="dashboard-brand">
-          <span className="dashboard-logo">P</span>
-          <span>PrepMate</span>
+
+
+      {/* ================= SIDEBAR ================= */}
+      <aside className="dashboard-sidebar">
+
+        <div className="sidebar-brand">
+          <div className="sidebar-logo">P</div>
+
+          <div className="brand-text">
+            <h2>PrepMate</h2>
+            <span>Placement Hub</span>
+          </div>
         </div>
 
-        <div className="dashboard-user">
-          <span>Hi, {user?.name || "Student"} 👋</span>
-          <button className="dashboard-logout" onClick={onLogout}>
-  Logout
-</button>
-<button className="profile-btn" onClick={onOpenProfile}>
-  Profile
-</button>
+        <div className="sidebar-menu">
+
+          <button
+            className={`sidebar-item ${
+              activeTab === "dashboard" ? "active" : ""
+            }`}
+            onClick={() => setActiveTab("dashboard")}
+          >
+            <span className="icon">⚡</span>
+            <span className="label">Dashboard</span>
+          </button>
+
+          <button
+            className={`sidebar-item ${
+              activeTab === "dsa" ? "active" : ""
+            }`}
+            onClick={() => {
+              setActiveTab("dsa");
+              if (onOpenDSA) onOpenDSA();
+            }}
+          >
+            <span className="icon">💻</span>
+            <span className="label">DSA & Coding</span>
+          </button>
+
+          <button
+            className={`sidebar-item ${
+              activeTab === "aptitude" ? "active" : ""
+            }`}
+            onClick={() => {
+              setActiveTab("aptitude");
+              if (onOpenAptitude) onOpenAptitude();
+            }}
+          >
+            <span className="icon">🧠</span>
+            <span className="label">Aptitude Test</span>
+          </button>
+
+          <button
+            className={`sidebar-item ${
+              activeTab === "technical" ? "active" : ""
+            }`}
+            onClick={() => {
+              setActiveTab("technical");
+              if (onOpenTechnical) onOpenTechnical();
+            }}
+          >
+            <span className="icon">📚</span>
+            <span className="label">Technical MCQs</span>
+          </button>
+
         </div>
-      </header>
 
-      {/* Main Content */}
-      <main className="dashboard-content">
+        {/* ================= SIDEBAR BOTTOM ================= */}
+        <div className="sidebar-bottom">
 
-        <section className="dashboard-welcome">
-          <div>
-            <p className="dashboard-small-title">PLACEMENT PREPARATION</p>
+          <div className="sidebar-user">
 
-            <h1>
-              Welcome back, {user?.name || "Student"}!
-            </h1>
-
-            <p className="dashboard-subtitle">
-  Track your preparation and improve your placement skills.
-</p>
-
-            <p>
-              Keep practicing and get one step closer to your dream placement.
-            </p>
-          </div>
-        </section>
-
-        {/* Stats */}
-        <section className="dashboard-stats">
-
-          <div className="stat-card">
-            <span className="stat-icon">💻</span>
-            <div>
-              <h3>{solvedQuestions}</h3>
-<p>DSA Problems</p>
+            <div className="sidebar-user-avatar">
+              {user?.name
+                ? user.name.charAt(0).toUpperCase()
+                : "A"}
             </div>
-          </div>
 
-          <div className="stat-card">
-            <span className="stat-icon">🧠</span>
-            <div>
-              <h3>{aptitudeSolved}</h3>
-<p>Aptitude Questions</p>
+            <div className="sidebar-user-info">
+              <strong>
+                {user?.name || "Amisha Rajput"}
+              </strong>
+
+              <span>Placement Candidate</span>
             </div>
+
           </div>
 
-          <div className="stat-card">
-            <span className="stat-icon">📚</span>
-            <div>
-              <h3>{technicalSolved}</h3>
-<p>Technical MCQs</p>
-            </div>
-          </div>
+          <button
+            className="sidebar-logout"
+            onClick={onLogout}
+          >
+            <span>🚪</span>
+            <span>Logout</span>
+          </button>
 
-          <div className="stat-card">
-            <span className="stat-icon">🏆</span>
-            <div>
-              <h3>0%</h3>
-              <p>Overall Progress</p>
-              <div className="progress-bar">
- <div
-  className="progress-fill"
-  style={{ width: `${progress}%` }}
+        </div>
+
+      </aside>
+
+
+      {/* ================= MAIN CONTENT ================= */}
+      <main className="dashboard-main">
+
+       <header className="dashboard-topbar">
+
+  <div className="topbar-title">
+    <span>
+      Good Morning, {user?.name || "Amisha"}! 👋
+    </span>
+  </div>
+
+  <div className="topbar-actions">
+
+    
+<div
+  className={`theme-toggle ${darkMode ? "dark" : ""}`}
+  onClick={toggleTheme}
+  title={darkMode ? "Switch to Day Mode" : "Switch to Night Mode"}
 >
-  <span>{progress}%</span>
+  <span className="theme-icon">
+    {darkMode ? "☀️" : "🌙"}
+  </span>
 </div>
-</div>
-            </div>
+
+
+
+    <div
+      className="topbar-profile"
+      onClick={onOpenProfile}
+    >
+      <div className="topbar-avatar">
+        {user?.name
+          ? user.name.charAt(0).toUpperCase()
+          : "A"}
+      </div>
+
+      <div className="topbar-profile-info">
+        <strong>
+          {user?.name || "Amisha Rajput"}
+        </strong>
+
+        <span>Placement Candidate</span>
+      </div>
+
+      <span className="profile-arrow">⌄</span>
+    </div>
+
+  </div>
+
+</header>
+        {/* ================= DASHBOARD CONTENT ================= */}
+        <div className="dashboard-container">
+
+          {/* ================= WELCOME SECTION ================= */}
+          <section className="welcome-section">
+
+  {/* ================= LEFT COLUMN ================= */}
+  <div className="dashboard-left-column">
+
+    <div className="dashboard-thought">
+
+      <p className="thought-text">
+        <span>Master</span> patterns,
+        <br />
+
+        not <span>memory.</span>
+        <br />
+
+        Real <span>problem-solving</span>
+        <br />
+
+        starts with <span>understanding</span>
+        <br />
+
+        core structures.
+      </p>
+
+    </div>
+
+
+    {/* ================= UPCOMING ================= */}
+    <div className="upcoming-section">
+
+      <div className="upcoming-header">
+
+        <div>
+          <span className="upcoming-label">
+            UPCOMING
+          </span>
+
+          <h2>Placement Events</h2>
+        </div>
+
+        <span className="upcoming-count">
+          3 Events
+        </span>
+
+      </div>
+
+
+      <div className="upcoming-list">
+
+        <div className="upcoming-item">
+
+          <div className="company-icon">T</div>
+
+          <div className="upcoming-info">
+            <strong>TCS</strong>
+            <span>Aptitude + Coding</span>
           </div>
 
-        </section>
-
-        {/* Practice Section */}
-        <section className="practice-section">
-
-          <div className="section-heading">
-            <h2>Start Practicing</h2>
-            <p>Choose a category and start improving your skills.</p>
+          <div className="upcoming-date">
+            <strong>24</strong>
+            <span>SEP</span>
           </div>
 
-          <div className="practice-grid">
+          <span className="upcoming-arrow">→</span>
 
-            <div className="practice-card">
-              <div className="practice-icon">💻</div>
-              <h3>DSA & Coding</h3>
-              <p>
-                Practice arrays, strings, linked lists, trees and more.
-              </p>
-              <span className="card-status">Start your coding practice</span>
-             <button onClick={onOpenDSA}>Practice DSA →</button>
-            </div>
+        </div>
 
-            <div className="practice-card">
-              <div className="practice-icon">🧠</div>
-              <h3>Aptitude</h3>
-              <p>
-                Improve quantitative aptitude, reasoning and verbal ability.
-              </p>
-              <span className="card-status">Build your aptitude skills</span>
-              <button onClick={onOpenAptitude}>Start Practice →</button>
-            </div>
 
-            <div className="practice-card">
-              <div className="practice-icon">📚</div>
-              <h3>Technical MCQs</h3>
-              <p>
-                Prepare for DBMS, OS, OOPS, Computer Networks and more.
-              </p>
-              <p>Practice important technical questions for placements.</p>
+        <div className="upcoming-item">
 
-<span className="card-status">Test your technical knowledge</span>
+          <div className="company-icon">I</div>
 
-<button onClick={onOpenTechnical}>Start Practice →</button>
-             
-            </div>
-
-            <div className="practice-card">
-              <div className="practice-icon">🏢</div>
-              <h3>Company Preparation</h3>
-              <p>
-                Practice company-specific placement questions.
-              </p>
-              <span className="card-status">Prepare for company interviews</span>
-              <button onClick={onOpenCompany}>Start Preparation →</button>
-            </div>
-
+          <div className="upcoming-info">
+            <strong>Infosys</strong>
+            <span>Online Assessment</span>
           </div>
 
-        </section>
+          <div className="upcoming-date">
+            <strong>28</strong>
+            <span>SEP</span>
+          </div>
+
+          <span className="upcoming-arrow">→</span>
+
+        </div>
+
+
+        <div className="upcoming-item">
+
+          <div className="company-icon">C</div>
+
+          <div className="upcoming-info">
+            <strong>Cognizant</strong>
+            <span>Technical Round</span>
+          </div>
+
+          <div className="upcoming-date">
+            <strong>02</strong>
+            <span>OCT</span>
+          </div>
+
+          <span className="upcoming-arrow">→</span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  {/* ================= RIGHT COLUMN ================= */}
+  <div className="calendar-column">
+
+    {/* YAHAN TUMHARA EXISTING CALENDAR + STREAK SAME RAHEGA */}
+
+     {/* ================= RIGHT COLUMN ================= */}
+            <div className="calendar-column">
+
+              {/* ================= QUICK CALENDAR ================= */}
+              <div className="calendar-card">
+
+                <div className="calendar-header">
+
+                  <div>
+                    <span className="calendar-label">
+                      TODAY
+                    </span>
+
+                    <h3>September 2026</h3>
+                  </div>
+
+                  <span className="calendar-icon">
+                    📅
+                  </span>
+
+                </div>
+
+
+                <div className="calendar-days">
+
+                  <span>MON</span>
+                  <span>TUE</span>
+                  <span>WED</span>
+                  <span>THU</span>
+                  <span>FRI</span>
+                  <span>SAT</span>
+                  <span>SUN</span>
+
+                </div>
+
+
+                <div className="calendar-dates">
+
+                  <span></span>
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+                  <span>5</span>
+                  <span>6</span>
+
+                  <span>7</span>
+                  <span>8</span>
+                  <span>9</span>
+                  <span>10</span>
+                  <span>11</span>
+                  <span>12</span>
+                  <span>13</span>
+
+                  <span>14</span>
+                  <span>15</span>
+                  <span>16</span>
+                  <span>17</span>
+
+                  <span className="today">
+                    18
+                  </span>
+
+                  <span>19</span>
+                  <span>20</span>
+
+                  <span>21</span>
+                  <span>22</span>
+                  <span>23</span>
+                  <span>24</span>
+                  <span>25</span>
+                  <span>26</span>
+                  <span>27</span>
+
+                  <span>28</span>
+                  <span>29</span>
+                  <span>30</span>
+
+                </div>
+
+              </div>
+
+
+              {/* ================= MONTHLY STREAK ================= */}
+              <div className="streak-card">
+
+                <div className="streak-header">
+
+                  <div>
+
+                    <span className="streak-label">
+                      MONTHLY STREAK
+                    </span>
+
+                    <h3>
+                      12 Days
+                    </h3>
+
+                  </div>
+
+                  <div className="streak-icon">
+                    🔥
+                  </div>
+
+                </div>
+
+                <p>
+                  Keep your learning streak alive!
+                </p>
+
+              </div>
+
+            </div>
+
+  </div>
+
+</section>
+          
+
+        </div>
 
       </main>
+
     </div>
   );
 }
