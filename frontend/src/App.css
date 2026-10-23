@@ -761,17 +761,32 @@ button {
 
 /* ================= COMMON TEXT ================= */
 
+/* ================= COMMON TEXT ================= */
+
 .app-dark-mode h1,
 .app-dark-mode h2,
 .app-dark-mode h3,
-.app-dark-mode h4,
+.app-dark-mode h4 {
+  color: #f4f5f0;
+}
+
+.app-dark-mode p {
+  color: #b7bdb4;
+}
+
 .app-dark-mode strong {
   color: #f4f5f0;
 }
 
-.app-dark-mode p,
-.app-dark-mode span {
-  color: #b7bdb4;
+/*
+   IMPORTANT:
+   Global span color intentionally removed.
+   Individual pages/components should control
+   their own span colors.
+*/
+
+.app-dark-mode strong {
+  color: #f4f5f0;
 }
 
 
@@ -813,4 +828,71 @@ button {
 .app-dark-mode ::-webkit-scrollbar-thumb {
   background: #41483e;
   border-radius: 10px;
+}
+
+/* =========================================================
+   GLOBAL APP LAYOUT
+========================================================= */
+
+.app-shell {
+  min-height: 100vh;
+  width: 100%;
+
+  position: relative;
+}
+
+
+/* Fixed sidebar ke liye page ko 240px shift */
+
+.app-page-content {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+/*
+   Dashboard ke andar purana sidebar remove hone ke baad
+   Dashboard full available content area lega.
+*/
+
+.app-page-content .dashboard-layout {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 700px) {
+
+  .app-page-content {
+    margin-left: 70px;
+
+    width: calc(100% - 70px);
+  }
+
+}
+
+/* =========================================
+   MAIN CONTENT WHEN SIDEBAR IS COLLAPSED
+========================================= */
+
+.app-shell:has(.global-sidebar.collapsed) .app-page-content {
+  margin-left: 72px !important;
+  width: calc(100% - 72px) !important;
+  transition: all 0.25s ease;
+}
+
+/* Normal sidebar */
+.app-shell .app-page-content {
+  transition: all 0.25s ease;
 }

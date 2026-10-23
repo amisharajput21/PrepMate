@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./Dashboard.css";
 
-
 function Dashboard({
   user,
   onLogout,
@@ -9,293 +8,191 @@ function Dashboard({
   onOpenAptitude,
   onOpenTechnical,
   onOpenProfile,
+  onOpenRoadmap,
   darkMode,
   toggleTheme,
-}) 
- {
+}) {
   const [activeTab, setActiveTab] = useState("dashboard");
 
   const [selectedSheet, setSelectedSheet] = useState(1);
 
   return (
-    
-<div className={`dashboard-layout ${darkMode ? "dark-mode" : ""}`}>
-
-
+    <div className={`dashboard-layout ${darkMode ? "dark-mode" : ""}`}>
 
       {/* ================= SIDEBAR ================= */}
-      <aside className="dashboard-sidebar">
-
-        <div className="sidebar-brand">
-          <div className="sidebar-logo">P</div>
-
-          <div className="brand-text">
-            <h2>PrepMate</h2>
-            <span>Placement Hub</span>
-          </div>
-        </div>
-
-        <div className="sidebar-menu">
-
-          <button
-            className={`sidebar-item ${
-              activeTab === "dashboard" ? "active" : ""
-            }`}
-            onClick={() => setActiveTab("dashboard")}
-          >
-            <span className="icon">⚡</span>
-            <span className="label">Dashboard</span>
-          </button>
-
-          <button
-            className={`sidebar-item ${
-              activeTab === "dsa" ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveTab("dsa");
-              if (onOpenDSA) onOpenDSA();
-            }}
-          >
-            <span className="icon">💻</span>
-            <span className="label">DSA & Coding</span>
-          </button>
-
-          <button
-            className={`sidebar-item ${
-              activeTab === "aptitude" ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveTab("aptitude");
-              if (onOpenAptitude) onOpenAptitude();
-            }}
-          >
-            <span className="icon">🧠</span>
-            <span className="label">Aptitude Test</span>
-          </button>
-
-          <button
-            className={`sidebar-item ${
-              activeTab === "technical" ? "active" : ""
-            }`}
-            onClick={() => {
-              setActiveTab("technical");
-              if (onOpenTechnical) onOpenTechnical();
-            }}
-          >
-            <span className="icon">📚</span>
-            <span className="label">Technical MCQs</span>
-          </button>
-
-        </div>
-
-        {/* ================= SIDEBAR BOTTOM ================= */}
-        <div className="sidebar-bottom">
-
-          <div className="sidebar-user">
-
-            <div className="sidebar-user-avatar">
-              {user?.name
-                ? user.name.charAt(0).toUpperCase()
-                : "A"}
-            </div>
-
-            <div className="sidebar-user-info">
-              <strong>
-                {user?.name || "Amisha Rajput"}
-              </strong>
-
-              <span>Placement Candidate</span>
-            </div>
-
-          </div>
-
-          <button
-            className="sidebar-logout"
-            onClick={onLogout}
-          >
-            <span>🚪</span>
-            <span>Logout</span>
-          </button>
-
-        </div>
-
-      </aside>
-
 
       {/* ================= MAIN CONTENT ================= */}
       <main className="dashboard-main">
 
-       <header className="dashboard-topbar">
+        <header className="dashboard-topbar">
 
-  <div className="topbar-title">
-    <span>
-      Good Morning, {user?.name || "Amisha"}! 👋
-    </span>
-  </div>
+          <div className="topbar-title">
+            <span>
+              Good Morning, {user?.name || "Amisha"}! 👋
+            </span>
+          </div>
 
-  <div className="topbar-actions">
+          <div className="topbar-actions">
 
-    
-<div
-  className={`theme-toggle ${darkMode ? "dark" : ""}`}
-  onClick={toggleTheme}
-  title={darkMode ? "Switch to Day Mode" : "Switch to Night Mode"}
->
-  <span className="theme-icon">
-    {darkMode ? "☀️" : "🌙"}
-  </span>
-</div>
+            <div
+              className={`theme-toggle ${darkMode ? "dark" : ""}`}
+              onClick={toggleTheme}
+              title={
+                darkMode
+                  ? "Switch to Day Mode"
+                  : "Switch to Night Mode"
+              }
+            >
+              <span className="theme-icon">
+                {darkMode ? "☀️" : "🌙"}
+              </span>
+            </div>
 
+            <div
+              className="topbar-profile"
+              onClick={onOpenProfile}
+            >
+              <div className="topbar-avatar">
+                {user?.name
+                  ? user.name.charAt(0).toUpperCase()
+                  : "A"}
+              </div>
 
+              <div className="topbar-profile-info">
+                <strong>
+                  {user?.name || "Amisha Rajput"}
+                </strong>
 
-    <div
-      className="topbar-profile"
-      onClick={onOpenProfile}
-    >
-      <div className="topbar-avatar">
-        {user?.name
-          ? user.name.charAt(0).toUpperCase()
-          : "A"}
-      </div>
+                <span>Placement Candidate</span>
+              </div>
 
-      <div className="topbar-profile-info">
-        <strong>
-          {user?.name || "Amisha Rajput"}
-        </strong>
+              <span className="profile-arrow">⌄</span>
+            </div>
 
-        <span>Placement Candidate</span>
-      </div>
+          </div>
 
-      <span className="profile-arrow">⌄</span>
-    </div>
+        </header>
 
-  </div>
-
-</header>
         {/* ================= DASHBOARD CONTENT ================= */}
+
         <div className="dashboard-container">
 
           {/* ================= WELCOME SECTION ================= */}
+
           <section className="welcome-section">
 
-  {/* ================= LEFT COLUMN ================= */}
-  <div className="dashboard-left-column">
+            {/* ================= LEFT COLUMN ================= */}
 
-    <div className="dashboard-thought">
+            <div className="dashboard-left-column">
 
-      <p className="thought-text">
-        <span>Master</span> patterns,
-        <br />
+              <div className="dashboard-thought">
 
-        not <span>memory.</span>
-        <br />
+                <p className="thought-text">
+                  <span>Master</span> patterns,
+                  <br />
 
-        Real <span>problem-solving</span>
-        <br />
+                  not <span>memory.</span>
+                  <br />
 
-        starts with <span>understanding</span>
-        <br />
+                  Real <span>problem-solving</span>
+                  <br />
 
-        core structures.
-      </p>
+                  starts with <span>understanding</span>
+                  <br />
 
-    </div>
+                  core structures.
+                </p>
 
+              </div>
 
-    {/* ================= UPCOMING ================= */}
-    <div className="upcoming-section">
+              {/* ================= UPCOMING ================= */}
 
-      <div className="upcoming-header">
+              <div className="upcoming-section">
 
-        <div>
-          <span className="upcoming-label">
-            UPCOMING
-          </span>
+                <div className="upcoming-header">
 
-          <h2>Placement Events</h2>
-        </div>
+                  <div>
+                    <span className="upcoming-label">
+                      UPCOMING
+                    </span>
 
-        <span className="upcoming-count">
-          3 Events
-        </span>
+                    <h2>Placement Events</h2>
+                  </div>
 
-      </div>
+                  <span className="upcoming-count">
+                    3 Events
+                  </span>
 
+                </div>
 
-      <div className="upcoming-list">
+                <div className="upcoming-list">
 
-        <div className="upcoming-item">
+                  <div className="upcoming-item">
 
-          <div className="company-icon">T</div>
+                    <div className="company-icon">T</div>
 
-          <div className="upcoming-info">
-            <strong>TCS</strong>
-            <span>Aptitude + Coding</span>
-          </div>
+                    <div className="upcoming-info">
+                      <strong>TCS</strong>
+                      <span>Aptitude + Coding</span>
+                    </div>
 
-          <div className="upcoming-date">
-            <strong>24</strong>
-            <span>SEP</span>
-          </div>
+                    <div className="upcoming-date">
+                      <strong>24</strong>
+                      <span>SEP</span>
+                    </div>
 
-          <span className="upcoming-arrow">→</span>
+                    <span className="upcoming-arrow">→</span>
 
-        </div>
+                  </div>
 
+                  <div className="upcoming-item">
 
-        <div className="upcoming-item">
+                    <div className="company-icon">I</div>
 
-          <div className="company-icon">I</div>
+                    <div className="upcoming-info">
+                      <strong>Infosys</strong>
+                      <span>Online Assessment</span>
+                    </div>
 
-          <div className="upcoming-info">
-            <strong>Infosys</strong>
-            <span>Online Assessment</span>
-          </div>
+                    <div className="upcoming-date">
+                      <strong>28</strong>
+                      <span>SEP</span>
+                    </div>
 
-          <div className="upcoming-date">
-            <strong>28</strong>
-            <span>SEP</span>
-          </div>
+                    <span className="upcoming-arrow">→</span>
 
-          <span className="upcoming-arrow">→</span>
+                  </div>
 
-        </div>
+                  <div className="upcoming-item">
 
+                    <div className="company-icon">C</div>
 
-        <div className="upcoming-item">
+                    <div className="upcoming-info">
+                      <strong>Cognizant</strong>
+                      <span>Technical Round</span>
+                    </div>
 
-          <div className="company-icon">C</div>
+                    <div className="upcoming-date">
+                      <strong>02</strong>
+                      <span>OCT</span>
+                    </div>
 
-          <div className="upcoming-info">
-            <strong>Cognizant</strong>
-            <span>Technical Round</span>
-          </div>
+                    <span className="upcoming-arrow">→</span>
 
-          <div className="upcoming-date">
-            <strong>02</strong>
-            <span>OCT</span>
-          </div>
+                  </div>
 
-          <span className="upcoming-arrow">→</span>
+                </div>
 
-        </div>
+              </div>
 
-      </div>
+            </div>
 
-    </div>
+            {/* ================= RIGHT COLUMN ================= */}
 
-  </div>
-
-
-  {/* ================= RIGHT COLUMN ================= */}
-  <div className="calendar-column">
-
-    {/* YAHAN TUMHARA EXISTING CALENDAR + STREAK SAME RAHEGA */}
-
-     {/* ================= RIGHT COLUMN ================= */}
             <div className="calendar-column">
 
               {/* ================= QUICK CALENDAR ================= */}
+
               <div className="calendar-card">
 
                 <div className="calendar-header">
@@ -314,7 +211,6 @@ function Dashboard({
 
                 </div>
 
-
                 <div className="calendar-days">
 
                   <span>MON</span>
@@ -326,7 +222,6 @@ function Dashboard({
                   <span>SUN</span>
 
                 </div>
-
 
                 <div className="calendar-dates">
 
@@ -374,8 +269,8 @@ function Dashboard({
 
               </div>
 
-
               {/* ================= MONTHLY STREAK ================= */}
+
               <div className="streak-card">
 
                 <div className="streak-header">
@@ -406,10 +301,7 @@ function Dashboard({
 
             </div>
 
-  </div>
-
-</section>
-          
+          </section>
 
         </div>
 
@@ -420,3 +312,4 @@ function Dashboard({
 }
 
 export default Dashboard;
+

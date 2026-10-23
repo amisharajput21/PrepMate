@@ -26,6 +26,12 @@ public class UserProgress {
     @Column(nullable = false)
     private String status;
 
+    private boolean leetcodeSolved;
+
+    private boolean gfgSolved;
+
+    private boolean solved;
+
     private int attempts;
 
     private LocalDateTime lastAttemptedAt;
@@ -59,6 +65,30 @@ public class UserProgress {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public boolean isLeetcodeSolved() {
+        return leetcodeSolved;
+    }
+
+    public void setLeetcodeSolved(boolean leetcodeSolved) {
+        this.leetcodeSolved = leetcodeSolved;
+    }
+
+    public boolean isGfgSolved() {
+        return gfgSolved;
+    }
+
+    public void setGfgSolved(boolean gfgSolved) {
+        this.gfgSolved = gfgSolved;
+    }
+
+    public boolean isSolved() {
+        return solved;
+    }
+
+    public void setSolved(boolean solved) {
+        this.solved = solved;
     }
 
     public int getAttempts() {

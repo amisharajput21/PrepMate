@@ -1,558 +1,1703 @@
+/* =========================================================
+   PREPMATE - DSA PAGE
+   Complete CSS
+   ========================================================= */
+
+
+/* =========================================================
+   MAIN PAGE
+   ========================================================= */
+
 .dsa-page {
+  --dsa-bg: #f3f5ed;
+  --dsa-card: #ffffff;
+  --dsa-card-soft: #f8f9f5;
+  --dsa-border: #dfe3d4;
+
+  --dsa-text: #20231f;
+  --dsa-text-soft: #697064;
+  --dsa-text-muted: #92988c;
+
+  --dsa-accent: #aeb36b;
+  --dsa-accent-dark: #72783f;
+  --dsa-accent-light: #eef0d9;
+
+  --dsa-green: #4f8a5b;
+  --dsa-orange: #d9822b;
+  --dsa-red: #c43d3d;
+
   min-height: 100vh;
-  background: #f4f5f0;
-  color: #30332d;
-  padding: 0 42px 50px;
-  font-family: inherit;
-}
-
-/* =========================
-   HEADER
-========================= */
-
-.dsa-header {
   width: 100%;
-  min-height: 270px;
-  display: grid;
-  grid-template-columns: 1fr 270px;
-  gap: 50px;
-  align-items: center;
-  padding: 35px 0 32px;
-  border-bottom: 1px solid #e2e3dd;
+  box-sizing: border-box;
+
+  padding: 24px 34px 50px;
+
+  background: var(--dsa-bg);
+  color: var(--dsa-text);
+
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
-.dsa-header-left {
-  max-width: 720px;
-}
 
+/* =========================================================
+   OLD ELEMENTS - HIDE
+   ========================================================= */
+
+/* Back button */
+.dsa-header,
 .dsa-back-btn {
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin-bottom: 30px;
-  color: #777b6b;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
+  display: none !important;
 }
 
-.dsa-back-btn:hover {
-  color: #30332d;
+/* Old stats cards */
+.dsa-stats {
+  display: none !important;
 }
 
-.dsa-label {
-  display: block;
-  margin-bottom: 10px;
-  color: #999d58;
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 2px;
-}
-
-.dsa-header h1 {
-  margin: 0;
-  color: #292c26;
-  font-size: 42px;
-  line-height: 1.08;
-  font-weight: 850;
-  letter-spacing: -1.5px;
-}
-
-.dsa-header h1 span {
-  color: #a7aa61;
-}
-
-.dsa-header-left > p {
-  max-width: 600px;
-  margin: 18px 0 0;
-  color: #777a70;
-  font-size: 14px;
-  line-height: 1.7;
-}
-
-/* =========================
-   PROGRESS CARD
-========================= */
-
+/* Old overall progress */
 .dsa-progress-card {
-  min-height: 190px;
-  padding: 23px;
-  background: #252922;
-  color: #fff;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(35, 39, 31, 0.08);
+  display: none !important;
 }
 
-.dsa-progress-top {
+
+/* =========================================================
+   TOP HERO / HEADER
+   ========================================================= */
+
+.dsa-hero {
+  width: 100%;
+  min-height: 118px;
+
+  box-sizing: border-box;
+
+  margin-bottom: 20px;
+  padding: 20px 24px;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 15px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #f8faf3 0%,
+      #f4f6ed 100%
+    );
+
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 22px;
+
+  gap: 24px;
+
+  box-shadow:
+    0 2px 8px rgba(32, 35, 31, 0.025);
 }
 
-.dsa-progress-top > span {
-  color: #b5b87a;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
 
-.dsa-progress-icon {
-  font-size: 17px;
-}
+/* Hero left side */
 
-.dsa-progress-card > strong {
-  display: block;
-  margin-bottom: 3px;
-  font-size: 31px;
-  line-height: 1;
-}
+.dsa-hero-content {
+  min-width: 0;
 
-.dsa-progress-card > p {
-  margin: 0;
-  color: #aeb1a8;
-  font-size: 11px;
-}
-
-.dsa-mini-bar {
-  width: 100%;
-  height: 5px;
-  margin: 20px 0 9px;
-  overflow: hidden;
-  background: #45493e;
-  border-radius: 20px;
-}
-
-.dsa-mini-bar > div {
-  height: 100%;
-  background: #b5b87a;
-  border-radius: 20px;
-}
-
-.dsa-progress-card small {
-  color: #92968b;
-  font-size: 10px;
-}
-
-/* =========================
-   TOOLBAR
-========================= */
-
-.dsa-toolbar {
-  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+
   gap: 18px;
-  margin: 30px 0 22px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid #e4e5df;
 }
 
-.dsa-toolbar-title > span {
-  display: none;
-}
 
-.dsa-toolbar-title h2 {
-  margin: 0;
-  color: #30332d;
-  font-size: 18px;
-  font-weight: 800;
-}
+/* Code icon */
 
-.level-filter {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
-}
+.dsa-hero-icon {
+  width: 58px;
+  height: 58px;
 
-.level-filter button {
-  border: 1px solid #dfe1d8;
-  background: transparent;
-  color: #777a70;
-  padding: 7px 13px;
-  border-radius: 7px;
-  font-size: 11px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
+  flex: 0 0 58px;
 
-.level-filter button:hover {
-  border-color: #b5b87a;
-  color: #555943;
-}
+  border-radius: 13px;
 
-.level-filter button.active {
-  background: #2b2e27;
-  border-color: #2b2e27;
-  color: #fff;
-}
-
-/* =========================
-   ROADMAP
-========================= */
-
-.dsa-roadmap {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.dsa-phase {
-  position: relative;
-  padding: 22px 0 60px;
-}
-
-/* Each phase header */
-
-.dsa-phase-header {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 42px 1fr auto;
-  align-items: center;
-  gap: 18px;
-  padding: 18px 16px;
-  box-sizing: border-box;
-  border-bottom: 1px solid #e1e2dc;
-  transition: background 0.2s ease;
-  cursor: pointer;
-}
-
-.dsa-phase-header:hover {
-  background: #eeefe9;
-}
-
-/* Phase number */
-
-.phase-number {
-  width: 42px;
-  height: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  border: 1px solid #d9dbd1;
-  color: #979b87;
-  font-size: 11px;
-  font-weight: 800;
-  border-radius: 10px;
+
+  background: var(--dsa-accent-light);
+  color: var(--dsa-accent-dark);
+
+  font-family: monospace;
+
+  font-size: 23px;
+  font-weight: 900;
 }
 
-/* Phase information */
 
-.dsa-phase-info {
+/* Hero text */
+
+.dsa-hero-copy {
   min-width: 0;
 }
 
-.dsa-phase-info > span {
-  color: #9b9f61;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
 
-.dsa-phase-info h2 {
-  margin: 5px 0 5px;
-  color: #30332d;
-  font-size: 22px;
-  font-weight: 800;
-}
+/* Small PREPMATE text */
 
-.dsa-phase-info p {
-  margin: 0;
-  color: #999c93;
-  font-size: 10px;
-  line-height: 1.5;
-}
-
-/* View Practice Sheet */
-
-.dsa-phase-open {
-  white-space: nowrap;
-  margin-left: 20px;
-  color: #686c56;
-  font-size: 11px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.dsa-phase-open:hover {
-  color: #30332d;
-}
-
-/* =========================
-   OLD TOPIC LIST
-========================= */
-
-.dsa-topic-list {
-  margin-left: 60px;
-  border-left: 1px solid #dfe1d9;
-}
-
-.dsa-topic-card {
-  position: relative;
-  min-height: 76px;
-  display: grid;
-  grid-template-columns: 48px 1fr auto;
-  align-items: center;
-  gap: 15px;
-  padding: 14px 16px 14px 20px;
-  border-bottom: 1px solid #e1e2dc;
-  transition: all 0.2s ease;
-}
-
-.dsa-topic-card:first-child {
-  border-top: 1px solid #e1e2dc;
-}
-
-.dsa-topic-card.available {
-  cursor: pointer;
-}
-
-.dsa-topic-card.available:hover {
-  background: #eeefe9;
-}
-
-.dsa-topic-card.coming {
-  opacity: 0.58;
-}
-
-.dsa-topic-number {
-  color: #a2a59b;
-  font-size: 10px;
-  font-weight: 800;
-}
-
-.dsa-topic-info {
-  min-width: 0;
-}
-
-.dsa-topic-meta {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-bottom: 5px;
-}
-
-.dsa-topic-level {
-  padding: 3px 7px;
-  border-radius: 5px;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-}
-
-.dsa-topic-level.beginner {
-  background: #e5e9d4;
-  color: #707641;
-}
-
-.dsa-topic-level.intermediate {
-  background: #e9e5d4;
-  color: #83784b;
-}
-
-.dsa-topic-level.advanced {
-  background: #e5e2dc;
-  color: #69665e;
-}
-
-.topic-status {
-  color: #8d925f;
-  font-size: 9px;
-  font-weight: 700;
-}
-
-.coming-text {
-  color: #a2a49d;
-}
-
-.dsa-topic-info h3 {
-  margin: 0;
-  color: #30332d;
-  font-size: 14px;
-  font-weight: 800;
-}
-
-.dsa-topic-info p {
-  margin: 4px 0 0;
-  color: #999c93;
-  font-size: 10px;
-}
-
-.dsa-topic-action {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.dsa-topic-action button {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  border: none;
-  background: transparent;
-  color: #676b56;
-  font-size: 11px;
-  font-weight: 800;
-  cursor: pointer;
-}
-
-.dsa-topic-action button span {
-  font-size: 15px;
-  transition: transform 0.2s ease;
-}
-
-.dsa-topic-card.available:hover .dsa-topic-action button span {
-  transform: translateX(4px);
-}
-
-.topic-lock {
-  color: #aaa;
-  font-size: 13px;
-}
-
-/* =========================
-   PHASE CONNECTOR
-========================= */
-
-.phase-connector {
-  width: 30px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  color: #a5a88c;
-  font-size: 18px;
-}
-
-/* =========================
-   TIP
-========================= */
-
-.dsa-tip {
-  width: 100%;
-  display: flex;
-  align-items: flex-start;
-  gap: 13px;
-  margin-top: 15px;
-  padding: 18px 20px;
-  border-top: 1px solid #dedfd9;
-  background: transparent;
-}
-
-.dsa-tip > span {
-  font-size: 18px;
-  line-height: 1;
-}
-
-.dsa-tip strong {
+.dsa-hero .dsa-eyebrow {
   display: block;
-  margin-bottom: 4px;
-  color: #4c5044;
-  font-size: 12px;
-}
 
-.dsa-tip p {
-  margin: 0;
-  color: #898c83;
+  margin: 0 0 5px;
+
+  color: var(--dsa-accent-dark);
+
   font-size: 11px;
-  line-height: 1.6;
-}
-
-/* =========================
-   RESPONSIVE
-========================= */
-
-@media (max-width: 900px) {
-  .dsa-page {
-    padding: 0 24px 40px;
-  }
-
-  .dsa-header {
-    grid-template-columns: 1fr;
-    gap: 25px;
-  }
-
-  .dsa-progress-card {
-    max-width: 350px;
-  }
-}
-
-@media (max-width: 650px) {
-  .dsa-page {
-    padding: 0 16px 30px;
-  }
-
-  .dsa-header {
-    padding-top: 25px;
-  }
-
-  .dsa-header h1 {
-    font-size: 32px;
-  }
-
-  .dsa-toolbar {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 12px;
-  }
-
- .dsa-phase {
-  position: relative;
-  padding: 0;
-}
-
-  .dsa-phase-header {
-    grid-template-columns: 38px 1fr;
-    gap: 14px;
-    padding: 16px 10px;
-  }
-
-  .dsa-phase-open {
-  white-space: nowrap;
-  margin-left: 20px;
-  color: #686c56;
-  font-size: 13px;
   font-weight: 800;
-  cursor: pointer;
-  padding: 8px 4px;
+
+  letter-spacing: 1.1px;
 }
 
-.dsa-phase-open:hover {
-  color: #30332d;
+
+/* Main title */
+
+.dsa-hero h1 {
+  margin: 0;
+
+  color: var(--dsa-text);
+
+  font-size: 28px;
+  line-height: 1.2;
+
+  font-weight: 800;
+
+  letter-spacing: -0.4px;
 }
 
-  .dsa-topic-list {
-    margin-left: 15px;
-  }
 
-  .dsa-topic-card {
-    grid-template-columns: 30px 1fr auto;
-    gap: 10px;
-    padding-left: 12px;
-  }
+/* Subtitle */
 
-  .dsa-topic-action button {
-    font-size: 0;
-  }
+.dsa-hero p {
+  margin: 7px 0 0;
 
-  .dsa-topic-action button span {
-    font-size: 18px;
-  }
-}
-.dsa-phase-info p {
-  margin: 2px 0 0;
-  color: #999c93;
-  font-size: 10px;
+  color: var(--dsa-text-soft);
+
+  font-size: 13px;
   line-height: 1.4;
 }
 
-.dsa-phase-info h2 {
-  margin: 4px 0 3px;
+
+/* =========================================================
+   CIRCULAR PROGRESS
+   ========================================================= */
+
+.dsa-progress-circle {
+  --progress: 0deg;
+
+  width: 76px;
+  height: 76px;
+
+  flex: 0 0 76px;
+
+  border-radius: 50%;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background:
+    conic-gradient(
+      var(--dsa-accent-dark) var(--progress),
+      #dfe3d4 var(--progress)
+    );
+}
+
+
+/* Inner white circle */
+
+.dsa-progress-circle::before {
+  content: "";
+
+  position: absolute;
+
+  inset: 6px;
+
+  border-radius: 50%;
+
+  background: var(--dsa-card);
+}
+
+
+/* Progress text */
+
+.dsa-progress-circle-inner {
+  position: relative;
+  z-index: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  line-height: 1;
+}
+
+
+/* 0/19 */
+
+.dsa-progress-circle-inner strong {
+  color: var(--dsa-text);
+
+  font-size: 15px;
+  font-weight: 800;
+}
+
+
+/* Completed */
+
+.dsa-progress-circle-inner span {
+  margin-top: 5px;
+
+  color: var(--dsa-text-soft);
+
+  font-size: 8px;
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   DIFFICULTY FILTER
+   ========================================================= */
+
+.dsa-filter-bar {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  margin-bottom: 20px;
+  padding: 12px 16px;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 14px;
+
+  background: var(--dsa-card);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+}
+
+
+/* Filter title */
+
+.dsa-filter-title {
+  color: var(--dsa-text);
+
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* Buttons wrapper */
+
+.dsa-filter-buttons {
+  display: flex;
+  align-items: center;
+
+  gap: 7px;
+}
+
+
+/* Difficulty button */
+
+.dsa-filter-buttons button {
+  border: 1px solid var(--dsa-border);
+
+  border-radius: 8px;
+
+  padding: 7px 13px;
+
+  background: var(--dsa-card-soft);
+
+  color: var(--dsa-text-soft);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+/* Hover */
+
+.dsa-filter-buttons button:hover {
+  border-color: var(--dsa-accent);
+
+  color: var(--dsa-accent-dark);
+
+  transform: translateY(-1px);
+}
+
+
+/* Active */
+
+.dsa-filter-buttons button.active {
+  border-color: var(--dsa-accent-dark);
+
+  background: var(--dsa-accent-dark);
+
+  color: #ffffff;
+}
+
+
+/* =========================================================
+   SECTION LIST
+   ========================================================= */
+
+.dsa-sections {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+
+/* =========================================================
+   SECTION CARD
+   ========================================================= */
+
+.dsa-section {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 16px;
+
+  background: var(--dsa-card);
+
+  overflow: hidden;
+
+  box-shadow:
+    0 2px 8px rgba(32, 35, 31, 0.025);
+}
+
+
+/* Section header */
+
+.dsa-section-header {
+  width: 100%;
+  min-height: 82px;
+
+  box-sizing: border-box;
+
+  padding: 17px 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease;
+}
+
+
+/* Hover */
+
+.dsa-section-header:hover {
+  background: var(--dsa-card-soft);
+}
+
+
+/* Left section content */
+
+.dsa-section-left {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+
+/* Section number */
+
+.dsa-section-number {
+  width: 43px;
+  height: 43px;
+
+  flex: 0 0 43px;
+
+  border-radius: 12px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dsa-accent-light);
+
+  color: var(--dsa-accent-dark);
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+
+/* Section title */
+
+.dsa-section-left h2 {
+  margin: 0;
+
+  color: var(--dsa-text);
+
+  font-size: 17px;
+  line-height: 1.2;
+
+  font-weight: 750;
+}
+
+
+/* Section questions */
+
+.dsa-section-left p {
+  margin: 5px 0 0;
+
+  color: var(--dsa-text-muted);
+
+  font-size: 11px;
+}
+
+
+/* Section arrow */
+
+.dsa-section-arrow {
+  width: 34px;
+  height: 34px;
+
+  flex: 0 0 34px;
+
+  border-radius: 9px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dsa-card-soft);
+
+  color: var(--dsa-text-soft);
+
+  font-size: 18px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   TOPICS / PATTERNS
+   ========================================================= */
+
+.dsa-patterns {
+  border-top: 1px solid var(--dsa-border);
+
+  background: #fbfcf9;
+
+  padding: 8px 14px 14px;
+}
+
+
+/* Topic */
+
+.dsa-pattern {
+  width: 100%;
+
+  margin-top: 7px;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 12px;
+
+  background: var(--dsa-card);
+
+  overflow: hidden;
+}
+
+
+/* Topic header */
+
+.dsa-pattern-header {
+  min-height: 62px;
+
+  padding: 12px 15px;
+
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+
+.dsa-pattern-header:hover {
+  background: var(--dsa-card-soft);
+}
+
+
+/* Topic left */
+
+.dsa-pattern-info {
+  display: flex;
+  align-items: center;
+
+  gap: 12px;
+}
+
+
+/* Plus / minus */
+
+.dsa-pattern-icon {
+  width: 30px;
+  height: 30px;
+
+  flex: 0 0 30px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dsa-accent-light);
+
+  color: var(--dsa-accent-dark);
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+
+/* Topic title */
+
+.dsa-pattern-info h3 {
+  margin: 0;
+
+  color: var(--dsa-text);
+
+  font-size: 14px;
+  font-weight: 700;
+}
+
+
+/* Topic question count */
+
+.dsa-pattern-info p {
+  margin: 4px 0 0;
+
+  color: var(--dsa-text-muted);
+
+  font-size: 10px;
+}
+
+
+/* Topic arrow */
+
+.dsa-pattern-arrow {
+  width: 30px;
+  height: 30px;
+
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dsa-card-soft);
+
+  color: var(--dsa-text-soft);
+
+  font-size: 16px;
+}
+
+
+/* =========================================================
+   QUESTION LIST
+   ========================================================= */
+
+.dsa-question-list {
+  border-top: 1px solid var(--dsa-border);
+
+  background: #fcfdfb;
+}
+
+
+/* Question row */
+
+.dsa-question-row {
+  min-height: 56px;
+
+  box-sizing: border-box;
+
+  padding: 10px 14px;
+
+  display: grid;
+
+  grid-template-columns:
+    28px
+    minmax(180px, 1fr)
+    auto
+    auto
+    auto
+    34px;
+
+  align-items: center;
+
+  gap: 12px;
+
+  border-bottom: 1px solid #edf0e8;
+}
+
+
+/* Last question */
+
+.dsa-question-row:last-child {
+  border-bottom: none;
+}
+
+
+/* Hover question */
+
+.dsa-question-row:hover {
+  background: #f8f9f5;
+}
+
+
+/* =========================================================
+   CHECKBOX / STATUS
+   ========================================================= */
+
+.dsa-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.dsa-status input {
+  width: 16px;
+  height: 16px;
+
+  accent-color: var(--dsa-accent-dark);
+
+  cursor: pointer;
+}
+
+
+/* =========================================================
+   QUESTION INFO
+   ========================================================= */
+
+.dsa-question-info {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  gap: 9px;
+}
+
+
+/* Question number */
+
+.dsa-question-number {
+  width: 24px;
+  height: 24px;
+
+  flex: 0 0 24px;
+
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dsa-card-soft);
+
+  color: var(--dsa-text-muted);
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+
+/* Question title */
+
+.dsa-question-title {
+  min-width: 0;
+
+  padding: 0;
+
+  border: none;
+
+  background: transparent;
+
+  color: var(--dsa-text);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+.dsa-question-title:hover {
+  color: var(--dsa-accent-dark);
+
+  text-decoration: underline;
+}
+
+
+/* =========================================================
+   COMPANY ICONS
+   ========================================================= */
+
+.dsa-companies {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.company-icon {
+  width: 25px;
+  height: 25px;
+
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: var(--dsa-card-soft);
+
+  border: 1px solid var(--dsa-border);
+
+  color: var(--dsa-text-soft);
+
+  font-size: 9px;
+  font-weight: 700;
+}
+
+
+/* =========================================================
+   PLATFORM BUTTONS
+   ========================================================= */
+
+.dsa-platforms {
+  display: flex;
+  align-items: center;
+
+  gap: 5px;
+}
+
+
+.platform-btn {
+  width: 27px;
+  height: 27px;
+
+  border-radius: 7px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid var(--dsa-border);
+
+  background: var(--dsa-card-soft);
+
+  color: var(--dsa-text-soft);
+
+  text-decoration: none;
+
+  font-size: 13px;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+
+.platform-btn:hover {
+  transform: translateY(-1px);
+
+  background: var(--dsa-accent-light);
+
+  color: var(--dsa-accent-dark);
+}
+
+
+/* LeetCode */
+
+.leetcode-btn:hover {
+  color: #f0a000;
+}
+
+
+/* GFG */
+
+.gfg-btn:hover {
+  color: #2f9e44;
+}
+
+
+/* YouTube */
+
+.video-btn:hover {
+  color: #e53935;
+}
+
+
+/* =========================================================
+   DIFFICULTY BADGE
+   ========================================================= */
+
+.difficulty-badge {
+  min-width: 62px;
+
+  padding: 5px 8px;
+
+  box-sizing: border-box;
+
+  border-radius: 7px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 5px;
+
+  font-size: 9px;
+  font-weight: 700;
+
+  text-transform: capitalize;
+}
+
+
+/* Difficulty dot */
+
+.difficulty-dot {
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: currentColor;
+}
+
+
+/* Easy */
+
+.difficulty-badge.easy {
+  background: #edf7ee;
+  color: #4f8a5b;
+}
+
+
+/* Medium */
+
+.difficulty-badge.medium {
+  background: #fff4e5;
+  color: #d9822b;
+}
+
+
+/* Hard */
+
+.difficulty-badge.hard {
+  background: #fdecec;
+  color: #c43d3d;
+}
+
+
+/* =========================================================
+   BOOKMARK
+   ========================================================= */
+
+.bookmark-btn {
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: transparent;
+
+  color: #a1a69c;
+
+  font-size: 18px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+
+.bookmark-btn:hover {
+  background: var(--dsa-accent-light);
+
+  color: var(--dsa-accent-dark);
+
+  transform: scale(1.05);
+}
+
+
+.bookmark-btn.bookmarked {
+  color: var(--dsa-accent-dark);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.dsa-empty-state {
+  padding: 25px;
+
+  text-align: center;
+
+  color: var(--dsa-text-muted);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.dsa-loading {
+  min-height: 300px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.dsa-loader {
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+
+  border: 3px solid var(--dsa-border);
+
+  border-top-color: var(--dsa-accent-dark);
+
+  animation: dsa-spin 0.8s linear infinite;
+}
+
+
+@keyframes dsa-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.app-dark-mode .dsa-page {
+  --dsa-bg: #151815;
+  --dsa-card: #1e221e;
+  --dsa-card-soft: #242924;
+  --dsa-border: #343a32;
+
+  --dsa-text: #f1f3ed;
+  --dsa-text-soft: #b8beb3;
+  --dsa-text-muted: #858d81;
+
+  background: var(--dsa-bg);
+  color: var(--dsa-text);
+}
+
+
+.app-dark-mode .dsa-hero {
+  background: var(--dsa-card);
+
+  border-color: var(--dsa-border);
+}
+
+
+.app-dark-mode .dsa-progress-circle::before {
+  background: var(--dsa-card);
+}
+
+
+.app-dark-mode .dsa-filter-bar,
+.app-dark-mode .dsa-section,
+.app-dark-mode .dsa-pattern {
+  background: var(--dsa-card);
+}
+
+
+.app-dark-mode .dsa-patterns,
+.app-dark-mode .dsa-question-list {
+  background: #191d19;
+}
+
+
+.app-dark-mode .dsa-section-header:hover,
+.app-dark-mode .dsa-pattern-header:hover,
+.app-dark-mode .dsa-question-row:hover {
+  background: var(--dsa-card-soft);
+}
+
+
+.app-dark-mode .dsa-question-row {
+  border-color: var(--dsa-border);
+}
+
+
+/* =========================================================
+   RESPONSIVE - TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  .dsa-page {
+    padding: 22px 20px 40px;
+  }
+
+
+  .dsa-hero {
+    padding: 18px 20px;
+  }
+
+
+  .dsa-hero h1 {
+    font-size: 24px;
+  }
+
+
+  .dsa-question-row {
+    grid-template-columns:
+      28px
+      minmax(150px, 1fr)
+      auto
+      auto
+      34px;
+
+    gap: 8px;
+  }
+
+
+  .dsa-companies {
+    display: none;
+  }
+
+}
+
+
+/* =========================================================
+   RESPONSIVE - MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .dsa-page {
+    padding: 16px 12px 30px;
+  }
+
+
+  /* Header */
+
+  .dsa-hero {
+    min-height: 100px;
+
+    padding: 16px;
+
+    gap: 10px;
+  }
+
+
+  .dsa-hero-content {
+    gap: 11px;
+  }
+
+
+  .dsa-hero-icon {
+    width: 45px;
+    height: 45px;
+
+    flex-basis: 45px;
+
+    border-radius: 10px;
+
+    font-size: 18px;
+  }
+
+
+  .dsa-hero .dsa-eyebrow {
+    font-size: 8px;
+
+    letter-spacing: 0.8px;
+  }
+
+
+  .dsa-hero h1 {
+    font-size: 19px;
+  }
+
+
+  .dsa-hero p {
+    display: none;
+  }
+
+
+  /* Progress */
+
+  .dsa-progress-circle {
+    width: 60px;
+    height: 60px;
+
+    flex-basis: 60px;
+  }
+
+
+  .dsa-progress-circle::before {
+    inset: 5px;
+  }
+
+
+  .dsa-progress-circle-inner strong {
+    font-size: 11px;
+  }
+
+
+  .dsa-progress-circle-inner span {
+    font-size: 7px;
+
+    margin-top: 3px;
+  }
+
+
+  /* Filter */
+
+  .dsa-filter-bar {
+    padding: 11px;
+
+    flex-direction: column;
+
+    align-items: stretch;
+  }
+
+
+  .dsa-filter-title {
+    font-size: 12px;
+  }
+
+
+  .dsa-filter-buttons {
+    width: 100%;
+  }
+
+
+  .dsa-filter-buttons button {
+    flex: 1;
+
+    padding: 7px 6px;
+
+    font-size: 10px;
+  }
+
+
+  /* Section */
+
+  .dsa-section-header {
+    min-height: 70px;
+
+    padding: 14px;
+  }
+
+
+  .dsa-section-left {
+    gap: 11px;
+  }
+
+
+  .dsa-section-number {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+
+    border-radius: 10px;
+  }
+
+
+  .dsa-section-left h2 {
+    font-size: 15px;
+  }
+
+
+  .dsa-section-left p {
+    font-size: 9px;
+  }
+
+
+  .dsa-section-arrow {
+    width: 30px;
+    height: 30px;
+
+    flex-basis: 30px;
+  }
+
+
+  /* Patterns */
+
+  .dsa-patterns {
+    padding: 6px 8px 10px;
+  }
+
+
+  .dsa-pattern-header {
+    min-height: 55px;
+
+    padding: 10px 11px;
+  }
+
+
+  .dsa-pattern-info {
+    gap: 9px;
+  }
+
+
+  .dsa-pattern-icon {
+    width: 27px;
+    height: 27px;
+
+    flex-basis: 27px;
+  }
+
+
+  .dsa-pattern-info h3 {
+    font-size: 12px;
+  }
+
+
+  .dsa-pattern-info p {
+    font-size: 9px;
+  }
+
+
+  /* Questions */
+
+  .dsa-question-row {
+    grid-template-columns:
+      24px
+      minmax(0, 1fr)
+      30px;
+
+    gap: 7px;
+
+    padding: 9px 10px;
+  }
+
+
+  .dsa-question-title {
+    font-size: 11px;
+  }
+
+
+  .dsa-question-number {
+    display: none;
+  }
+
+
+  .dsa-companies {
+    display: none;
+  }
+
+
+  .dsa-platforms {
+    display: none;
+  }
+
+
+  .difficulty-badge {
+    display: none;
+  }
+
+
+  .bookmark-btn {
+    width: 30px;
+    height: 30px;
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .dsa-page {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+
+  .dsa-hero {
+    padding: 13px;
+  }
+
+
+  .dsa-hero-icon {
+    width: 38px;
+    height: 38px;
+
+    flex-basis: 38px;
+
+    font-size: 15px;
+  }
+
+
+  .dsa-hero h1 {
+    font-size: 16px;
+  }
+
+
+  .dsa-progress-circle {
+    width: 53px;
+    height: 53px;
+
+    flex-basis: 53px;
+  }
+
+
+  .dsa-progress-circle-inner strong {
+    font-size: 10px;
+  }
+
+
+  .dsa-filter-buttons button {
+    font-size: 9px;
+
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+
+}
+
+/* =========================================================
+   SEARCH + DIFFICULTY FILTER
+   ========================================================= */
+
+.dsa-filter-bar {
+  width: 100%;
+  min-height: 56px;
+
+  box-sizing: border-box;
+
+  margin-bottom: 20px;
+  padding: 9px 12px;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 14px;
+
+  background: var(--dsa-card);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 14px;
+}
+
+
+/* SEARCH */
+
+.dsa-search-wrap {
+  flex: 1;
+
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  padding: 0 12px;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 9px;
+
+  background: var(--dsa-card-soft);
+
+  box-sizing: border-box;
+}
+
+
+.dsa-search-icon {
+  color: var(--dsa-text-muted);
+
+  font-size: 20px;
+  line-height: 1;
+
+  transform: rotate(-15deg);
+}
+
+
+.dsa-search-input {
+  width: 100%;
+  height: 100%;
+
+  border: none;
+  outline: none;
+
+  background: transparent;
+
+  color: var(--dsa-text);
+
+  font-size: 12px;
+}
+
+
+.dsa-search-input::placeholder {
+  color: var(--dsa-text-muted);
+}
+
+
+/* DIFFICULTY DROPDOWN */
+
+.dsa-filter-right {
+  display: flex;
+  align-items: center;
+}
+
+
+.dsa-difficulty-select {
+  height: 38px;
+
+  min-width: 155px;
+
+  padding: 0 34px 0 12px;
+
+  border: 1px solid var(--dsa-border);
+  border-radius: 9px;
+
+  background: var(--dsa-card-soft);
+
+  color: var(--dsa-text);
+
+  font-size: 11px;
+  font-weight: 700;
+
+  outline: none;
+
+  cursor: pointer;
+}
+
+
+.dsa-difficulty-select:focus {
+  border-color: var(--dsa-accent-dark);
+}
+
+
+/* =========================================================
+   HERO PROGRESS + DIFFICULTY COUNTS
+   ========================================================= */
+
+.dsa-hero-progress {
+  flex: 0 0 auto;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 6px;
+}
+
+
+.dsa-difficulty-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  white-space: nowrap;
+}
+
+
+.dsa-difficulty-progress span {
+  color: var(--dsa-text-muted);
+
+  font-size: 8px;
+  font-weight: 600;
+
+  line-height: 1;
+}
+
+
+.dsa-difficulty-progress b {
+  font-weight: 800;
+}
+
+
+.dsa-difficulty-progress span:nth-child(1) b {
+  color: var(--dsa-green);
+}
+
+
+.dsa-difficulty-progress span:nth-child(2) b {
+  color: var(--dsa-orange);
+}
+
+
+.dsa-difficulty-progress span:nth-child(3) b {
+  color: var(--dsa-red);
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 650px) {
+
+  .dsa-filter-bar {
+    flex-direction: column;
+
+    align-items: stretch;
+
+    padding: 10px;
+  }
+
+
+  .dsa-search-wrap {
+    width: 100%;
+  }
+
+
+  .dsa-filter-right {
+    width: 100%;
+  }
+
+
+  .dsa-difficulty-select {
+    width: 100%;
+  }
+
+
+  .dsa-hero-progress {
+    gap: 4px;
+  }
+
+
+  .dsa-difficulty-progress {
+    gap: 5px;
+  }
+
+
+  .dsa-difficulty-progress span {
+    font-size: 7px;
+  }
+
+}
+
+.platform-solved {
+  color: #16a34a !important;
+  border-color: #16a34a !important;
+  background: rgba(22, 163, 74, 0.12) !important;
+}
+
+/* Locked question */
+.question-locked {
+  opacity: 0.55;
+  cursor: not-allowed !important;
+}
+
+.dsa-question-title:disabled {
+  cursor: not-allowed;
+}
+
+/* Locked platform icons */
+.platform-locked {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+.company-icon {
+  width: 32px;
+  height: 32px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  margin-left: 6px;
+  transition: all 0.2s ease;
+}
+
+.company-icon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.company-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 17px;
+}
+
+.company-logo svg {
+  width: 18px;
+  height: 18px;
+}
+
+.company-fallback {
+  font-size: 12px;
+  font-weight: 700;
 }

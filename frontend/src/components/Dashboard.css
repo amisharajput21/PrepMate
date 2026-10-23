@@ -1,3 +1,4 @@
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -41,7 +42,11 @@ body {
 }
 
 
-/* ================= SIDEBAR ================= */
+/* ================= OLD SIDEBAR STYLES ================= */
+/*
+   Sidebar ab App.jsx me global render hota hai.
+   Isliye ye old sidebar styles currently use nahi hote.
+*/
 
 .dashboard-sidebar {
   width: 240px;
@@ -306,14 +311,22 @@ body {
 
 /* ================= MAIN ================= */
 
+/*
+   IMPORTANT:
+   Sidebar ka 240px shift App.css ke .app-page-content
+   se already ho raha hai.
+
+   Isliye yahan margin-left: 240px NAHI hona chahiye.
+*/
+
 .dashboard-main {
-  margin-left: 240px;
+  margin-left: 0;
 
   min-height: 100vh;
 
   padding: 0 28px 40px;
 
-  width: calc(100% - 240px);
+  width: 100%;
 
   min-width: 0;
 }
@@ -322,13 +335,7 @@ body {
 /* ================= TOP BAR ================= */
 
 .dashboard-topbar {
-  height: 76px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  border-bottom: 1px solid var(--border);
+  margin-left: 0;
 }
 
 .topbar-title {
@@ -410,24 +417,26 @@ body {
 /* ================= DAY / NIGHT TOGGLE ================= */
 
 .theme-toggle {
-  width: 58px;
-  height: 30px;
+  width: 42px;
+  height: 42px;
 
-  padding: 2px;
-
-  border-radius: 20px;
-
-  background: #e9ead3;
-
-  border: 1px solid var(--border);
+  border-radius: 50%;
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   cursor: pointer;
 
+  transition: all 0.25s ease;
+
+  user-select: none;
+
   flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  transform: rotate(15deg) scale(1.05);
 }
 
 .theme-icon {
@@ -447,13 +456,10 @@ body {
 /* ================= DASHBOARD CONTAINER ================= */
 
 .dashboard-container {
+  padding-left: 0;
+  margin-left: 0;
+
   width: 100%;
-
-  max-width: none;
-
-  padding-top: 25px;
-
-  margin: 0;
 }
 
 
@@ -1081,6 +1087,10 @@ body {
   .lower-dashboard {
     grid-template-columns: 1fr;
   }
+
+  .upcoming-section {
+    max-width: 100%;
+  }
 }
 
 
@@ -1126,16 +1136,16 @@ body {
     justify-content: center;
   }
 
-  .sidebar-logout span:last-child {
-    display: none;
-  }
-
   .dashboard-main {
-    margin-left: 70px;
+    margin-left: 0;
 
-    width: calc(100% - 70px);
+    min-height: 100vh;
 
-    padding: 0 15px 30px;
+    padding: 0;
+
+    width: 100%;
+
+    min-width: 0;
   }
 
   .welcome-card {
@@ -1160,6 +1170,7 @@ body {
     width: 54px;
   }
 }
+
 
 /* ================= UPCOMING EVENTS ================= */
 
@@ -1209,7 +1220,7 @@ body {
 }
 
 
-/* LIST */
+/* ================= UPCOMING LIST ================= */
 
 .upcoming-list {
   display: flex;
@@ -1250,7 +1261,7 @@ body {
 }
 
 
-/* COMPANY ICON */
+/* ================= COMPANY ICON ================= */
 
 .company-icon {
   width: 35px;
@@ -1275,7 +1286,7 @@ body {
 }
 
 
-/* INFO */
+/* ================= UPCOMING INFO ================= */
 
 .upcoming-info {
   flex: 1;
@@ -1304,7 +1315,7 @@ body {
 }
 
 
-/* DATE */
+/* ================= DATE ================= */
 
 .upcoming-date {
   text-align: center;
@@ -1337,7 +1348,7 @@ body {
 }
 
 
-/* ARROW */
+/* ================= ARROW ================= */
 
 .upcoming-arrow {
   color: var(--accent-dark);
@@ -1345,34 +1356,6 @@ body {
   font-size: 16px;
 
   padding-left: 4px;
-}
-
-
-/* ================= RESPONSIVE ================= */
-
-@media (max-width: 1100px) {
-
-  .upcoming-section {
-    max-width: 100%;
-  }
-}
-
-/* ================= THEME TOGGLE ================= */
-
-.theme-toggle {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  user-select: none;
-}
-
-.theme-toggle:hover {
-  transform: rotate(15deg) scale(1.05);
 }
 
 
@@ -1461,7 +1444,7 @@ body {
 }
 
 
-/* Toggle background */
+/* ================= DARK MODE TOGGLE ================= */
 
 .dashboard-layout.dark-mode .theme-toggle {
   background: #2b3029;
@@ -1470,3 +1453,4 @@ body {
 .dashboard-layout.dark-mode .theme-toggle:hover {
   background: #353b33;
 }
+

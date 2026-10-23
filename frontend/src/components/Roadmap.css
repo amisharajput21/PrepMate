@@ -1,0 +1,849 @@
+/* =========================================
+   ROADMAP PAGE
+========================================= */
+
+.roadmap-page {
+  min-height: 100vh;
+  padding: 32px 36px 50px;
+  background: #f4f5f0;
+  color: #20231f;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.roadmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 30px;
+  margin-bottom: 32px;
+}
+
+.roadmap-label {
+  display: block;
+  margin-bottom: 8px;
+  color: #92975d;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+}
+
+.roadmap-header h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+}
+
+.roadmap-header p {
+  margin: 8px 0 0;
+  color: #777b72;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   BACK BUTTON
+========================================= */
+
+.roadmap-back-btn {
+  padding: 11px 17px;
+  border: 1px solid #dfe1d8;
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #20231f;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.roadmap-back-btn:hover {
+  border-color: #b4b76b;
+  transform: translateY(-1px);
+}
+
+
+/* =========================================
+   BACK TO ALL ROADMAPS
+========================================= */
+
+.roadmap-back-link {
+  display: block;
+
+  margin-bottom: 18px;
+  padding: 0;
+
+  border: none;
+  background: transparent;
+
+  color: #92975d;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.roadmap-back-link:hover {
+  color: #70763f;
+}
+
+
+/* =========================================
+   ROADMAP CARDS GRID
+========================================= */
+
+.roadmap-card-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+
+  gap: 20px;
+
+  max-width: 1200px;
+}
+
+
+/* =========================================
+   ROADMAP CARD
+========================================= */
+
+.roadmap-card {
+  position: relative;
+
+  min-height: 275px;
+
+  padding: 22px;
+
+  border: 1px solid #e0e2d9;
+  border-radius: 16px;
+
+  background: #ffffff;
+
+  box-shadow: 0 4px 18px rgba(32, 35, 31, 0.035);
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-5px);
+
+  border-color: #b4b76b;
+
+  box-shadow: 0 12px 28px rgba(32, 35, 31, 0.08);
+}
+
+
+/* =========================================
+   CARD TOP
+========================================= */
+
+.roadmap-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 20px;
+}
+
+.roadmap-card-icon {
+  width: 52px;
+  height: 52px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 14px;
+
+  background: #eef0df;
+
+  font-size: 27px;
+}
+
+.roadmap-card-arrow {
+  width: 32px;
+  height: 32px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: #f4f5f0;
+  color: #20231f;
+
+  font-size: 18px;
+
+  transition: all 0.2s ease;
+}
+
+.roadmap-card:hover .roadmap-card-arrow {
+  background: #b4b76b;
+  transform: translateX(2px);
+}
+
+
+/* =========================================
+   CARD TEXT
+========================================= */
+
+.roadmap-card h2 {
+  margin: 0 0 5px;
+
+  color: #20231f;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.roadmap-card h4 {
+  margin: 0 0 10px;
+
+  color: #92975d;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.roadmap-card p {
+  margin: 0;
+
+  color: #777b72;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CARD BOTTOM
+========================================= */
+
+.roadmap-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 22px;
+
+  color: #858980;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.roadmap-card-bottom strong {
+  color: #92975d;
+  font-size: 12px;
+}
+
+
+/* =========================================
+   CARD PROGRESS
+========================================= */
+
+.roadmap-card-progress {
+  width: 100%;
+  height: 5px;
+
+  margin-top: 8px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #e5e7df;
+}
+
+.roadmap-card-progress div {
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: #b4b76b;
+
+  transition: width 0.3s ease;
+}
+
+
+/* =========================================
+   DETAIL PAGE - OVERALL PROGRESS
+========================================= */
+
+.roadmap-progress {
+  max-width: 1050px;
+
+  margin-bottom: 38px;
+  padding: 22px 24px;
+
+  border: 1px solid #e1e3db;
+  border-radius: 15px;
+
+  background: #ffffff;
+
+  box-shadow: 0 4px 18px rgba(32, 35, 31, 0.04);
+}
+
+.progress-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 14px;
+}
+
+.progress-top span {
+  color: #92975d;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+}
+
+.progress-top h2 {
+  margin: 4px 0 0;
+
+  font-size: 18px;
+  font-weight: 650;
+}
+
+.progress-top strong {
+  color: #92975d;
+  font-size: 24px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #e5e7df;
+}
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: #b4b76b;
+
+  transition: width 0.35s ease;
+}
+
+.roadmap-progress > p {
+  margin: 11px 0 0;
+
+  color: #858980;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   ROADMAP DETAIL SECTION
+========================================= */
+
+.roadmap-section {
+  position: relative;
+
+  max-width: 1050px;
+
+  padding: 5px 0 20px;
+}
+
+.roadmap-line {
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: 31px;
+
+  width: 2px;
+
+  background: #dfe1d8;
+}
+
+
+/* =========================================
+   ROADMAP STAGE
+========================================= */
+
+.roadmap-stage {
+  position: relative;
+
+  display: flex;
+
+  gap: 25px;
+
+  margin-bottom: 25px;
+}
+
+.stage-number {
+  position: relative;
+
+  z-index: 2;
+
+  flex-shrink: 0;
+
+  width: 64px;
+  height: 64px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 4px solid #f4f5f0;
+  border-radius: 50%;
+
+  background: #20231f;
+  color: #ffffff;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  box-shadow: 0 3px 10px rgba(32, 35, 31, 0.12);
+}
+
+.stage-number.stage-completed {
+  background: #b4b76b;
+  color: #20231f;
+
+  font-size: 20px;
+}
+
+
+/* =========================================
+   STAGE CONTENT
+========================================= */
+
+.stage-content {
+  flex: 1;
+
+  padding: 22px 24px;
+
+  border: 1px solid #e1e3db;
+  border-radius: 15px;
+
+  background: #ffffff;
+
+  box-shadow: 0 4px 18px rgba(32, 35, 31, 0.035);
+}
+
+.stage-status {
+  display: inline-block;
+
+  margin-bottom: 7px;
+
+  color: #92975d;
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
+
+.completed-status {
+  color: #7e844a;
+}
+
+.stage-content h2 {
+  margin: 0;
+
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.stage-content > p {
+  margin: 8px 0 17px;
+
+  color: #777b72;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   CHECKLIST
+========================================= */
+
+.roadmap-checklist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.roadmap-topic {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 9px 12px;
+
+  border: 1px solid #dfe1d8;
+  border-radius: 9px;
+
+  background: #f8f9f5;
+  color: #20231f;
+
+  font-size: 12px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.roadmap-topic:hover {
+  border-color: #b4b76b;
+  transform: translateY(-1px);
+}
+
+.roadmap-topic input {
+  width: 15px;
+  height: 15px;
+
+  margin: 0;
+
+  accent-color: #b4b76b;
+
+  cursor: pointer;
+}
+
+.roadmap-topic.completed {
+  background: #eef0df;
+  border-color: #b4b76b;
+}
+
+.roadmap-topic.completed span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+
+/* =========================================
+   STAGE PROGRESS
+========================================= */
+
+.stage-progress {
+  max-width: 500px;
+
+  margin-top: 18px;
+}
+
+.stage-progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 7px;
+}
+
+.stage-progress-top span {
+  color: #858980;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.stage-progress-top strong {
+  color: #20231f;
+
+  font-size: 12px;
+}
+
+.stage-progress-bar {
+  width: 100%;
+  height: 6px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #e5e7df;
+}
+
+.stage-progress-fill {
+  height: 100%;
+
+  border-radius: 20px;
+
+  background: #b4b76b;
+
+  transition: width 0.3s ease;
+}
+
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+.app-dark-mode .roadmap-page {
+  background: #171a16;
+  color: #f1f2ed;
+}
+
+.app-dark-mode .roadmap-header p {
+  color: #a8aca2;
+}
+
+.app-dark-mode .roadmap-back-btn {
+  background: #252922;
+  border-color: #3d4238;
+  color: #f1f2ed;
+}
+
+.app-dark-mode .roadmap-back-link {
+  color: #b4b76b;
+}
+
+.app-dark-mode .roadmap-card {
+  background: #22261f;
+  border-color: #353a31;
+  box-shadow: none;
+}
+
+.app-dark-mode .roadmap-card:hover {
+  border-color: #b4b76b;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.app-dark-mode .roadmap-card-icon {
+  background: #353a2d;
+}
+
+.app-dark-mode .roadmap-card-arrow {
+  background: #2b2f28;
+  color: #f1f2ed;
+}
+
+.app-dark-mode .roadmap-card h2 {
+  color: #f1f2ed;
+}
+
+.app-dark-mode .roadmap-card p {
+  color: #a8aca2;
+}
+
+.app-dark-mode .roadmap-card-progress {
+  background: #3b4037;
+}
+
+.app-dark-mode .roadmap-progress {
+  background: #22261f;
+  border-color: #353a31;
+  box-shadow: none;
+}
+
+.app-dark-mode .progress-top h2 {
+  color: #f1f2ed;
+}
+
+.app-dark-mode .progress-bar {
+  background: #383d34;
+}
+
+.app-dark-mode .roadmap-progress > p {
+  color: #a8aca2;
+}
+
+.app-dark-mode .roadmap-line {
+  background: #3a3f35;
+}
+
+.app-dark-mode .stage-number {
+  border-color: #171a16;
+  background: #2c3029;
+}
+
+.app-dark-mode .stage-number.stage-completed {
+  background: #b4b76b;
+  color: #20231f;
+}
+
+.app-dark-mode .stage-content {
+  background: #22261f;
+  border-color: #353a31;
+  box-shadow: none;
+}
+
+.app-dark-mode .stage-content > p {
+  color: #a8aca2;
+}
+
+.app-dark-mode .roadmap-topic {
+  background: #2a2e27;
+  border-color: #41463c;
+  color: #f1f2ed;
+}
+
+.app-dark-mode .roadmap-topic.completed {
+  background: #353a2d;
+  border-color: #b4b76b;
+}
+
+.app-dark-mode .stage-progress-top span {
+  color: #a8aca2;
+}
+
+.app-dark-mode .stage-progress-top strong {
+  color: #f1f2ed;
+}
+
+.app-dark-mode .stage-progress-bar {
+  background: #3b4037;
+}
+
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 950px) {
+  .roadmap-card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .roadmap-page {
+    padding: 24px 18px 40px;
+  }
+
+  .roadmap-header {
+    flex-direction: column;
+  }
+
+  .roadmap-header h1 {
+    font-size: 27px;
+  }
+
+  .roadmap-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .roadmap-line {
+    left: 25px;
+  }
+
+  .roadmap-stage {
+    gap: 16px;
+  }
+
+  .stage-number {
+    width: 52px;
+    height: 52px;
+  }
+
+  .stage-content {
+    padding: 18px;
+  }
+}
+
+@media (max-width: 500px) {
+  .roadmap-page {
+    padding: 20px 12px 35px;
+  }
+
+  .roadmap-stage {
+    gap: 10px;
+  }
+
+  .roadmap-line {
+    left: 20px;
+  }
+
+  .stage-number {
+    width: 42px;
+    height: 42px;
+    border-width: 3px;
+    font-size: 9px;
+  }
+
+  .stage-content {
+    padding: 15px;
+  }
+
+  .stage-content h2 {
+    font-size: 16px;
+  }
+
+  .roadmap-topic {
+    width: 100%;
+  }
+}
+
+/* =========================================
+   STAGE HEADING
+========================================= */
+
+.stage-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.stage-heading h2 {
+  margin: 0;
+}
+
+/* =========================================
+   NOTES BUTTON
+========================================= */
+
+.stage-notes-btn {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border: 1px solid #dfe1d8;
+  border-radius: 10px;
+
+  background: #f8f9f5;
+  color: #20231f;
+
+  font-size: 17px;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.stage-notes-btn:hover {
+  background: #eef0df;
+  border-color: #b4b76b;
+  transform: translateY(-2px);
+}
+
+.app-dark-mode .stage-notes-btn {
+  background: #2a2e27;
+  border-color: #41463c;
+  color: #f1f2ed;
+}
+
+.app-dark-mode .stage-notes-btn:hover {
+  background: #353a2d;
+  border-color: #b4b76b;
+}

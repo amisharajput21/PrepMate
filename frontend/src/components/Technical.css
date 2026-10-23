@@ -1,521 +1,1420 @@
+/* =========================================================
+   TECHNICAL / CORE SUBJECTS
+   ========================================================= */
+
 .technical-page {
-  height: 100vh;
-  overflow: hidden;
+  min-height: 100%;
+  padding: 32px 34px 45px;
   background: #f4f5f0;
   color: #30332d;
-  padding: 0 42px 25px;
-  box-sizing: border-box;
 }
 
-/* BACK */
+/* =========================================================
+   CORE SUBJECTS — HEADING
+   ========================================================= */
 
-.technical-back-btn {
-  border: none;
-  background: transparent;
-  padding: 22px 0 16px;
-  color: #777a70;
-  font-size: 13px;
-  font-weight: 700;
-  cursor: pointer;
+.technical-top-heading {
+  max-width: 700px;
+  margin-bottom: 30px;
 }
 
-.technical-back-btn:hover {
-  color: #30332d;
-}
-
-
-/* MAIN */
-
-.technical-main {
-  height: calc(100vh - 65px);
-  overflow: hidden;
-}
-
-
-/* SUBJECTS TOP */
-
-.technical-subjects {
-  padding: 8px 0 18px;
-  border-bottom: 1px solid #dfe1d9;
-}
-
-.technical-sidebar-title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 5px 10px;
-}
-
-.technical-sidebar-title span {
+.technical-top-heading span {
+  display: inline-block;
+  margin-bottom: 9px;
   color: #777b4c;
-  font-size: 9px;
-  font-weight: 850;
-  letter-spacing: 1.7px;
-}
-
-.technical-sidebar-title small {
-  color: #a0a398;
-  font-size: 8px;
-  font-weight: 700;
-}
-
-
-/* SUBJECT BUTTONS */
-
-.technical-subject-list {
-  display: flex;
-  gap: 9px;
-  overflow-x: auto;
-  padding: 2px 2px 5px;
-}
-
-.technical-subject-list::-webkit-scrollbar {
-  height: 4px;
-}
-
-.technical-subject-list::-webkit-scrollbar-thumb {
-  background: #d0d2c8;
-  border-radius: 10px;
-}
-
-.technical-subject {
-  flex: 0 0 auto;
-
-  min-width: 105px;
-  height: 46px;
-
-  display: flex;
-  align-items: center;
-  gap: 9px;
-
-  border: 1px solid #dfe1d9;
-  border-radius: 7px;
-
-  background: #eeefe9;
-
-  padding: 0 13px;
-
-  color: #858980;
-
-  cursor: pointer;
-
-  transition: all 0.2s ease;
-}
-
-.technical-subject:hover {
-  background: #e7e9dc;
-  border-color: #c9ccb9;
-  color: #30332d;
-}
-
-.technical-subject.active {
-  background: #30332d;
-  border-color: #30332d;
-  color: #f4f5f0;
-  box-shadow: 0 4px 12px rgba(48, 51, 45, 0.12);
-}
-
-.technical-subject-number {
-  color: #a2a49b;
-  font-size: 9px;
-  font-weight: 850;
-}
-
-.technical-subject.active .technical-subject-number {
-  color: #c4c78b;
-}
-
-.technical-subject-name {
   font-size: 11px;
   font-weight: 800;
+  letter-spacing: 1.4px;
 }
 
+.technical-top-heading h1 {
+  margin: 0;
+  color: #20231f;
+  font-size: 40px;
+  line-height: 1.15;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
 
-/* TOPICS + CONTENT */
+.technical-top-heading p {
+  margin: 10px 0 0;
+  color: #777a72;
+  font-size: 14px;
+  line-height: 1.6;
+}
 
-.technical-study-area {
-  height: calc(100% - 90px);
+/* =========================================================
+   CORE SUBJECTS — GRID
+   ========================================================= */
 
+.technical-subject-grid {
   display: grid;
-  grid-template-columns: 245px minmax(0, 1fr);
-
-  gap: 28px;
-
-  overflow: hidden;
-}
-
-
-/* TOPIC SIDEBAR */
-
-.technical-topic-sidebar {
-  min-width: 0;
-  overflow-y: auto;
-
-  padding: 22px 20px 30px 0;
-
-  border-right: 1px solid #dfe1d9;
-}
-
-.technical-topic-sidebar::-webkit-scrollbar,
-.technical-content::-webkit-scrollbar {
-  width: 5px;
-}
-
-.technical-topic-sidebar::-webkit-scrollbar-thumb,
-.technical-content::-webkit-scrollbar-thumb {
-  background: #d0d2c8;
-  border-radius: 10px;
-}
-
-.technical-topic-heading {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 5px 13px;
-
-  border-bottom: 1px solid #dcded6;
-}
-
-.technical-topic-heading span {
-  color: #999d58;
-  font-size: 9px;
-  font-weight: 850;
-  letter-spacing: 1.5px;
-}
-
-.technical-topic-heading small {
-  color: #a0a398;
-  font-size: 8px;
-  font-weight: 700;
-}
-
-.technical-topic-list {
-  margin-top: 8px;
-}
-
-.technical-topic {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
   width: 100%;
-  min-height: 52px;
+  max-width: 1250px;
+}
 
-  display: grid;
-  grid-template-columns: 27px 1fr 14px;
+/* =========================================================
+   CORE SUBJECT — CARD
+   ========================================================= */
 
-  align-items: center;
-  gap: 7px;
+.technical-subject-card {
+  position: relative;
+  min-height: 235px;
+  padding: 20px;
 
-  border: none;
-  border-bottom: 1px solid #e3e4de;
-
-  border-radius: 0;
-
-  background: transparent;
-
-  padding: 6px 5px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   text-align: left;
 
+  border: 1px solid #dfe1d9;
+  border-radius: 16px;
+
+  background: #eeefe9;
+  color: #20231f;
+
   cursor: pointer;
 
-  color: #858980;
+  box-shadow: 0 3px 10px rgba(32, 35, 31, 0.035);
 
-  transition: all 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
 }
 
-.technical-topic:hover {
-  background: #eeefe9;
+.technical-subject-card:hover {
+  transform: translateY(-4px);
+  border-color: #b4b76b;
+  background: #f1f2eb;
+  box-shadow: 0 10px 22px rgba(32, 35, 31, 0.08);
 }
 
-.technical-topic.active {
-  background: #e7e9dc;
-  color: #30332d;
-}
+/* =========================================================
+   SUBJECT CARD — TOP
+   ========================================================= */
 
-.technical-topic > span {
-  color: #a2a49b;
-  font-size: 9px;
-  font-weight: 800;
-}
-
-.technical-topic.active > span {
-  color: #777b4c;
-}
-
-.technical-topic strong {
-  font-size: 11px;
-  line-height: 1.35;
-  font-weight: 750;
-}
-
-.technical-topic b {
-  color: #aaaD9f;
-  font-size: 12px;
-}
-
-.technical-topic.active b {
-  color: #676b56;
-}
-
-
-/* CONTENT */
-
-.technical-content {
-  min-width: 0;
-
-  overflow-y: auto;
-
-  padding: 28px 28px 60px 5px;
-}
-
-.technical-content-top {
+.subject-card-top {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-
-  gap: 20px;
-
-  padding-bottom: 14px;
-
-  border-bottom: 1px solid #dcded6;
+  justify-content: space-between;
 }
 
-.technical-content-top span {
-  color: #999d58;
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.technical-content-top small {
-  color: #9b9e94;
-  font-size: 8px;
+.subject-card-top span:first-child {
+  color: #777b4c;
+  font-size: 11px;
   font-weight: 800;
   letter-spacing: 1px;
 }
 
-.technical-content > h1 {
-  margin: 25px 0 30px;
+.subject-card-top span:last-child {
+  color: #777b4c;
+  font-size: 18px;
+  font-weight: 500;
 
-  color: #292c26;
-
-  font-size: 31px;
-  line-height: 1.15;
-  font-weight: 850;
-
-  letter-spacing: -0.7px;
+  transition: transform 0.2s ease;
 }
 
-.technical-content-section {
-  margin-bottom: 30px;
+.technical-subject-card:hover
+.subject-card-top span:last-child {
+  transform: translateX(3px);
 }
 
-.technical-content-section h2 {
-  margin: 0 0 10px;
+/* =========================================================
+   SUBJECT ICON
+   ========================================================= */
 
-  color: #3b3e35;
+.subject-icon {
+  width: 48px;
+  height: 48px;
 
-  font-size: 13px;
-  font-weight: 850;
+  margin-top: 20px;
+  margin-bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+  background: #e2e4d8;
+
+  color: #777b4c;
+
+  font-size: 21px;
+  font-weight: 700;
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
-.technical-content-section p {
-  max-width: 780px;
+.technical-subject-card:hover .subject-icon {
+  background: #daddc8;
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   SUBJECT TITLE
+   ========================================================= */
+
+.technical-subject-card h2 {
+  margin: 0;
+
+  color: #20231f;
+
+  font-size: 22px;
+  line-height: 1.2;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+}
+
+.technical-subject-card > p {
+  margin: 6px 0 0;
+
+  color: #7a7d75;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   SUBJECT CARD — BOTTOM
+   ========================================================= */
+
+.subject-card-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-top: 20px;
+  padding-top: 13px;
+
+  border-top: 1px solid #dfe1d9;
+}
+
+.subject-card-bottom span:first-child {
+  color: #777a72;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.subject-card-bottom span:last-child {
+  color: #20231f;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+/* =========================================================
+   LEVEL 2
+   SUBJECT COURSE / MODULE PAGE
+   ========================================================= */
+
+.subject-course-header {
+  width: 100%;
+  max-width: 1050px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding-bottom: 28px;
+  margin-bottom: 34px;
+
+  border-bottom: 1px solid #dfe1d9;
+}
+
+.course-label {
+  display: inline-block;
+
+  margin-bottom: 9px;
+
+  color: #777b4c;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.subject-course-header h1 {
+  margin: 0;
+
+  color: #20231f;
+
+  font-size: 40px;
+  line-height: 1.1;
+  font-weight: 800;
+  letter-spacing: -1px;
+}
+
+.subject-course-header p {
+  margin: 10px 0 0;
+
+  color: #777b70;
+
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.topic-count-box {
+  min-width: 105px;
+
+  text-align: right;
+}
+
+.topic-count-box strong {
+  display: block;
+
+  color: #777b4c;
+
+  font-size: 32px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.topic-count-box span {
+  display: block;
+
+  margin-top: 6px;
+
+  color: #777b70;
+
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.module-list {
+  width: 100%;
+  max-width: 1050px;
+}
+
+/* =========================================================
+   MODULE
+   ========================================================= */
+
+.technical-module {
+  margin-bottom: 38px;
+}
+
+.module-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  padding: 0 2px 14px;
+
+  border-bottom: 1px solid #dfe1d9;
+}
+
+.module-label {
+  display: block;
+
+  margin-bottom: 5px;
+
+  color: #999d58;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.module-heading h2 {
+  margin: 0;
+
+  color: #30332d;
+
+  font-size: 20px;
+  line-height: 1.3;
+  font-weight: 800;
+}
+
+.module-count {
+  color: #a0a38e;
+
+  font-size: 17px;
+  font-weight: 700;
+}
+
+/* =========================================================
+   MODULE TOPICS
+   ========================================================= */
+
+.module-topics {
+  margin-top: 7px;
+}
+
+.module-topic {
+  width: 100%;
+  min-height: 78px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 14px 8px;
+
+  border: none;
+  border-bottom: 1px solid #e0e2da;
+
+  background: transparent;
+
+  text-align: left;
+
+  color: #30332d;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.module-topic:hover {
+  background: #e9eadf;
+  padding-left: 15px;
+}
+
+.module-topic-number {
+  width: 54px;
+  flex-shrink: 0;
+
+  color: #999d8b;
+
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.module-topic-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.module-topic-content h3 {
+  margin: 0 0 5px;
+
+  color: #30332d;
+
+  font-size: 15px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+
+.module-topic-content p {
+  margin: 0;
+
+  color: #818579;
+
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.module-topic-arrow {
+  width: 40px;
+  flex-shrink: 0;
+
+  text-align: right;
+
+  color: #777b4c;
+
+  font-size: 18px;
+
+  transition: transform 0.2s ease;
+}
+
+.module-topic:hover .module-topic-arrow {
+  transform: translateX(4px);
+}
+
+/* =========================================================
+   LEVEL 3
+   TOPIC / NOTES PAGE
+   ========================================================= */
+
+.technical-detail-layout {
+  width: 100%;
+  max-width: 1250px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 250px;
+
+  gap: 48px;
+
+  align-items: start;
+}
+
+.technical-notes {
+  min-width: 0;
+  max-width: 850px;
+}
+
+.technical-breadcrumb {
+  display: inline-block;
+
+  margin-bottom: 14px;
+
+  color: #777b4c;
+
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+.technical-notes > h1 {
+  max-width: 850px;
 
   margin: 0;
 
-  color: #70746a;
+  color: #20231f;
+
+  font-size: 42px;
+  line-height: 1.12;
+  font-weight: 800;
+  letter-spacing: -1.2px;
+}
+
+.technical-topic-subtitle {
+  max-width: 720px;
+
+  margin: 13px 0 22px;
+
+  color: #777b70;
+
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.technical-topic-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  margin-bottom: 42px;
+}
+
+.topic-badge {
+  display: inline-flex;
+  align-items: center;
+
+  min-height: 32px;
+
+  padding: 7px 12px;
+
+  border-radius: 20px;
+
+  background: #e7e8df;
+  color: #777b70;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.topic-badge.active {
+  background: #777b4c;
+  color: #ffffff;
+}
+
+/* =========================================================
+   WHAT YOU'LL LEARN
+   ========================================================= */
+
+.learn-box {
+  margin-bottom: 48px;
+  padding: 23px 25px;
+
+  background: #e8e9df;
+
+  border: 1px solid #d9dbd0;
+  border-left: 4px solid #999d58;
+  border-radius: 12px;
+}
+
+.learn-box h2 {
+  margin: 0 0 14px;
+
+  color: #30332d;
+
+  font-size: 18px;
+  line-height: 1.3;
+}
+
+.learn-box ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.learn-box li {
+  margin: 8px 0;
+
+  color: #5f6359;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   NOTE SECTIONS
+   ========================================================= */
+
+.technical-note-section {
+  position: relative;
+
+  padding: 0 0 48px;
+  margin-bottom: 10px;
+
+  border-bottom: 1px solid #dfe1d9;
+}
+
+.section-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 36px;
+  height: 24px;
+
+  padding: 0 8px;
+
+  margin-bottom: 11px;
+
+  border-radius: 6px;
+
+  background: #e2e3d8;
+  color: #777b4c;
+
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.technical-note-section h2 {
+  margin: 0 0 17px;
+
+  color: #20231f;
+
+  font-size: 25px;
+  line-height: 1.25;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.technical-note-section p {
+  max-width: 790px;
+
+  margin: 0 0 15px;
+
+  color: #5e6259;
+
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.technical-points {
+  margin: 18px 0 22px;
+  padding-left: 22px;
+}
+
+.technical-points li {
+  margin-bottom: 9px;
+  padding-left: 4px;
+
+  color: #5f6359;
+
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.technical-points li::marker {
+  color: #999d58;
+}
+
+/* =========================================================
+   CODE BLOCK
+   ========================================================= */
+
+.code-wrapper {
+  margin: 24px 0;
+
+  overflow: hidden;
+
+  border: 1px solid #34372f;
+  border-radius: 12px;
+
+  background: #20231f;
+
+  box-shadow: 0 8px 20px rgba(32, 35, 31, 0.08);
+}
+
+.code-header {
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 15px;
+
+  background: #292c27;
+
+  border-bottom: 1px solid #3a3d35;
+
+  color: #aeb19f;
+
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.code-wrapper pre {
+  margin: 0;
+  padding: 20px;
+
+  overflow-x: auto;
+}
+
+.code-wrapper code {
+  color: #e8e9e2;
+
+  font-family: "Consolas", "Courier New", monospace;
+
+  font-size: 12.5px;
+  line-height: 1.7;
+
+  white-space: pre;
+}
+
+/* =========================================================
+   COMPARISON TABLE
+   ========================================================= */
+
+.comparison-table-wrapper {
+  margin: 24px 0;
+
+  overflow-x: auto;
+}
+
+.comparison-table {
+  width: 100%;
+
+  border: 1px solid #dfe1d9;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  border-radius: 10px;
+
+  background: #eeefe9;
+
+  overflow: hidden;
+}
+
+.comparison-table th {
+  padding: 13px 15px;
+
+  background: #e2e3d8;
+
+  color: #55594f;
+
+  text-align: left;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.comparison-table td {
+  padding: 14px 15px;
+
+  border-top: 1px solid #dfe1d9;
+
+  color: #65695f;
+
+  font-size: 12px;
+  line-height: 1.6;
+
+  vertical-align: top;
+}
+
+.comparison-table td:first-child {
+  color: #30332d;
+  font-weight: 700;
+}
+
+/* =========================================================
+   PILLARS
+   ========================================================= */
+
+.pillar-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+
+  margin-top: 22px;
+}
+
+.pillar-card {
+  padding: 18px;
+
+  border: 1px solid #dfe1d9;
+  border-radius: 12px;
+
+  background: #eeefe9;
+}
+
+.pillar-card h3 {
+  margin: 0 0 8px;
+
+  color: #777b4c;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.pillar-card p {
+  margin: 0;
+
+  color: #6b6f65;
+
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   CALLOUT
+   ========================================================= */
+
+.technical-callout {
+  margin: 24px 0;
+  padding: 18px 20px;
+
+  border-left: 4px solid #999d58;
+  border-radius: 10px;
+
+  background: #e7e8df;
+}
+
+.technical-callout strong {
+  display: block;
+
+  margin-bottom: 7px;
+
+  color: #777b4c;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.technical-callout p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   MISCONCEPTIONS
+   ========================================================= */
+
+.misconception-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.misconception {
+  padding: 16px;
+
+  border: 1px solid #dfe1d9;
+  border-radius: 11px;
+
+  background: #eeefe9;
+}
+
+.wrong,
+.correct {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+}
+
+.wrong {
+  margin-bottom: 12px;
+}
+
+.wrong span,
+.correct span {
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.wrong span {
+  background: #e8dcd8;
+  color: #a15d50;
+}
+
+.correct span {
+  background: #dfe4ce;
+  color: #777b4c;
+}
+
+.wrong p,
+.correct p {
+  margin: 1px 0 0;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* =========================================================
+   INTERVIEW CORNER
+   ========================================================= */
+
+.interview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  margin-top: 20px;
+}
+
+.interview-card {
+  display: flex;
+  gap: 15px;
+
+  padding: 19px;
+
+  border: 1px solid #dfe1d9;
+  border-radius: 11px;
+
+  background: #eeefe9;
+}
+
+.question-number {
+  flex-shrink: 0;
+
+  padding-top: 2px;
+
+  color: #999d58;
+
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.interview-card h3 {
+  margin: 0 0 9px;
+
+  color: #30332d;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.interview-card p {
+  margin: 0;
+
+  color: #686c62;
 
   font-size: 12px;
   line-height: 1.7;
 }
 
-.technical-content-section ul {
-  max-width: 780px;
+/* =========================================================
+   RECAP
+   ========================================================= */
 
-  margin: 0;
+.recap-table {
+  margin-top: 20px;
 
-  padding-left: 18px;
+  overflow: hidden;
+
+  border: 1px solid #dfe1d9;
+  border-radius: 11px;
 }
 
-.technical-content-section li {
-  margin-bottom: 7px;
+.recap-row {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
 
-  color: #70746a;
+  gap: 15px;
+
+  padding: 14px 17px;
+
+  background: #eeefe9;
+
+  border-bottom: 1px solid #dfe1d9;
+}
+
+.recap-row:last-child {
+  border-bottom: none;
+}
+
+.recap-row strong {
+  color: #30332d;
 
   font-size: 12px;
-  line-height: 1.55;
 }
 
+.recap-row span {
+  color: #686c62;
 
-/* CODE */
+  font-size: 12px;
+  line-height: 1.5;
+}
 
-.technical-content-section pre {
-  max-width: 780px;
+/* =========================================================
+   REMEMBER BOX
+   ========================================================= */
 
+.remember-box {
+  margin-top: 38px;
+  margin-bottom: 40px;
+
+  padding: 25px;
+
+  border-radius: 13px;
+
+  background: #777b4c;
+
+  color: #ffffff;
+}
+
+.remember-box h2 {
+  margin: 0 0 17px;
+
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.remember-box ol {
   margin: 0;
-
-  padding: 18px 20px;
-
-  overflow-x: auto;
-
-  background: #292c26;
-
-  border-radius: 8px;
+  padding-left: 22px;
 }
 
-.technical-content-section code {
-  color: #e9eadf;
+.remember-box li {
+  margin-bottom: 9px;
 
-  font-family: "Consolas", "Courier New", monospace;
+  color: #f1f2e9;
 
-  font-size: 11px;
-
+  font-size: 12px;
   line-height: 1.65;
 }
 
+/* =========================================================
+   RIGHT SIDEBAR
+   ========================================================= */
 
-/* INTERVIEW QUESTIONS */
-
-.interview-section {
-  padding-bottom: 30px;
+.technical-right-sidebar {
+  min-width: 0;
 }
 
-.interview-question {
-  max-width: 780px;
+.sidebar-sticky {
+  position: sticky;
+  top: 28px;
 
-  min-height: 52px;
+  padding: 19px;
 
-  display: grid;
+  border: 1px solid #dfe1d9;
+  border-radius: 14px;
 
-  grid-template-columns: 35px 1fr;
+  background: #eeefe9;
 
-  align-items: center;
-
-  gap: 12px;
-
-  border-bottom: 1px solid #dedfd9;
+  box-shadow: 0 3px 10px rgba(32, 35, 31, 0.025);
 }
 
-.interview-question span {
-  color: #a0a398;
+.sidebar-title {
+  margin-bottom: 12px;
+
+  color: #999d8b;
 
   font-size: 9px;
-
   font-weight: 800;
+  letter-spacing: 1.5px;
 }
 
-.interview-question p {
-  margin: 0;
+.side-option {
+  width: 100%;
 
-  color: #4f5249;
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 11px 10px;
+  margin-bottom: 4px;
+
+  border: none;
+  border-radius: 9px;
+
+  background: transparent;
+
+  color: #5e6259;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
+
+.side-option:hover {
+  background: #e3e4da;
+}
+
+.side-option.active {
+  background: #dedfce;
+  color: #777b4c;
+}
+
+.side-option > span {
+  width: 27px;
+  height: 27px;
+  flex-shrink: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 7px;
+
+  background: #e1e2d8;
+
+  font-size: 13px;
+}
+
+.side-option div {
+  min-width: 0;
+}
+
+.side-option strong {
+  display: block;
+
+  margin-bottom: 2px;
 
   font-size: 11px;
-
-  font-weight: 650;
+  line-height: 1.3;
 }
 
+.side-option small {
+  display: block;
 
-/* RESPONSIVE */
+  color: #898d82;
 
-@media (max-width: 1000px) {
+  font-size: 9px;
+  line-height: 1.3;
+}
 
-  .technical-page {
-    padding: 0 25px 20px;
+.side-divider {
+  height: 1px;
+
+  margin: 17px 0;
+
+  background: #d9dbd2;
+}
+
+.page-link {
+  display: block;
+
+  padding: 7px 4px;
+
+  border-left: 2px solid transparent;
+
+  color: #777b70;
+
+  text-decoration: none;
+
+  font-size: 10px;
+  line-height: 1.45;
+
+  transition:
+    color 0.2s ease,
+    border-color 0.2s ease,
+    padding-left 0.2s ease;
+}
+
+.page-link:hover {
+  padding-left: 9px;
+
+  border-left-color: #999d58;
+
+  color: #777b4c;
+}
+
+/* =========================================================
+   TOPIC NAVIGATION
+   ========================================================= */
+
+.topic-navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+
+  padding-top: 28px;
+}
+
+.topic-navigation button {
+  padding: 11px 15px;
+
+  border: 1px solid #d5d7ce;
+  border-radius: 9px;
+
+  background: #eeefe9;
+  color: #60645a;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    border-color 0.2s ease,
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.topic-navigation button:hover {
+  border-color: #999d58;
+
+  background: #e8e9df;
+  color: #777b4c;
+}
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1150px) {
+  .technical-subject-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
-  .technical-study-area {
-    grid-template-columns: 210px minmax(0, 1fr);
-
-    gap: 20px;
-  }
-
-  .technical-content {
-    padding-left: 5px;
+  .technical-detail-layout {
+    grid-template-columns: minmax(0, 1fr) 220px;
+    gap: 35px;
   }
 }
 
+/* =========================================================
+   RESPONSIVE — SMALL TABLET
+   ========================================================= */
 
-@media (max-width: 750px) {
-
+@media (max-width: 900px) {
   .technical-page {
-    height: auto;
-
-    min-height: 100vh;
-
-    overflow: visible;
+    padding: 28px 25px 50px;
   }
 
-  .technical-main {
-    height: auto;
-
-    overflow: visible;
+  .technical-subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .technical-subject-list {
-    overflow-x: auto;
-  }
-
-  .technical-study-area {
-    height: auto;
-
+  .technical-detail-layout {
     grid-template-columns: 1fr;
-
-    overflow: visible;
+    gap: 30px;
   }
 
-  .technical-topic-sidebar {
-    overflow: visible;
-
-    border-right: none;
-
-    padding: 18px 0 0;
+  .technical-right-sidebar {
+    order: -1;
   }
 
-  .technical-topic-list {
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    gap: 5px;
+  .sidebar-sticky {
+    position: static;
   }
 
-  .technical-topic {
-    border: 1px solid #e3e4de;
+  .side-option {
+    width: auto;
 
-    border-radius: 6px;
+    display: inline-flex;
+
+    margin-right: 5px;
+    margin-bottom: 4px;
   }
 
-  .technical-content {
-    overflow: visible;
+  .side-option small {
+    display: none;
+  }
 
-    padding: 25px 0 40px;
+  .technical-right-sidebar .sidebar-sticky {
+    padding: 14px;
+  }
+
+  .technical-right-sidebar
+  .sidebar-title:nth-of-type(2),
+  .technical-right-sidebar .page-link {
+    display: none;
+  }
+
+  .side-divider {
+    display: none;
   }
 }
 
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
 
-@media (max-width: 500px) {
-
+@media (max-width: 650px) {
   .technical-page {
-    padding: 0 16px 20px;
+    padding: 22px 17px 40px;
   }
 
-  .technical-subject {
-    min-width: 95px;
-
-    height: 44px;
-
-    padding: 0 10px;
+  .technical-top-heading h1,
+  .subject-course-header h1,
+  .technical-notes > h1 {
+    font-size: 31px;
   }
 
-  .technical-subject-name {
-    font-size: 10px;
+  .technical-top-heading p {
+    font-size: 13px;
   }
 
-  .technical-topic-list {
+  .technical-subject-grid {
     grid-template-columns: 1fr;
   }
 
-  .technical-content > h1 {
-    font-size: 26px;
+  .technical-subject-card {
+    min-height: 220px;
+  }
+
+  .subject-course-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .subject-course-header {
+    padding-bottom: 24px;
+    margin-bottom: 28px;
+  }
+
+  .topic-count-box {
+    text-align: left;
+  }
+
+  .technical-topic-badges {
+    margin-bottom: 30px;
+  }
+
+  .learn-box {
+    padding: 19px 20px;
+    margin-bottom: 38px;
+  }
+
+  .technical-note-section {
+    padding-bottom: 38px;
+  }
+
+  .technical-note-section h2 {
+    font-size: 22px;
+  }
+
+  .technical-note-section p {
+    font-size: 13px;
+    line-height: 1.75;
+  }
+
+  .pillar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recap-row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+
+  .module-topic {
+    min-height: 75px;
+    padding: 13px 5px;
+  }
+
+  .module-topic-number {
+    width: 40px;
+  }
+
+  .module-topic-content h3 {
+    font-size: 13px;
+  }
+
+  .module-topic-content p {
+    font-size: 11px;
+  }
+
+  .module-topic-arrow {
+    width: 28px;
+    font-size: 16px;
+  }
+
+  .topic-navigation {
+    flex-direction: column;
+  }
+
+  .topic-navigation button {
+    width: 100%;
+  }
+
+  .code-wrapper pre {
+    padding: 16px;
+  }
+
+  .code-wrapper code {
+    font-size: 11.5px;
+  }
+
+  .interview-card {
+    padding: 16px;
+  }
+}
+
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+  .technical-page {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+
+  .technical-subject-card {
+    padding: 18px;
+  }
+
+  .technical-notes > h1 {
+    font-size: 28px;
+  }
+
+  .subject-course-header h1 {
+    font-size: 28px;
+  }
+
+  .module-heading h2 {
+    font-size: 18px;
+  }
+
+  .module-topic-number {
+    width: 34px;
+    font-size: 11px;
+  }
+
+  .module-topic-content h3 {
+    font-size: 12.5px;
+  }
+
+  .module-topic-content p {
+    font-size: 10.5px;
   }
 }

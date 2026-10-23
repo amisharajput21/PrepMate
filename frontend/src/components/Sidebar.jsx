@@ -1,0 +1,168 @@
+import React, { useState } from "react";
+import "./Sidebar.css";
+
+function Sidebar({
+  user,
+  activePage,
+  onOpenDashboard,
+  onOpenDSA,
+  onOpenAptitude,
+  onOpenTechnical,
+  onOpenProfile,
+  onLogout,
+  onOpenRoadmap
+}) {
+
+  const [collapsed, setCollapsed] = useState(false);
+  return (
+    <aside className={`global-sidebar ${collapsed ? "collapsed" : ""}`}>
+
+{/* ================= BRAND ================= */}
+
+<div className="global-sidebar-brand">
+
+  <div className="global-sidebar-logo">
+    P
+  </div>
+
+  {!collapsed && (
+    <div className="global-brand-text">
+      <h2>PrepMate</h2>
+      <span>Placement Hub</span>
+    </div>
+  )}
+
+  <button
+    className="sidebar-toggle-btn"
+    onClick={() => setCollapsed(!collapsed)}
+    title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+  >
+    {collapsed ? "›" : "‹"}
+  </button>
+
+</div>
+      {/* ================= MENU ================= */}
+      <div className="global-sidebar-menu">
+
+        <button
+          className={`global-sidebar-item ${
+            activePage === "dashboard" ? "active" : ""
+          }`}
+          onClick={() => {
+  setCollapsed(true);
+  onOpenDashboard();
+}}
+        >
+          <span className="sidebar-icon">⚡</span>
+          <span className="sidebar-label">Dashboard</span>
+        </button>
+
+
+        <button
+          className={`global-sidebar-item ${
+            activePage === "dsa" ||
+            activePage === "arrays" ||
+            activePage === "strings" ||
+            activePage === "question"
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+  setCollapsed(true);
+  onOpenDSA();
+}}
+        >
+          <span className="sidebar-icon">💻</span>
+          <span className="sidebar-label">DSA Sheets</span>
+        </button>
+
+        <button
+  className={`global-sidebar-item ${
+    activePage === "roadmap" ? "active" : ""
+  }`}
+  onClick={() => {
+  setCollapsed(true);
+  onOpenRoadmap();
+}}
+>
+  <span className="sidebar-icon">🗺️</span>
+  <span className="sidebar-label">Roadmap</span>
+</button>
+
+
+        <button
+          className={`global-sidebar-item ${
+            activePage === "aptitude" ? "active" : ""
+          }`}
+          onClick={() => {
+  setCollapsed(true);
+  onOpenAptitude();
+}}
+        >
+          <span className="sidebar-icon">🧠</span>
+          <span className="sidebar-label">Aptitude</span>
+        </button>
+
+
+        <button
+          className={`global-sidebar-item ${
+            activePage === "technical" ? "active" : ""
+          }`}
+          onClick={() => {
+  setCollapsed(true);
+  onOpenTechnical();
+}}
+        >
+          <span className="sidebar-icon">📚</span>
+          <span className="sidebar-label">Core Subjects</span>
+        </button>
+
+      </div>
+
+
+      {/* ================= BOTTOM ================= */}
+      <div className="global-sidebar-bottom">
+
+        <button
+          className={`global-sidebar-profile ${
+            activePage === "profile" ? "active" : ""
+          }`}
+          onClick={() => {
+  setCollapsed(true);
+  onOpenProfile();
+}}
+        >
+
+          <div className="global-sidebar-avatar">
+            {user?.name
+              ? user.name.charAt(0).toUpperCase()
+              : "A"}
+          </div>
+
+          <div className="global-sidebar-user-info">
+            <strong>
+              {user?.name || "Amisha Rajput"}
+            </strong>
+
+            <span>Placement Candidate</span>
+          </div>
+
+        </button>
+
+
+        <button
+          className="global-sidebar-logout"
+          onClick={onLogout}
+        >
+          <span>🚪</span>
+          <span>Logout</span>
+        </button>
+
+      </div>
+
+    </aside>
+  );
+}
+
+export default Sidebar;
+
