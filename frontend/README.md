@@ -1,16 +1,56 @@
-# React + Vite
+# PrepMate – Placement Preparation Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PrepMate is a placement preparation platform designed to help students prepare for technical interviews and aptitude tests in one place.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- User registration and login
+- Dashboard for placement preparation
+- DSA practice
+- Aptitude practice with answer explanations
+- Technical interview preparation
+- Placement roadmap
+- User progress tracking
 
-## React Compiler
+## Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Frontend:** React.js, JavaScript, HTML, CSS
+- **Backend:** Java, Spring Boot
+- **Database:** MySQL
+- **API Communication:** REST APIs
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `frontend/` – React frontend
+- `demo/` – Spring Boot backend
+
+## How to Run
+
+### Frontend
+
+1. Open a terminal in the `frontend` folder.
+2. Install dependencies:
+
+   `npm install`
+
+3. Start the development server:
+
+   `npm run dev`
+
+### Backend
+
+1. Open the `demo` folder in IntelliJ IDEA.
+2. Configure your MySQL database connection in `application.properties`.
+3. Run the Spring Boot application.
+
+## Database
+
+Create a MySQL database named `prepmate` and configure the database username and password in the backend configuration.
+
+## Purpose
+
+PrepMate aims to make placement preparation more organized by bringing DSA, aptitude, technical preparation, and progress tracking together.
+
+---
+
+Developed as a placement preparation project.

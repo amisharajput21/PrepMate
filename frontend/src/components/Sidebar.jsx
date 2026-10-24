@@ -10,54 +10,61 @@ function Sidebar({
   onOpenTechnical,
   onOpenProfile,
   onLogout,
-  onOpenRoadmap
+  onOpenRoadmap,
+  darkMode,
+  toggleTheme
 }) {
-
   const [collapsed, setCollapsed] = useState(false);
+
   return (
     <aside className={`global-sidebar ${collapsed ? "collapsed" : ""}`}>
 
-{/* ================= BRAND ================= */}
+      {/* ================= BRAND ================= */}
 
-<div className="global-sidebar-brand">
+      <div className="global-sidebar-brand">
 
-  <div className="global-sidebar-logo">
-    P
-  </div>
+        <div className="global-sidebar-logo">
+          P
+        </div>
 
-  {!collapsed && (
-    <div className="global-brand-text">
-      <h2>PrepMate</h2>
-      <span>Placement Hub</span>
-    </div>
-  )}
+        {!collapsed && (
+          <div className="global-brand-text">
+            <h2>PrepMate</h2>
+            <span>Placement Hub</span>
+          </div>
+        )}
 
-  <button
-    className="sidebar-toggle-btn"
-    onClick={() => setCollapsed(!collapsed)}
-    title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
-  >
-    {collapsed ? "›" : "‹"}
-  </button>
+        <button
+          className="sidebar-toggle-btn"
+          onClick={() => setCollapsed(!collapsed)}
+          title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+        >
+          {collapsed ? "›" : "‹"}
+        </button>
 
-</div>
+      </div>
+
+
       {/* ================= MENU ================= */}
+
       <div className="global-sidebar-menu">
 
+        {/* Dashboard */}
         <button
           className={`global-sidebar-item ${
             activePage === "dashboard" ? "active" : ""
           }`}
           onClick={() => {
-  setCollapsed(true);
-  onOpenDashboard();
-}}
+            setCollapsed(true);
+            onOpenDashboard();
+          }}
         >
           <span className="sidebar-icon">⚡</span>
           <span className="sidebar-label">Dashboard</span>
         </button>
 
 
+        {/* DSA */}
         <button
           className={`global-sidebar-item ${
             activePage === "dsa" ||
@@ -68,50 +75,54 @@ function Sidebar({
               : ""
           }`}
           onClick={() => {
-  setCollapsed(true);
-  onOpenDSA();
-}}
+            setCollapsed(true);
+            onOpenDSA();
+          }}
         >
           <span className="sidebar-icon">💻</span>
           <span className="sidebar-label">DSA Sheets</span>
         </button>
 
+
+        {/* Roadmap */}
         <button
-  className={`global-sidebar-item ${
-    activePage === "roadmap" ? "active" : ""
-  }`}
-  onClick={() => {
-  setCollapsed(true);
-  onOpenRoadmap();
-}}
->
-  <span className="sidebar-icon">🗺️</span>
-  <span className="sidebar-label">Roadmap</span>
-</button>
+          className={`global-sidebar-item ${
+            activePage === "roadmap" ? "active" : ""
+          }`}
+          onClick={() => {
+            setCollapsed(true);
+            onOpenRoadmap();
+          }}
+        >
+          <span className="sidebar-icon">🗺️</span>
+          <span className="sidebar-label">Roadmap</span>
+        </button>
 
 
+        {/* Aptitude */}
         <button
           className={`global-sidebar-item ${
             activePage === "aptitude" ? "active" : ""
           }`}
           onClick={() => {
-  setCollapsed(true);
-  onOpenAptitude();
-}}
+            setCollapsed(true);
+            onOpenAptitude();
+          }}
         >
           <span className="sidebar-icon">🧠</span>
           <span className="sidebar-label">Aptitude</span>
         </button>
 
 
+        {/* Core Subjects */}
         <button
           className={`global-sidebar-item ${
             activePage === "technical" ? "active" : ""
           }`}
           onClick={() => {
-  setCollapsed(true);
-  onOpenTechnical();
-}}
+            setCollapsed(true);
+            onOpenTechnical();
+          }}
         >
           <span className="sidebar-icon">📚</span>
           <span className="sidebar-label">Core Subjects</span>
@@ -121,16 +132,18 @@ function Sidebar({
 
 
       {/* ================= BOTTOM ================= */}
+
       <div className="global-sidebar-bottom">
 
+        {/* Profile */}
         <button
           className={`global-sidebar-profile ${
             activePage === "profile" ? "active" : ""
           }`}
           onClick={() => {
-  setCollapsed(true);
-  onOpenProfile();
-}}
+            setCollapsed(true);
+            onOpenProfile();
+          }}
         >
 
           <div className="global-sidebar-avatar">
@@ -150,6 +163,31 @@ function Sidebar({
         </button>
 
 
+        {/* ================= THEME TOGGLE ================= */}
+
+        <button
+          type="button"
+          className="sidebar-theme-btn"
+          onClick={toggleTheme}
+          title={
+            darkMode
+              ? "Switch to Light Mode"
+              : "Switch to Dark Mode"
+          }
+        >
+          <span className="sidebar-theme-icon">
+            {darkMode ? "☀️" : "☾"}
+          </span>
+
+          {!collapsed && (
+            <span>
+              {darkMode ? "Light Mode" : "Dark Mode"}
+            </span>
+          )}
+        </button>
+
+
+        {/* Logout */}
         <button
           className="global-sidebar-logout"
           onClick={onLogout}
@@ -165,4 +203,3 @@ function Sidebar({
 }
 
 export default Sidebar;
-

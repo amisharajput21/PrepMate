@@ -896,3 +896,331 @@ button {
 .app-shell .app-page-content {
   transition: all 0.25s ease;
 }
+```css
+/* =========================================================
+   SIDEBAR THEME TOGGLE
+========================================================= */
+
+.sidebar-theme-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: auto;
+  margin-bottom: 12px;
+}
+
+.sidebar-theme-btn {
+  width: 38px;
+  height: 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dfe2d8;
+  border-radius: 10px;
+
+  background: #f5f6ef;
+  color: #30332d;
+
+  font-size: 15px;
+  cursor: pointer;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.sidebar-theme-btn:hover {
+  background: #e9ead3;
+  border-color: #b4b76b;
+  transform: translateY(-2px);
+}
+
+
+/* ================= DARK MODE ================= */
+
+.app-dark-mode .sidebar-theme-btn {
+  background: #252a24;
+  border-color: #3a4037;
+  color: #f4f5f0;
+}
+
+.app-dark-mode .sidebar-theme-btn:hover {
+  background: #303522;
+  border-color: #b4b76b;
+}
+
+
+/* =========================================================
+   PROFILE PAGE - DARK MODE FIX
+========================================================= */
+
+.app-dark-mode .profile-page {
+  background: #171a16;
+  color: #f4f5f0;
+}
+
+
+/* ================= PROFILE MAIN CARD ================= */
+
+.app-dark-mode .profile-main-card {
+  background: #20241f;
+}
+
+
+/* ================= ACCOUNT CARD ================= */
+
+.app-dark-mode .account-card {
+  background: #20241f;
+  border-color: #30352f;
+  box-shadow: none;
+}
+
+.app-dark-mode .account-card-header {
+  border-color: #30352f;
+}
+
+.app-dark-mode .account-card-header span {
+  color: #b4b76b;
+}
+
+.app-dark-mode .account-card-header h3 {
+  color: #f4f5f0;
+}
+
+
+/* ================= ACCOUNT DETAILS ================= */
+
+.app-dark-mode .account-detail:first-child {
+  border-color: #30352f;
+}
+
+.app-dark-mode .account-detail span {
+  color: #858c82;
+}
+
+.app-dark-mode .account-detail strong {
+  color: #f4f5f0;
+}
+
+
+/* ================= EDIT BUTTON ================= */
+
+.app-dark-mode .edit-profile-btn {
+  background: #282d27;
+  color: #f4f5f0;
+  border-color: #3a4037;
+}
+
+.app-dark-mode .edit-profile-btn:hover {
+  background: #303522;
+  border-color: #b4b76b;
+}
+
+
+/* ================= PROFILE INPUTS ================= */
+
+.app-dark-mode .input-group label {
+  color: #858c82;
+}
+
+.app-dark-mode .input-group input {
+  background: #1b1f1a;
+  color: #f4f5f0;
+  border-color: #363c34;
+}
+
+.app-dark-mode .input-group input:focus {
+  border-color: #b4b76b;
+}
+
+
+/* ================= PREPARATION ================= */
+
+.app-dark-mode .profile-section-heading h2 {
+  color: #f4f5f0;
+}
+
+.app-dark-mode .profile-section-heading > div span {
+  color: #b4b76b;
+}
+
+.app-dark-mode .profile-section-heading > p {
+  color: #858c82;
+}
+
+
+/* ================= PROGRESS CARDS ================= */
+
+.app-dark-mode .progress-card {
+  background: #20241f;
+  border-color: #30352f;
+  box-shadow: none;
+}
+
+.app-dark-mode .progress-card:hover {
+  border-color: #777b49;
+}
+
+.app-dark-mode .progress-card-header h3 {
+  color: #f4f5f0;
+}
+
+.app-dark-mode .progress-card-header span {
+  color: #858c82;
+}
+
+.app-dark-mode .progress-icon {
+  background: #303522;
+}
+
+.app-dark-mode .progress-value strong {
+  color: #f4f5f0;
+}
+
+.app-dark-mode .progress-value span {
+  color: #858c82;
+}
+
+
+/* ================= PROGRESS BAR ================= */
+
+.app-dark-mode .profile-progress-bar {
+  background: #30352f;
+}
+
+.app-dark-mode .profile-progress-bar div {
+  background: #b4b76b;
+}
+
+
+/* ================= PROGRESS FOOTER ================= */
+
+.app-dark-mode .progress-footer span {
+  color: #858c82;
+}
+
+
+/* ================= LOADING ================= */
+
+.app-dark-mode .progress-loading {
+  background: #20241f;
+  border-color: #30352f;
+  color: #858c82;
+}
+
+
+/* ================= FOOTER NOTE ================= */
+
+.app-dark-mode .profile-footer-note {
+  background: #2c301f;
+}
+
+.app-dark-mode .profile-footer-note p {
+  color: #d0d4ca;
+}
+
+
+/* =========================================================
+   PROFILE STREAK - DARK MODE
+========================================================= */
+
+.app-dark-mode .profile-streak {
+  background: #20241f;
+  border-color: #30352f;
+  box-shadow: none;
+}
+
+.app-dark-mode .streak-header span {
+  color: #b4b76b;
+}
+
+.app-dark-mode .streak-header h2 {
+  color: #f4f5f0;
+}
+
+.app-dark-mode .streak-header p {
+  color: #858c82;
+}
+
+
+/* ================= STREAK STATS ================= */
+
+.app-dark-mode .streak-stats strong {
+  color: #f4f5f0;
+}
+
+.app-dark-mode .streak-stats span {
+  color: #858c82;
+}
+
+
+/* ================= STREAK CALENDAR ================= */
+
+.app-dark-mode .streak-day {
+  background: #30352f;
+}
+
+.app-dark-mode .streak-day.level-1 {
+  background: #59603c;
+}
+
+.app-dark-mode .streak-day.level-2 {
+  background: #858b4b;
+}
+
+.app-dark-mode .streak-day.level-3 {
+  background: #aeb35f;
+}
+
+
+/* ================= STREAK LEGEND ================= */
+
+.app-dark-mode .streak-legend span {
+  color: #858c82;
+}
+
+.app-dark-mode .legend-box {
+  background: #30352f;
+}
+
+.app-dark-mode .legend-box.level-1 {
+  background: #59603c;
+}
+
+.app-dark-mode .legend-box.level-2 {
+  background: #858b4b;
+}
+
+.app-dark-mode .legend-box.level-3 {
+  background: #aeb35f;
+}
+
+
+/* =========================================================
+   REMOVE OLD PROFILE TOPBAR SPACE
+========================================================= */
+
+.profile-page {
+  padding-top: 0;
+}
+
+
+/* =========================================================
+   SMOOTH THEME TRANSITION
+========================================================= */
+
+.app-dark-mode,
+.app-dark-mode .profile-page,
+.app-dark-mode .account-card,
+.app-dark-mode .progress-card,
+.app-dark-mode .profile-streak,
+.app-dark-mode .profile-footer-note {
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+```

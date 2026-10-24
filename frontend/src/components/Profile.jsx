@@ -1,9 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import "./Profile.css";
 
-function Profile({ user, onBack }) {
-
+function Profile({ user }) {
   const [editing, setEditing] = useState(false);
 
   const [name, setName] = useState(user?.name || "");
@@ -13,28 +12,41 @@ function Profile({ user, onBack }) {
   const [totalDSAQuestions, setTotalDSAQuestions] = useState(0);
   const [loadingProgress, setLoadingProgress] = useState(true);
 
+  // =========================================================
+  // ACTIVITY
+  // =========================================================
 
-  /* ================= FETCH USER PROGRESS ================= */
+  const [activityData, setActivityData] = useState([]);
+  const [activityLoading, setActivityLoading] = useState(true);
+  const [currentStreak, setCurrentStreak] = useState(0);
+
+  // =========================================================
+  // UPDATE USER FORM WHEN USER CHANGES
+  // =========================================================
 
   useEffect(() => {
+    setName(user?.name || "");
+    setEmail(user?.email || "");
+  }, [user]);
 
+  /* =========================================================
+     FETCH PROGRESS
+  ========================================================= */
+
+  useEffect(() => {
     const loadProgress = async () => {
-
       if (!user?.id) {
         setLoadingProgress(false);
         return;
       }
 
       try {
-
         const [questionsResponse, progressResponse] =
           await Promise.all([
-            axios.get(
-              "http://localhost:8080/api/questions"
-            ),
+            axios.get("http://localhost:8080/api/questions"),
             axios.get(
               `http://localhost:8080/api/progress/${user.id}`
-            )
+            ),
           ]);
 
         const allQuestions = questionsResponse.data;
@@ -47,27 +59,107 @@ function Profile({ user, onBack }) {
 
         setTotalDSAQuestions(dsaQuestions.length);
         setProgress(progressResponse.data);
-
       } catch (error) {
-
         console.error(
           "Failed to load progress:",
           error
         );
-
       } finally {
-
         setLoadingProgress(false);
-
       }
     };
 
     loadProgress();
+  }, [user?.id]);
 
-  }, [user]);
+  /* =========================================================
+     FETCH LAST 12 MONTHS ACTIVITY
+  ========================================================= */
 
+  useEffect(() => {
+    const loadActivity = async () => {
+      if (!user?.id) {
+        setActivityData([]);
+        setCurrentStreak(0);
+        setActivityLoading(false);
+        return;
+      }
 
-  /* ================= DSA PROGRESS ================= */
+      try {
+        setActivityLoading(true);
+
+        const today = new Date();
+
+        const requests = [];
+
+        /*
+         * Last 12 months
+         *
+         * Example:
+         * Nov 2025
+         * Dec 2025
+         * ...
+         * Oct 2026
+         */
+
+        for (let i = 11; i >= 0; i--) {
+          const date = new Date(
+            today.getFullYear(),
+            today.getMonth() - i,
+            1
+          );
+
+          requests.push(
+            axios.get(
+              `http://localhost:8080/api/activity/${user.id}/month`,
+              {
+                params: {
+                  year: date.getFullYear(),
+                  month: date.getMonth() + 1,
+                },
+              }
+            )
+          );
+        }
+
+        const [
+          ...activityResponses
+        ] = await Promise.all(requests);
+
+        const combinedActivity =
+          activityResponses.flatMap(
+            (response) => response.data || []
+          );
+
+        setActivityData(combinedActivity);
+
+        // Current streak
+        const streakResponse = await axios.get(
+          `http://localhost:8080/api/activity/${user.id}/streak`
+        );
+
+        setCurrentStreak(
+          streakResponse.data?.streak || 0
+        );
+      } catch (error) {
+        console.error(
+          "Failed to load activity:",
+          error
+        );
+
+        setActivityData([]);
+        setCurrentStreak(0);
+      } finally {
+        setActivityLoading(false);
+      }
+    };
+
+    loadActivity();
+  }, [user?.id]);
+
+  /* =========================================================
+     DSA PROGRESS
+  ========================================================= */
 
   const dsaProgress = progress.filter(
     (item) =>
@@ -77,106 +169,145 @@ function Profile({ user, onBack }) {
 
   const dsaPercentage =
     totalDSAQuestions > 0
-      ? Math.round(
-          (dsaProgress / totalDSAQuestions) * 100
+      ? Math.min(
+          100,
+          Math.round(
+            (dsaProgress / totalDSAQuestions) * 100
+          )
         )
       : 0;
 
+  const remainingDSA = Math.max(
+    0,
+    totalDSAQuestions - dsaProgress
+  );
 
-  /* ================= UPDATE PROFILE ================= */
+  /* =========================================================
+     ACTIVITY DATE LOOKUP
+  ========================================================= */
 
- const handleSaveProfile = async () => {
-  try {
-    const response = await axios.put(
-      `http://localhost:8080/api/auth/profile/${user.id}`,
-      {
-        name: name,
-        email: email
+  const activityDateSet = useMemo(() => {
+    return new Set(
+      activityData.map(
+        (item) => item.activityDate
+      )
+    );
+  }, [activityData]);
+
+  /* =========================================================
+     LAST 12 MONTHS
+  ========================================================= */
+
+  const activityMonths = useMemo(() => {
+    const today = new Date();
+
+    return Array.from(
+      { length: 12 },
+      (_, index) => {
+        const date = new Date(
+          today.getFullYear(),
+          today.getMonth() -
+            (11 - index),
+          1
+        );
+
+        return {
+          name: date.toLocaleDateString(
+            "en-US",
+            {
+              month: "short",
+            }
+          ),
+
+          year: date.getFullYear(),
+
+          month: date.getMonth(),
+
+          days: new Date(
+            date.getFullYear(),
+            date.getMonth() + 1,
+            0
+          ).getDate(),
+        };
       }
     );
+  }, []);
 
-    alert("Profile updated successfully! 🎉");
+  /* =========================================================
+     ACTIVITY SUMMARY
+  ========================================================= */
 
-    setEditing(false);
+  const activeDays = activityData.length;
 
-    // Updated user data localStorage me save
-    localStorage.setItem(
-      "user",
-      JSON.stringify({
-        ...user,
-        name: name,
-        email: email
-      })
-    );
+  /* =========================================================
+     UPDATE PROFILE
+  ========================================================= */
 
-  } catch (error) {
-    console.error(error);
-    alert("Failed to update profile.");
-  }
-};
+  const handleSaveProfile = async () => {
+    try {
+      await axios.put(
+        `http://localhost:8080/api/auth/profile/${user.id}`,
+        {
+          name,
+          email,
+        }
+      );
+
+      alert(
+        "Profile updated successfully! 🎉"
+      );
+
+      setEditing(false);
+
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          ...user,
+          name,
+          email,
+        })
+      );
+    } catch (error) {
+      console.error(error);
+      alert(
+        "Failed to update profile."
+      );
+    }
+  };
+
+  /* =========================================================
+     INITIALS
+  ========================================================= */
+
+  const getInitials = (value) => {
+    if (!value) return "U";
+
+    return value
+      .split(" ")
+      .map((word) => word[0])
+      .join("")
+      .slice(0, 2)
+      .toUpperCase();
+  };
 
   return (
-
     <div className="profile-page">
-
-      {/* ================= TOP HEADER ================= */}
-
-      <header className="profile-topbar">
-
-        <button
-          className="profile-back-btn"
-          onClick={onBack}
-        >
-          ← Dashboard
-        </button>
-
-        <div className="profile-page-title">
-
-  <div className="profile-header-user">
-
-    <div className="profile-header-avatar">
-      {user?.name
-        ? user.name
-            .split(" ")
-            .map((word) => word[0])
-            .join("")
-            .slice(0, 2)
-            .toUpperCase()
-        : "U"}
-    </div>
-
-    <div>
-      <span>MY ACCOUNT</span>
-      <h1>{user?.name || "User"}</h1>
-    </div>
-
-  </div>
-
-</div>
-
-      </header>
-
 
       <main className="profile-content">
 
-        {/* ================= PROFILE OVERVIEW ================= */}
+        {/* =====================================================
+            PROFILE OVERVIEW
+        ===================================================== */}
 
         <section className="profile-overview">
 
-          {/* LEFT PROFILE */}
+          {/* PROFILE CARD */}
 
           <div className="profile-main-card">
 
             <div className="profile-avatar-large">
-  {user?.name
-    ? user.name
-        .split(" ")
-        .map((word) => word[0])
-        .join("")
-        .slice(0, 2)
-        .toUpperCase()
-    : "U"}
-</div>
+              {getInitials(user?.name)}
+            </div>
 
             <div className="profile-main-info">
 
@@ -189,34 +320,47 @@ function Profile({ user, onBack }) {
               </h2>
 
               <p>
-                {user?.email || "Email not available"}
+                {user?.email ||
+                  "Email not available"}
               </p>
+
+              <div className="profile-status">
+                <span></span>
+                Placement preparation active
+              </div>
 
             </div>
 
           </div>
 
-
-          {/* RIGHT ACCOUNT DETAILS */}
+          {/* ACCOUNT CARD */}
 
           <div className="account-card">
 
             <div className="account-card-header">
 
               <div>
-                <span>ACCOUNT DETAILS</span>
-                <h3>Personal Information</h3>
+                <span>
+                  ACCOUNT DETAILS
+                </span>
+
+                <h3>
+                  Personal Information
+                </h3>
               </div>
 
               <button
                 className="edit-profile-btn"
-                onClick={() => setEditing(!editing)}
+                onClick={() =>
+                  setEditing(!editing)
+                }
               >
-                {editing ? "Cancel" : "Edit"}
+                {editing
+                  ? "Cancel"
+                  : "Edit"}
               </button>
 
             </div>
-
 
             {editing ? (
 
@@ -224,37 +368,45 @@ function Profile({ user, onBack }) {
 
                 <div className="input-group">
 
-                  <label>Name</label>
+                  <label>
+                    Name
+                  </label>
 
                   <input
                     type="text"
                     value={name}
                     onChange={(e) =>
-                      setName(e.target.value)
+                      setName(
+                        e.target.value
+                      )
                     }
                   />
 
                 </div>
 
-
                 <div className="input-group">
 
-                  <label>Email</label>
+                  <label>
+                    Email
+                  </label>
 
                   <input
                     type="email"
                     value={email}
                     onChange={(e) =>
-                      setEmail(e.target.value)
+                      setEmail(
+                        e.target.value
+                      )
                     }
                   />
 
                 </div>
 
-
                 <button
                   className="save-profile-btn"
-                  onClick={handleSaveProfile}
+                  onClick={
+                    handleSaveProfile
+                  }
                 >
                   Save Changes
                 </button>
@@ -267,21 +419,26 @@ function Profile({ user, onBack }) {
 
                 <div className="account-detail">
 
-                  <span>Full Name</span>
+                  <span>
+                    Full Name
+                  </span>
 
                   <strong>
-                    {user?.name || "Not available"}
+                    {user?.name ||
+                      "Not available"}
                   </strong>
 
                 </div>
 
-
                 <div className="account-detail">
 
-                  <span>Email Address</span>
+                  <span>
+                    Email Address
+                  </span>
 
                   <strong>
-                    {user?.email || "Not available"}
+                    {user?.email ||
+                      "Not available"}
                   </strong>
 
                 </div>
@@ -295,7 +452,9 @@ function Profile({ user, onBack }) {
         </section>
 
 
-        {/* ================= PREPARATION ================= */}
+        {/* =====================================================
+            PREPARATION
+        ===================================================== */}
 
         <section className="profile-preparation">
 
@@ -303,15 +462,27 @@ function Profile({ user, onBack }) {
 
             <div>
 
-              <span>MY PREPARATION</span>
+              <span>
+                MY PREPARATION
+              </span>
 
-              <h2>Preparation Progress</h2>
+              <h2>
+                Preparation Progress
+              </h2>
 
             </div>
 
-            <p>
-              Keep building your placement skills.
-            </p>
+            <div className="preparation-summary">
+
+              <strong>
+                {dsaPercentage}%
+              </strong>
+
+              <span>
+                DSA completed
+              </span>
+
+            </div>
 
           </div>
 
@@ -319,40 +490,67 @@ function Profile({ user, onBack }) {
           {loadingProgress ? (
 
             <div className="progress-loading">
+
+              <div className="loading-dot"></div>
+
               Loading your progress...
+
             </div>
 
           ) : (
 
             <div className="progress-grid">
 
-              {/* ================= DSA ================= */}
+              {/* DSA */}
 
-              <div className="progress-card">
+              <div className="progress-card progress-card-active">
 
-                <div className="progress-card-header">
+                <div className="progress-card-top">
 
-                  <div className="progress-icon">
-                    💻
+                  <div className="progress-card-header">
+
+                    <div className="progress-icon">
+                      💻
+                    </div>
+
+                    <div>
+
+                      <h3>
+                        DSA & Coding
+                      </h3>
+
+                      <span>
+                        Problem Solving
+                      </span>
+
+                    </div>
+
                   </div>
 
-                  <div>
-                    <h3>DSA & Coding</h3>
-                    <span>Problem Solving</span>
+                  <div className="progress-status active">
+                    In Progress
                   </div>
 
                 </div>
 
 
-                <div className="progress-value">
+                <div className="progress-main">
 
-                  <strong>
-                    {dsaProgress}
-                  </strong>
+                  <div className="progress-value">
 
-                  <span>
-                    / {totalDSAQuestions} solved
-                  </span>
+                    <strong>
+                      {dsaProgress}
+                    </strong>
+
+                    <span>
+                      / {totalDSAQuestions} solved
+                    </span>
+
+                  </div>
+
+                  <div className="progress-percentage">
+                    {dsaPercentage}%
+                  </div>
 
                 </div>
 
@@ -361,7 +559,7 @@ function Profile({ user, onBack }) {
 
                   <div
                     style={{
-                      width: `${dsaPercentage}%`
+                      width: `${dsaPercentage}%`,
                     }}
                   ></div>
 
@@ -371,11 +569,26 @@ function Profile({ user, onBack }) {
                 <div className="progress-footer">
 
                   <span>
-                    {dsaPercentage}% complete
+                    {dsaPercentage}%
+                    complete
                   </span>
 
                   <span>
-                    {totalDSAQuestions - dsaProgress} left
+                    {remainingDSA} left
+                  </span>
+
+                </div>
+
+
+                <div className="progress-card-action">
+
+                  <span>
+                    Keep practicing
+                    Arrays & Strings
+                  </span>
+
+                  <span className="action-arrow">
+                    →
                   </span>
 
                 </div>
@@ -383,86 +596,172 @@ function Profile({ user, onBack }) {
               </div>
 
 
-              {/* ================= APTITUDE ================= */}
+              {/* APTITUDE */}
 
-              <div className="progress-card">
+              <div className="progress-card progress-card-coming">
 
-                <div className="progress-card-header">
+                <div className="progress-card-top">
 
-                  <div className="progress-icon">
-                    🧠
+                  <div className="progress-card-header">
+
+                    <div className="progress-icon">
+                      🧠
+                    </div>
+
+                    <div>
+
+                      <h3>
+                        Aptitude
+                      </h3>
+
+                      <span>
+                        Placement Tests
+                      </span>
+
+                    </div>
+
                   </div>
 
-                  <div>
-                    <h3>Aptitude</h3>
-                    <span>Placement Tests</span>
+                  <div className="progress-status upcoming">
+                    Coming Soon
                   </div>
 
                 </div>
 
 
-                <div className="progress-value">
+                <div className="progress-main">
 
-                  <strong>0</strong>
+                  <div className="progress-value">
 
-                  <span>/ coming soon</span>
+                    <strong>
+                      0
+                    </strong>
+
+                    <span>
+                      / coming soon
+                    </span>
+
+                  </div>
 
                 </div>
 
 
                 <div className="profile-progress-bar">
 
-                  <div style={{ width: "0%" }}></div>
+                  <div
+                    style={{
+                      width: "0%",
+                    }}
+                  ></div>
 
                 </div>
 
 
                 <div className="progress-footer">
 
-                  <span>Not started</span>
+                  <span>
+                    Not started
+                  </span>
+
+                  <span>
+                    —
+                  </span>
+
+                </div>
+
+
+                <div className="progress-card-action muted-action">
+
+                  <span>
+                    Practice module
+                    coming soon
+                  </span>
 
                 </div>
 
               </div>
 
 
-              {/* ================= TECHNICAL ================= */}
+              {/* TECHNICAL */}
 
-              <div className="progress-card">
+              <div className="progress-card progress-card-coming">
 
-                <div className="progress-card-header">
+                <div className="progress-card-top">
 
-                  <div className="progress-icon">
-                    📚
+                  <div className="progress-card-header">
+
+                    <div className="progress-icon">
+                      📚
+                    </div>
+
+                    <div>
+
+                      <h3>
+                        Technical MCQs
+                      </h3>
+
+                      <span>
+                        Technical Preparation
+                      </span>
+
+                    </div>
+
                   </div>
 
-                  <div>
-                    <h3>Technical MCQs</h3>
-                    <span>Technical Preparation</span>
+                  <div className="progress-status upcoming">
+                    Coming Soon
                   </div>
 
                 </div>
 
 
-                <div className="progress-value">
+                <div className="progress-main">
 
-                  <strong>0</strong>
+                  <div className="progress-value">
 
-                  <span>/ coming soon</span>
+                    <strong>
+                      0
+                    </strong>
+
+                    <span>
+                      / coming soon
+                    </span>
+
+                  </div>
 
                 </div>
 
 
                 <div className="profile-progress-bar">
 
-                  <div style={{ width: "0%" }}></div>
+                  <div
+                    style={{
+                      width: "0%",
+                    }}
+                  ></div>
 
                 </div>
 
 
                 <div className="progress-footer">
 
-                  <span>Not started</span>
+                  <span>
+                    Not started
+                  </span>
+
+                  <span>
+                    —
+                  </span>
+
+                </div>
+
+
+                <div className="progress-card-action muted-action">
+
+                  <span>
+                    Technical module
+                    coming soon
+                  </span>
 
                 </div>
 
@@ -475,85 +774,277 @@ function Profile({ user, onBack }) {
         </section>
 
 
-        {/* ================= PROFILE FOOTER ================= */}
+        {/* =====================================================
+            FOOTER NOTE
+        ===================================================== */}
 
         <div className="profile-footer-note">
 
-          <span>🎯</span>
+          <span>
+            🎯
+          </span>
 
           <p>
-            Your progress is saved as you practice.
-            Keep learning consistently and prepare smart.
+            Your progress is saved as you
+            practice. Keep learning
+            consistently and prepare smart.
           </p>
+
+          <span className="note-arrow">
+            ✦
+          </span>
 
         </div>
 
-        {/* ================= ACTIVITY STREAK ================= */}
 
-<section className="profile-streak">
+        {/* =====================================================
+            PRACTICE ACTIVITY
+        ===================================================== */}
 
-  <div className="streak-header">
-    <div>
-      <span>ACTIVITY</span>
-      <h2>Practice Streak</h2>
-    </div>
+        <section className="profile-streak">
 
-    <p>Keep practicing every day 🔥</p>
-  </div>
+          {/* ACTIVITY HEADER */}
 
-  <div className="streak-stats">
-    <div>
-      <strong>4</strong>
-      <span>Current streak</span>
-    </div>
+          <div className="activity-header">
 
-    <div>
-      <strong>7</strong>
-      <span>Longest streak</span>
-    </div>
+            <div className="activity-title">
 
-    <div>
-      <strong>18</strong>
-      <span>Active days</span>
-    </div>
-  </div>
+              <span>
+                ACTIVITY
+              </span>
 
-  <div className="streak-calendar">
+              <h2>
+                Practice Activity
+              </h2>
 
-    {Array.from({ length: 84 }).map((_, index) => (
-      <div
-        key={index}
-        className={`streak-day ${
-          index % 9 === 0
-            ? "level-3"
-            : index % 5 === 0
-            ? "level-2"
-            : index % 3 === 0
-            ? "level-1"
-            : ""
-        }`}
-      ></div>
-    ))}
+              <p>
+                {activeDays} active{" "}
+                {activeDays === 1
+                  ? "day"
+                  : "days"}
+                {currentStreak > 0
+                  ? ` · ${currentStreak} day streak`
+                  : ""}
+              </p>
 
-  </div>
+            </div>
 
-  <div className="streak-legend">
-    <span>Less</span>
 
-    <div className="legend-box"></div>
-    <div className="legend-box level-1"></div>
-    <div className="legend-box level-2"></div>
-    <div className="legend-box level-3"></div>
+            <div className="activity-controls">
 
-    <span>More</span>
-  </div>
+              <button
+                type="button"
+                className="activity-filter"
+              >
+                Last 12 months
+                <span>⌄</span>
+              </button>
 
-</section>
+
+              <div className="activity-legend">
+
+                <span>
+                  Less
+                </span>
+
+                <i className="activity-level-0"></i>
+
+                <i className="activity-level-1"></i>
+
+                <i className="activity-level-2"></i>
+
+                <i className="activity-level-3"></i>
+
+                <i className="activity-level-4"></i>
+
+                <span>
+                  More
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          {/* =================================================
+              ACTIVITY GRID
+          ================================================= */}
+
+          <div className="activity-scroll">
+
+            <div className="activity-month-grid">
+
+              {activityLoading ? (
+
+                <div className="progress-loading">
+                  <div className="loading-dot"></div>
+                  Loading activity...
+                </div>
+
+              ) : (
+
+                activityMonths.map(
+                  (month) => {
+
+                    /*
+                     * First weekday of month.
+                     *
+                     * Sunday = 0
+                     * Monday = 1
+                     * ...
+                     * Saturday = 6
+                     */
+
+                    const firstDay =
+                      new Date(
+                        month.year,
+                        month.month,
+                        1
+                      ).getDay();
+
+                    const cells = [];
+
+                    /*
+                     * Empty cells before
+                     * first day of month.
+                     */
+
+                    for (
+                      let i = 0;
+                      i < firstDay;
+                      i++
+                    ) {
+                      cells.push({
+                        empty: true,
+                      });
+                    }
+
+                    /*
+                     * Actual days
+                     */
+
+                    for (
+                      let day = 1;
+                      day <= month.days;
+                      day++
+                    ) {
+                      const dateString =
+                        `${month.year}-${String(
+                          month.month + 1
+                        ).padStart(
+                          2,
+                          "0"
+                        )}-${String(
+                          day
+                        ).padStart(
+                          2,
+                          "0"
+                        )}`;
+
+                      const active =
+                        activityDateSet.has(
+                          dateString
+                        );
+
+                      cells.push({
+                        day,
+                        active,
+                        dateString,
+                      });
+                    }
+
+                    /*
+                     * Keep same compact
+                     * 35-cell design.
+                     */
+
+                    while (
+                      cells.length < 35
+                    ) {
+                      cells.push({
+                        empty: true,
+                      });
+                    }
+
+                    return (
+                      <div
+                        className="activity-month"
+                        key={`${month.year}-${month.month}`}
+                      >
+
+                        {/* MONTH NAME */}
+
+                        <div className="activity-month-label">
+                          {month.name}
+                        </div>
+
+
+                        {/* CELLS */}
+
+                        <div className="activity-month-cells">
+
+                          {cells
+                            .slice(0, 35)
+                            .map(
+                              (
+                                cell,
+                                index
+                              ) => {
+
+                                if (
+                                  cell.empty
+                                ) {
+                                  return (
+                                    <div
+                                      key={
+                                        index
+                                      }
+                                      className="activity-cell activity-empty"
+                                    />
+                                  );
+                                }
+
+                                return (
+                                  <div
+                                    key={
+                                      index
+                                    }
+                                    className={`activity-cell ${
+                                      cell.active
+                                        ? "activity-level-1"
+                                        : "activity-level-0"
+                                    }`}
+                                    title={
+                                      cell.active
+                                        ? `${cell.dateString} · Practice activity`
+                                        : `${cell.dateString} · No activity`
+                                    }
+                                  />
+                                );
+                              }
+                            )}
+
+                        </div>
+
+                      </div>
+                    );
+                  }
+                )
+
+              )}
+
+            </div>
+
+          </div>
+
+        </section>
 
       </main>
 
     </div>
   );
 }
-export default Profile;
 
+export default Profile;

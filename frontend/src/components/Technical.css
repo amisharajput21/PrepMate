@@ -1,856 +1,1529 @@
 /* =========================================================
-   TECHNICAL / CORE SUBJECTS
+   TECHNICAL PAGE
    ========================================================= */
 
 .technical-page {
-  min-height: 100%;
-  padding: 32px 34px 45px;
-  background: #f4f5f0;
-  color: #30332d;
+  width: 100%;
+  min-height: 100vh;
+  background: #f7f8f5;
+  color: #252a22;
 }
 
+.technical-page *,
+.technical-page *::before,
+.technical-page *::after {
+  box-sizing: border-box;
+}
+
+
 /* =========================================================
-   CORE SUBJECTS — HEADING
+   SUBJECT SELECTION PAGE
    ========================================================= */
 
-.technical-top-heading {
-  max-width: 700px;
-  margin-bottom: 30px;
+.technical-subjects {
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 52px 32px 70px;
 }
 
-.technical-top-heading span {
-  display: inline-block;
-  margin-bottom: 9px;
-  color: #777b4c;
+.technical-subjects-header {
+  max-width: 720px;
+  margin-bottom: 34px;
+}
+
+.technical-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  margin-bottom: 12px;
+
+  color: #7d8a58;
   font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
+  font-weight: 750;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
-.technical-top-heading h1 {
-  margin: 0;
-  color: #20231f;
-  font-size: 40px;
+.technical-subjects-header h1 {
+  margin: 0 0 10px;
+
+  color: #242920;
+  font-size: 34px;
+  font-weight: 760;
   line-height: 1.15;
-  font-weight: 800;
-  letter-spacing: -1px;
+  letter-spacing: -0.025em;
 }
 
-.technical-top-heading p {
-  margin: 10px 0 0;
-  color: #777a72;
-  font-size: 14px;
-  line-height: 1.6;
+.technical-subjects-header p {
+  max-width: 650px;
+  margin: 0;
+
+  color: #70776c;
+  font-size: 15px;
+  line-height: 1.7;
 }
+
 
 /* =========================================================
-   CORE SUBJECTS — GRID
+   SUBJECT GRID
    ========================================================= */
 
 .technical-subject-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  width: 100%;
-  max-width: 1250px;
 }
 
-/* =========================================================
-   CORE SUBJECT — CARD
-   ========================================================= */
-
 .technical-subject-card {
-  position: relative;
-  min-height: 235px;
-  padding: 20px;
+  width: 100%;
+  min-height: 178px;
 
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: flex-start;
+
+  padding: 24px;
+
+  border: 1px solid #e1e5dc;
+  border-radius: 17px;
+
+  background: #ffffff;
+  color: inherit;
 
   text-align: left;
-
-  border: 1px solid #dfe1d9;
-  border-radius: 16px;
-
-  background: #eeefe9;
-  color: #20231f;
+  font-family: inherit;
 
   cursor: pointer;
 
-  box-shadow: 0 3px 10px rgba(32, 35, 31, 0.035);
+  box-shadow: 0 2px 7px rgba(45, 53, 38, 0.025);
 
   transition:
-    transform 0.2s ease,
-    border-color 0.2s ease,
-    box-shadow 0.2s ease,
-    background 0.2s ease;
+    transform 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease;
 }
 
 .technical-subject-card:hover {
-  transform: translateY(-4px);
-  border-color: #b4b76b;
-  background: #f1f2eb;
-  box-shadow: 0 10px 22px rgba(32, 35, 31, 0.08);
+  transform: translateY(-3px);
+  border-color: #cbd4bb;
+  box-shadow: 0 12px 30px rgba(54, 63, 43, 0.08);
 }
 
-/* =========================================================
-   SUBJECT CARD — TOP
-   ========================================================= */
-
-.subject-card-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.technical-subject-card:active {
+  transform: translateY(-1px);
 }
-
-.subject-card-top span:first-child {
-  color: #777b4c;
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 1px;
-}
-
-.subject-card-top span:last-child {
-  color: #777b4c;
-  font-size: 18px;
-  font-weight: 500;
-
-  transition: transform 0.2s ease;
-}
-
-.technical-subject-card:hover
-.subject-card-top span:last-child {
-  transform: translateX(3px);
-}
-
-/* =========================================================
-   SUBJECT ICON
-   ========================================================= */
 
 .subject-icon {
-  width: 48px;
-  height: 48px;
-
-  margin-top: 20px;
-  margin-bottom: 14px;
+  width: 44px;
+  height: 44px;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
+  margin-bottom: 20px;
+
+  border: 1px solid #dfe5d4;
   border-radius: 12px;
-  background: #e2e4d8;
 
-  color: #777b4c;
+  background: #eef1e7;
+  color: #7d8a58;
 
-  font-size: 21px;
+  font-size: 20px;
   font-weight: 700;
-
-  transition:
-    background 0.2s ease,
-    transform 0.2s ease;
 }
 
-.technical-subject-card:hover .subject-icon {
-  background: #daddc8;
-  transform: translateY(-2px);
+.technical-subject-card h3 {
+  margin: 0 0 7px;
+
+  color: #2a3026;
+  font-size: 18px;
+  font-weight: 720;
+  line-height: 1.35;
 }
 
-/* =========================================================
-   SUBJECT TITLE
-   ========================================================= */
-
-.technical-subject-card h2 {
+.technical-subject-card p {
   margin: 0;
 
-  color: #20231f;
-
-  font-size: 22px;
-  line-height: 1.2;
-  font-weight: 800;
-  letter-spacing: -0.4px;
-}
-
-.technical-subject-card > p {
-  margin: 6px 0 0;
-
-  color: #7a7d75;
-
-  font-size: 12px;
+  color: #858b80;
+  font-size: 13px;
   line-height: 1.5;
 }
 
+
 /* =========================================================
-   SUBJECT CARD — BOTTOM
+   TOPIC PAGE
    ========================================================= */
 
-.subject-card-bottom {
+.technical-topic-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: grid;
+  grid-template-columns: 250px minmax(0, 1fr);
+
+  background: #f7f8f5;
+}
+
+
+/* =========================================================
+   LEFT SIDEBAR
+   ========================================================= */
+
+.technical-topic-sidebar {
+  width: 250px;
+  min-height: 100vh;
+
+  position: sticky;
+  top: 0;
+  align-self: start;
+
+  padding: 24px 15px;
+
+  background: #ffffff;
+  border-right: 1px solid #e2e5dd;
+}
+
+.technical-course-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+
+  padding: 15px;
+
+  margin-bottom: 24px;
+
+  border: 1px solid #e1e6d9;
+  border-radius: 13px;
+
+  background: #f0f3e9;
+}
+
+.technical-course-icon {
+  width: 38px;
+  height: 38px;
+
+  flex: 0 0 38px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 10px;
+
+  background: #dfe6cd;
+  color: #71804d;
+
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.technical-course-card > div:last-child {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.technical-course-card strong {
+  overflow: hidden;
+
+  color: #343a2f;
+  font-size: 13px;
+  font-weight: 720;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.technical-course-card span {
+  color: #858c7e;
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   BACK LINK
+   ========================================================= */
+
+.technical-back-link {
+  display: none !important;
+}
+
+
+/* =========================================================
+   SIDEBAR TOPICS
+   ========================================================= */
+
+.technical-sidebar-content {
+  width: 100%;
+}
+
+.technical-sidebar-section {
+  margin-bottom: 21px;
+}
+
+.technical-sidebar-section-title {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 20px;
-  padding-top: 13px;
-
-  border-top: 1px solid #dfe1d9;
+  padding: 0 9px;
+  margin-bottom: 7px;
 }
 
-.subject-card-bottom span:first-child {
-  color: #777a72;
+.technical-sidebar-section-title span {
+  color: #92988d;
+
   font-size: 10px;
-  font-weight: 700;
+  font-weight: 750;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.subject-card-bottom span:last-child {
-  color: #20231f;
-  font-size: 11px;
-  font-weight: 800;
-}
-
-/* =========================================================
-   LEVEL 2
-   SUBJECT COURSE / MODULE PAGE
-   ========================================================= */
-
-.subject-course-header {
-  width: 100%;
-  max-width: 1050px;
+.technical-sidebar-section-title small {
+  min-width: 18px;
+  height: 18px;
 
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
 
-  padding-bottom: 28px;
-  margin-bottom: 34px;
+  border-radius: 6px;
 
-  border-bottom: 1px solid #dfe1d9;
-}
-
-.course-label {
-  display: inline-block;
-
-  margin-bottom: 9px;
-
-  color: #777b4c;
+  background: #f1f3ee;
+  color: #92988d;
 
   font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
 }
 
-.subject-course-header h1 {
-  margin: 0;
+.technical-sidebar-topic {
+  width: 100%;
 
-  color: #20231f;
+  display: block;
 
-  font-size: 40px;
-  line-height: 1.1;
-  font-weight: 800;
-  letter-spacing: -1px;
+  padding: 9px 11px;
+  margin: 2px 0;
+
+  border: 0;
+  border-radius: 8px;
+
+  background: transparent;
+  color: #656c60;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 520;
+  line-height: 1.45;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease;
 }
 
-.subject-course-header p {
-  margin: 10px 0 0;
+.technical-sidebar-topic:hover {
+  background: #f4f6f1;
+  color: #4e5748;
+}
 
-  color: #777b70;
+.technical-sidebar-topic.active {
+  background: #e8eddc;
+  color: #6f7d4e;
+  font-weight: 680;
+}
+
+
+/* =========================================================
+   MAIN TOPIC AREA
+   ========================================================= */
+
+.technical-topic-main {
+  min-width: 0;
+
+  padding: 34px 38px 65px;
+}
+
+.technical-topic-content {
+  position: relative;
+
+  width: 100%;
+  max-width: 1020px;
+
+  margin: 0 auto;
+
+  padding: 38px 44px 45px;
+
+  border: 1px solid #e1e4dc;
+  border-radius: 18px;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 4px 18px rgba(44, 53, 38, 0.035);
+}
+
+
+/* =========================================================
+   TOPIC HEADER
+   ========================================================= */
+
+.topic-breadcrumb {
+  margin-bottom: 13px;
+
+  color: #8a9184;
+  font-size: 11px;
+  font-weight: 680;
+  letter-spacing: 0.025em;
+}
+
+.technical-topic-content h1 {
+  max-width: 610px;
+
+  margin: 0 0 9px;
+
+  color: #252a22;
+
+  font-size: 31px;
+  font-weight: 760;
+  line-height: 1.2;
+
+  letter-spacing: -0.025em;
+}
+
+.topic-subtitle {
+  max-width: 620px;
+
+  margin: 0 0 9px;
+
+  color: #687064;
 
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
-.topic-count-box {
-  min-width: 105px;
+.topic-attempt-status {
+  max-width: 620px;
 
-  text-align: right;
-}
+  margin: 0;
 
-.topic-count-box strong {
-  display: block;
-
-  color: #777b4c;
-
-  font-size: 32px;
-  line-height: 1;
-  font-weight: 800;
-}
-
-.topic-count-box span {
-  display: block;
-
-  margin-top: 6px;
-
-  color: #777b70;
+  color: #92988d;
 
   font-size: 11px;
-  font-weight: 600;
+  line-height: 1.5;
 }
 
-.module-list {
+.technical-topic-divider {
   width: 100%;
-  max-width: 1050px;
+  height: 1px;
+
+  margin: 28px 0 28px;
+
+  background: #e8ebe5;
+}
+
+
+/* =========================================================
+   COMPACT TOP-RIGHT TABS
+   ========================================================= */
+
+.topic-tabs {
+  position: absolute;
+  top: 29px;
+  right: 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 3px;
+
+  padding: 3px;
+
+  border: 1px solid #d8decc;
+  border-radius: 9px;
+
+  background: #eef2e7;
+
+  box-shadow: 0 2px 8px rgba(62, 73, 46, 0.04);
+}
+
+.topic-tab {
+  height: 31px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 12px;
+
+  border: 0;
+  border-radius: 6px;
+
+  background: transparent;
+  color: #727b68;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+
+  white-space: nowrap;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.topic-tab:hover {
+  background: #e2e8d8;
+  color: #66734f;
+}
+
+.topic-tab.active {
+  background: #7d8a58;
+  color: #ffffff;
+
+  box-shadow: 0 2px 6px rgba(91, 105, 61, 0.18);
+}
+
+
+/* =========================================================
+   REMOVE OLD LARGE WORKSPACE CARDS
+   ========================================================= */
+
+.topic-workspace-grid,
+.workspace-card,
+.workspace-card-icon,
+.workspace-card-content,
+.workspace-card-label,
+.workspace-card-arrow {
+  display: none !important;
 }
 
 /* =========================================================
-   MODULE
+   TOPIC SECTIONS
    ========================================================= */
 
-.technical-module {
+.topic-section {
+  width: 100%;
+}
+
+.workspace-section-heading {
+  margin-bottom: 22px;
+}
+
+.workspace-section-heading > span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: #8d957f;
+
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.12em;
+}
+
+.workspace-section-heading h2 {
+  margin: 0;
+
+  color: #2d332a;
+
+  font-size: 22px;
+  font-weight: 730;
+  line-height: 1.3;
+}
+
+
+/* =========================================================
+   LEARN GRID
+   ========================================================= */
+
+.learn-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+
   margin-bottom: 38px;
 }
 
-.module-heading {
+.learn-item {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
+  gap: 13px;
 
-  padding: 0 2px 14px;
+  padding: 14px 15px;
 
-  border-bottom: 1px solid #dfe1d9;
+  border: 1px solid #e6e9e2;
+  border-radius: 10px;
+
+  background: #fafbf9;
 }
 
-.module-label {
+.learn-item > span {
+  flex: 0 0 auto;
+
+  color: #8c956f;
+
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.learn-item p {
+  margin: 0;
+
+  color: #646b60;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+
+/* =========================================================
+   CONTENT SECTIONS
+   ========================================================= */
+
+.topic-content-section {
+  margin-top: 34px;
+}
+
+.topic-content-section h2 {
+  margin: 0 0 12px;
+
+  color: #30362c;
+
+  font-size: 19px;
+  font-weight: 720;
+  line-height: 1.35;
+}
+
+.topic-content-section h3 {
+  margin: 22px 0 9px;
+
+  color: #343a30;
+
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.topic-content-section p {
+  margin: 0 0 13px;
+
+  color: #646b60;
+
+  font-size: 13px;
+  line-height: 1.78;
+}
+
+.topic-content-section ul,
+.topic-content-section ol {
+  margin: 12px 0 18px;
+  padding-left: 22px;
+}
+
+.topic-content-section li {
+  margin-bottom: 8px;
+
+  color: #646b60;
+
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+.topic-content-section strong {
+  color: #3f4739;
+}
+
+
+/* =========================================================
+   CODE
+   ========================================================= */
+
+.topic-content-section pre {
+  width: 100%;
+
+  margin: 17px 0 22px;
+  padding: 17px;
+
+  overflow-x: auto;
+
+  border: 1px solid #e0e4dc;
+  border-radius: 11px;
+
+  background: #f5f7f3;
+
+  color: #41483d;
+
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    monospace;
+
+  font-size: 12px;
+  line-height: 1.7;
+}
+
+.topic-content-section code {
+  font-family: inherit;
+}
+
+
+/* =========================================================
+   PRACTICE
+   ========================================================= */
+
+.practice-card {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 17px;
+
+  padding: 20px;
+
+  margin-bottom: 12px;
+
+  border: 1px solid #e2e6de;
+  border-radius: 13px;
+
+  background: #fbfcfa;
+}
+
+.practice-number {
+  width: 35px;
+  height: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 9px;
+
+  background: #edf1e7;
+  color: #7b8957;
+
+  font-size: 10px;
+  font-weight: 760;
+}
+
+.practice-type {
   display: block;
 
   margin-bottom: 5px;
 
-  color: #999d58;
+  color: #92998d;
 
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 1.4px;
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
 }
 
-.module-heading h2 {
-  margin: 0;
+.practice-card h3 {
+  margin: 0 0 7px;
 
-  color: #30332d;
-
-  font-size: 20px;
-  line-height: 1.3;
-  font-weight: 800;
-}
-
-.module-count {
-  color: #a0a38e;
-
-  font-size: 17px;
-  font-weight: 700;
-}
-
-/* =========================================================
-   MODULE TOPICS
-   ========================================================= */
-
-.module-topics {
-  margin-top: 7px;
-}
-
-.module-topic {
-  width: 100%;
-  min-height: 78px;
-
-  display: flex;
-  align-items: center;
-
-  padding: 14px 8px;
-
-  border: none;
-  border-bottom: 1px solid #e0e2da;
-
-  background: transparent;
-
-  text-align: left;
-
-  color: #30332d;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    padding-left 0.2s ease;
-}
-
-.module-topic:hover {
-  background: #e9eadf;
-  padding-left: 15px;
-}
-
-.module-topic-number {
-  width: 54px;
-  flex-shrink: 0;
-
-  color: #999d8b;
-
-  font-size: 12px;
-  font-weight: 800;
-}
-
-.module-topic-content {
-  flex: 1;
-  min-width: 0;
-}
-
-.module-topic-content h3 {
-  margin: 0 0 5px;
-
-  color: #30332d;
+  color: #30362c;
 
   font-size: 15px;
-  line-height: 1.4;
   font-weight: 700;
 }
 
-.module-topic-content p {
+.practice-card p {
   margin: 0;
 
-  color: #818579;
-
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-.module-topic-arrow {
-  width: 40px;
-  flex-shrink: 0;
-
-  text-align: right;
-
-  color: #777b4c;
-
-  font-size: 18px;
-
-  transition: transform 0.2s ease;
-}
-
-.module-topic:hover .module-topic-arrow {
-  transform: translateX(4px);
-}
-
-/* =========================================================
-   LEVEL 3
-   TOPIC / NOTES PAGE
-   ========================================================= */
-
-.technical-detail-layout {
-  width: 100%;
-  max-width: 1250px;
-
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 250px;
-
-  gap: 48px;
-
-  align-items: start;
-}
-
-.technical-notes {
-  min-width: 0;
-  max-width: 850px;
-}
-
-.technical-breadcrumb {
-  display: inline-block;
-
-  margin-bottom: 14px;
-
-  color: #777b4c;
-
-  font-size: 11px;
-  font-weight: 800;
-  letter-spacing: 0.7px;
-  text-transform: uppercase;
-}
-
-.technical-notes > h1 {
-  max-width: 850px;
-
-  margin: 0;
-
-  color: #20231f;
-
-  font-size: 42px;
-  line-height: 1.12;
-  font-weight: 800;
-  letter-spacing: -1.2px;
-}
-
-.technical-topic-subtitle {
-  max-width: 720px;
-
-  margin: 13px 0 22px;
-
-  color: #777b70;
-
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-.technical-topic-badges {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-
-  margin-bottom: 42px;
-}
-
-.topic-badge {
-  display: inline-flex;
-  align-items: center;
-
-  min-height: 32px;
-
-  padding: 7px 12px;
-
-  border-radius: 20px;
-
-  background: #e7e8df;
-  color: #777b70;
-
-  font-size: 11px;
-  font-weight: 700;
-}
-
-.topic-badge.active {
-  background: #777b4c;
-  color: #ffffff;
-}
-
-/* =========================================================
-   WHAT YOU'LL LEARN
-   ========================================================= */
-
-.learn-box {
-  margin-bottom: 48px;
-  padding: 23px 25px;
-
-  background: #e8e9df;
-
-  border: 1px solid #d9dbd0;
-  border-left: 4px solid #999d58;
-  border-radius: 12px;
-}
-
-.learn-box h2 {
-  margin: 0 0 14px;
-
-  color: #30332d;
-
-  font-size: 18px;
-  line-height: 1.3;
-}
-
-.learn-box ul {
-  margin: 0;
-  padding-left: 20px;
-}
-
-.learn-box li {
-  margin: 8px 0;
-
-  color: #5f6359;
-
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-/* =========================================================
-   NOTE SECTIONS
-   ========================================================= */
-
-.technical-note-section {
-  position: relative;
-
-  padding: 0 0 48px;
-  margin-bottom: 10px;
-
-  border-bottom: 1px solid #dfe1d9;
-}
-
-.section-number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-
-  min-width: 36px;
-  height: 24px;
-
-  padding: 0 8px;
-
-  margin-bottom: 11px;
-
-  border-radius: 6px;
-
-  background: #e2e3d8;
-  color: #777b4c;
-
-  font-size: 10px;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-
-.technical-note-section h2 {
-  margin: 0 0 17px;
-
-  color: #20231f;
-
-  font-size: 25px;
-  line-height: 1.25;
-  font-weight: 800;
-  letter-spacing: -0.3px;
-}
-
-.technical-note-section p {
-  max-width: 790px;
-
-  margin: 0 0 15px;
-
-  color: #5e6259;
-
-  font-size: 14px;
-  line-height: 1.85;
-}
-
-.technical-points {
-  margin: 18px 0 22px;
-  padding-left: 22px;
-}
-
-.technical-points li {
-  margin-bottom: 9px;
-  padding-left: 4px;
-
-  color: #5f6359;
-
-  font-size: 13px;
-  line-height: 1.6;
-}
-
-.technical-points li::marker {
-  color: #999d58;
-}
-
-/* =========================================================
-   CODE BLOCK
-   ========================================================= */
-
-.code-wrapper {
-  margin: 24px 0;
-
-  overflow: hidden;
-
-  border: 1px solid #34372f;
-  border-radius: 12px;
-
-  background: #20231f;
-
-  box-shadow: 0 8px 20px rgba(32, 35, 31, 0.08);
-}
-
-.code-header {
-  height: 38px;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  padding: 0 15px;
-
-  background: #292c27;
-
-  border-bottom: 1px solid #3a3d35;
-
-  color: #aeb19f;
-
-  font-size: 10px;
-  font-weight: 700;
-}
-
-.code-wrapper pre {
-  margin: 0;
-  padding: 20px;
-
-  overflow-x: auto;
-}
-
-.code-wrapper code {
-  color: #e8e9e2;
-
-  font-family: "Consolas", "Courier New", monospace;
-
-  font-size: 12.5px;
-  line-height: 1.7;
-
-  white-space: pre;
-}
-
-/* =========================================================
-   COMPARISON TABLE
-   ========================================================= */
-
-.comparison-table-wrapper {
-  margin: 24px 0;
-
-  overflow-x: auto;
-}
-
-.comparison-table {
-  width: 100%;
-
-  border: 1px solid #dfe1d9;
-  border-collapse: separate;
-  border-spacing: 0;
-
-  border-radius: 10px;
-
-  background: #eeefe9;
-
-  overflow: hidden;
-}
-
-.comparison-table th {
-  padding: 13px 15px;
-
-  background: #e2e3d8;
-
-  color: #55594f;
-
-  text-align: left;
-
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.comparison-table td {
-  padding: 14px 15px;
-
-  border-top: 1px solid #dfe1d9;
-
-  color: #65695f;
-
-  font-size: 12px;
-  line-height: 1.6;
-
-  vertical-align: top;
-}
-
-.comparison-table td:first-child {
-  color: #30332d;
-  font-weight: 700;
-}
-
-/* =========================================================
-   PILLARS
-   ========================================================= */
-
-.pillar-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-
-  gap: 12px;
-
-  margin-top: 22px;
-}
-
-.pillar-card {
-  padding: 18px;
-
-  border: 1px solid #dfe1d9;
-  border-radius: 12px;
-
-  background: #eeefe9;
-}
-
-.pillar-card h3 {
-  margin: 0 0 8px;
-
-  color: #777b4c;
-
-  font-size: 14px;
-  line-height: 1.4;
-}
-
-.pillar-card p {
-  margin: 0;
-
-  color: #6b6f65;
+  color: #686f64;
 
   font-size: 12px;
   line-height: 1.65;
 }
 
+.practice-card strong {
+  color: #4a533f;
+}
+
+
 /* =========================================================
-   CALLOUT
+   MINI PROJECT
    ========================================================= */
 
-.technical-callout {
-  margin: 24px 0;
-  padding: 18px 20px;
+.problem-text {
+  max-width: 850px;
 
-  border-left: 4px solid #999d58;
-  border-radius: 10px;
+  margin: 0 0 24px;
 
-  background: #e7e8df;
+  color: #62695e;
+
+  font-size: 14px;
+  line-height: 1.8;
 }
 
-.technical-callout strong {
-  display: block;
+.topic-project-card {
+  position: relative;
 
-  margin-bottom: 7px;
+  padding: 25px 27px;
 
-  color: #777b4c;
+  margin-bottom: 32px;
 
-  font-size: 11px;
-  font-weight: 800;
+  border: 1px solid #cfd8bc;
+  border-radius: 15px;
 
-  text-transform: uppercase;
-  letter-spacing: 1px;
+  background: #eef2e5;
+
+  overflow: hidden;
 }
 
-.technical-callout p {
-  margin: 0;
+.topic-project-card::before {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+
+  width: 4px;
+
+  background: #7d8a58;
+}
+
+.project-label {
+  margin-bottom: 8px;
+
+  color: #7d8a58;
+
+  font-size: 9px;
+  font-weight: 780;
+  letter-spacing: 0.13em;
+}
+
+.topic-project-card h3 {
+  margin: 0 0 9px;
+
+  color: #39422f;
+
+  font-size: 20px;
+  font-weight: 730;
+}
+
+.topic-project-card > p {
+  max-width: 720px;
+
+  margin: 0 0 20px;
+
+  color: #65705a;
 
   font-size: 13px;
   line-height: 1.7;
 }
 
+.project-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.project-points span {
+  padding: 7px 10px;
+
+  border: 1px solid #d5ddc6;
+  border-radius: 7px;
+
+  background: #f6f8f1;
+
+  color: #68734f;
+
+  font-size: 10px;
+  font-weight: 650;
+}
+
+
 /* =========================================================
-   MISCONCEPTIONS
+   PREVIOUS / NEXT
    ========================================================= */
 
-.misconception-list {
+.topic-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+
+  margin-top: 42px;
+  padding-top: 23px;
+
+  border-top: 1px solid #e8ebe5;
+}
+
+.topic-navigation button {
+  min-height: 36px;
+
+  padding: 0 14px;
+
+  border: 1px solid #dfe4da;
+  border-radius: 8px;
+
+  background: #ffffff;
+  color: #656d60;
+
+  font-family: inherit;
+  font-size: 11px;
+  font-weight: 650;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.topic-navigation button:hover:not(:disabled) {
+  border-color: #cbd3bb;
+  background: #f4f6f0;
+  color: #596448;
+}
+
+.topic-navigation button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+/* =========================================================
+   RIGHT SIDEBAR
+   JSX MEIN NAHI HAI, SAFETY KE LIYE HIDE
+   ========================================================= */
+
+.technical-topic-rightbar {
+  display: none !important;
+}
+
+
+/* =========================================================
+   DARK MODE
+   ========================================================= */
+
+.app-dark-mode .technical-page {
+  background: #171a15;
+  color: #e7ebe1;
+}
+
+.app-dark-mode .technical-subjects-header h1,
+.app-dark-mode .technical-topic-content h1,
+.app-dark-mode .workspace-section-heading h2,
+.app-dark-mode .topic-content-section h2,
+.app-dark-mode .topic-content-section h3,
+.app-dark-mode .workspace-card h3,
+.app-dark-mode .practice-card h3 {
+  color: #edf0e8;
+}
+
+.app-dark-mode .technical-subjects-header p,
+.app-dark-mode .topic-subtitle,
+.app-dark-mode .topic-content-section p,
+.app-dark-mode .topic-content-section li,
+.app-dark-mode .workspace-card p,
+.app-dark-mode .practice-card p {
+  color: #a7aea1;
+}
+
+.app-dark-mode .technical-topic-page {
+  background: #171a15;
+}
+
+.app-dark-mode .technical-topic-sidebar,
+.app-dark-mode .technical-topic-content,
+.app-dark-mode .technical-subject-card {
+  background: #1d211b;
+  border-color: #30362d;
+}
+
+.app-dark-mode .technical-course-card {
+  background: #252b21;
+  border-color: #38402f;
+}
+
+.app-dark-mode .technical-course-card strong {
+  color: #e2e7da;
+}
+
+.app-dark-mode .technical-course-card span {
+  color: #9ea696;
+}
+
+.app-dark-mode .technical-course-icon {
+  background: #343e28;
+  color: #c0cc9a;
+}
+
+.app-dark-mode .technical-sidebar-section-title span,
+.app-dark-mode .technical-sidebar-section-title small {
+  color: #8f9789;
+}
+
+.app-dark-mode .technical-sidebar-section-title small {
+  background: #292e26;
+}
+
+.app-dark-mode .technical-sidebar-topic {
+  color: #a6ada0;
+}
+
+.app-dark-mode .technical-sidebar-topic:hover {
+  background: #272d24;
+  color: #d5dacd;
+}
+
+.app-dark-mode .technical-sidebar-topic.active {
+  background: #354027;
+  color: #c6d39e;
+}
+
+.app-dark-mode .topic-tabs {
+  background: #20251e;
+  border-color: #343a30;
+}
+
+.app-dark-mode .topic-tab {
+  color: #a5ac9e;
+}
+
+.app-dark-mode .topic-tab:hover {
+  background: #2b3127;
+}
+
+.app-dark-mode .topic-tab.active {
+  background: #39452c;
+  color: #c6d29e;
+}
+
+.app-dark-mode .technical-topic-divider,
+.app-dark-mode .topic-navigation {
+  background: transparent;
+  border-color: #30362d;
+}
+
+.app-dark-mode .workspace-card {
+  background: #20251e;
+  border-color: #343a30;
+}
+
+.app-dark-mode .workspace-card:hover {
+  background: #252b22;
+  border-color: #465036;
+}
+
+.app-dark-mode .workspace-card.active {
+  background: #303923;
+  border-color: #4b5838;
+}
+
+.app-dark-mode .workspace-card-icon,
+.app-dark-mode .learn-item,
+.app-dark-mode .practice-number {
+  background: #2c3425;
+  color: #bdca94;
+}
+
+.app-dark-mode .learn-item {
+  border-color: #353b32;
+}
+
+.app-dark-mode .learn-item p {
+  color: #a6ada1;
+}
+
+.app-dark-mode .topic-content-section pre {
+  background: #20251f;
+  border-color: #353b32;
+  color: #cbd1c5;
+}
+
+.app-dark-mode .practice-card {
+  background: #20251e;
+  border-color: #343a30;
+}
+
+.app-dark-mode .topic-project-card {
+  background: #293321;
+  border-color: #4b5838;
+}
+
+.app-dark-mode .topic-project-card::before {
+  background: #8b995f;
+}
+
+.app-dark-mode .topic-project-card h3 {
+  color: #dce4ca;
+}
+
+.app-dark-mode .topic-project-card > p {
+  color: #aab29f;
+}
+
+.app-dark-mode .project-points span {
+  background: #303a27;
+  border-color: #465237;
+  color: #c0cc99;
+}
+
+.app-dark-mode .topic-navigation button {
+  background: #1d211b;
+  border-color: #363c33;
+  color: #aeb5a8;
+}
+
+
+/* =========================================================
+   RESPONSIVE — TABLET
+   ========================================================= */
+
+@media (max-width: 1050px) {
+  .technical-subjects {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .technical-topic-main {
+    padding: 26px 25px 55px;
+  }
+
+  .technical-topic-content {
+    padding: 34px 34px 42px;
+  }
+
+  .topic-tabs {
+    top: 25px;
+    right: 25px;
+  }
+
+  .technical-topic-content h1,
+  .topic-subtitle,
+  .topic-attempt-status {
+    max-width: 570px;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — SMALL LAPTOP / TABLET
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .technical-subject-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .technical-topic-page {
+    grid-template-columns: 225px minmax(0, 1fr);
+  }
+
+  .technical-topic-sidebar {
+    width: 225px;
+  }
+
+  .learn-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .technical-topic-content h1,
+  .topic-subtitle,
+  .topic-attempt-status {
+    max-width: 100%;
+  }
+
+  /*
+     Header ke saath overlap avoid karne ke liye
+     tablet par tabs normal flow mein aa jayenge.
+  */
+  .topic-tabs {
+    position: static;
+
+    width: fit-content;
+
+    margin: 20px 0 0 auto;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .technical-subjects {
+    padding: 32px 18px 50px;
+  }
+
+  .technical-subjects-header h1 {
+    font-size: 28px;
+  }
+
+  .technical-subject-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .technical-subject-card {
+    min-height: 155px;
+  }
+
+  .technical-topic-page {
+    display: block;
+  }
+
+  .technical-topic-sidebar {
+    width: 100%;
+    min-height: auto;
+
+    position: static;
+
+    padding: 16px;
+
+    border-right: 0;
+    border-bottom: 1px solid #e2e5dd;
+  }
+
+  .technical-course-card {
+    margin-bottom: 16px;
+  }
+
+  .technical-sidebar-content {
+    max-height: 270px;
+    overflow-y: auto;
+  }
+
+  .technical-topic-main {
+    padding: 17px 14px 40px;
+  }
+
+  .technical-topic-content {
+    padding: 27px 21px 35px;
+    border-radius: 15px;
+  }
+
+  .technical-topic-content h1 {
+    font-size: 26px;
+  }
+
+  .topic-tabs {
+    width: 100%;
+    overflow-x: auto;
+
+    margin: 19px 0 0;
+  }
+
+  .topic-tab {
+    flex: 1;
+    min-width: 85px;
+  }
+
+  .topic-navigation {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .topic-navigation button {
+    width: 100%;
+  }
+}
+
+
+/* =========================================================
+   RESPONSIVE — VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 430px) {
+  .technical-subjects {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .technical-subjects-header h1 {
+    font-size: 25px;
+  }
+
+  .technical-topic-main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .technical-topic-content {
+    padding: 23px 17px 30px;
+  }
+
+  .technical-topic-content h1 {
+    font-size: 23px;
+  }
+
+  .topic-tab {
+    min-width: 0;
+    padding: 0 7px;
+
+    font-size: 10px;
+  }
+
+  .practice-card {
+    grid-template-columns: 35px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .topic-project-card {
+    padding: 21px;
+  }
+}
+/* =========================================================
+   PRACTICE TEST
+   ========================================================= */
+
+.practice-test-description {
+  margin: 7px 0 0;
+
+  color: #7a8175;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.practice-result {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  padding: 20px 22px;
+  margin-bottom: 22px;
+
+  border: 1px solid #d6ddc8;
+  border-radius: 14px;
+
+  background: #eef2e5;
+}
+
+.practice-result-score {
+  min-width: 62px;
+
+  color: #71804d;
+
+  font-size: 29px;
+  font-weight: 780;
+  line-height: 1;
+}
+
+.practice-result-score span {
+  font-size: 14px;
+  font-weight: 650;
+}
+
+.practice-result-text strong {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #3e4735;
+
+  font-size: 15px;
+}
+
+.practice-result-text p {
+  margin: 0;
+
+  color: #69735e;
+
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+.practice-result.excellent {
+  border-color: #bdcba4;
+  background: #e8eedb;
+}
+
+.practice-result.good {
+  border-color: #d1d9bf;
+  background: #edf1e5;
+}
+
+.practice-result.needs-work {
+  border-color: #dedfcf;
+  background: #f2f3ed;
+}
+
+.practice-test-list {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-
-  margin-top: 20px;
+  gap: 14px;
 }
 
-.misconception {
-  padding: 16px;
+.practice-question-card {
+  padding: 21px;
 
-  border: 1px solid #dfe1d9;
-  border-radius: 11px;
+  border: 1px solid #e1e5dc;
+  border-radius: 14px;
 
-  background: #eeefe9;
+  background: #ffffff;
+
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-.wrong,
-.correct {
+.practice-question-card:hover {
+  border-color: #cfd7c0;
+  box-shadow: 0 5px 16px rgba(61, 71, 47, 0.04);
+}
+
+.practice-question-card.correct {
+  border-color: #bdcba4;
+  background: #f5f7ef;
+}
+
+.practice-question-card.incorrect {
+  border-color: #dddcca;
+  background: #fafaf6;
+}
+
+.practice-question-header {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 13px;
+}
+
+.practice-question-number {
+  width: 31px;
+  height: 31px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #e8eddc;
+  color: #71804d;
+
+  font-size: 10px;
+  font-weight: 780;
+}
+
+.practice-question-label {
+  color: #92998d;
+
+  font-size: 9px;
+  font-weight: 760;
+  letter-spacing: 0.1em;
+}
+
+.practice-question-card h3 {
+  margin: 0 0 17px;
+
+  color: #30362c;
+
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+}
+
+.practice-options {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.practice-option {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
   gap: 11px;
+
+  padding: 11px 13px;
+
+  border: 1px solid #e1e5dc;
+  border-radius: 9px;
+
+  background: #fafbf9;
+  color: #62695e;
+
+  font-family: inherit;
+  font-size: 12px;
+  line-height: 1.45;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
 }
 
-.wrong {
-  margin-bottom: 12px;
+.practice-option:hover:not(:disabled) {
+  border-color: #cbd4bb;
+  background: #f1f4ea;
+  color: #4f5946;
 }
 
-.wrong span,
-.correct span {
-  width: 23px;
-  height: 23px;
-  flex-shrink: 0;
+.practice-option.selected {
+  border-color: #9eab7b;
+  background: #e8eddc;
+  color: #566342;
+}
+
+.practice-option.correct-option {
+  border-color: #9aaa72;
+  background: #e5ecd6;
+  color: #52613c;
+}
+
+.practice-option.wrong-option {
+  border-color: #d6cdbb;
+  background: #f3f0e9;
+  color: #777064;
+}
+
+.practice-option:disabled {
+  cursor: default;
+}
+
+.practice-option-letter {
+  width: 26px;
+  height: 26px;
+
+  flex: 0 0 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #dce1d5;
+  border-radius: 7px;
+
+  background: #ffffff;
+  color: #78836b;
+
+  font-size: 10px;
+  font-weight: 750;
+}
+
+.practice-option.selected .practice-option-letter,
+.practice-option.correct-option .practice-option-letter {
+  border-color: #b8c49b;
+  background: #dfe7ce;
+  color: #66754a;
+}
+
+.practice-option-text {
+  flex: 1;
+}
+
+.practice-option-status {
+  width: 22px;
+  height: 22px;
 
   display: flex;
   align-items: center;
@@ -858,563 +1531,165 @@
 
   border-radius: 50%;
 
-  font-size: 11px;
-  font-weight: 800;
-}
-
-.wrong span {
-  background: #e8dcd8;
-  color: #a15d50;
-}
-
-.correct span {
-  background: #dfe4ce;
-  color: #777b4c;
-}
-
-.wrong p,
-.correct p {
-  margin: 1px 0 0;
+  background: #d8e2c3;
+  color: #65764a;
 
   font-size: 12px;
-  line-height: 1.6;
-}
-
-/* =========================================================
-   INTERVIEW CORNER
-   ========================================================= */
-
-.interview-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-
-  margin-top: 20px;
-}
-
-.interview-card {
-  display: flex;
-  gap: 15px;
-
-  padding: 19px;
-
-  border: 1px solid #dfe1d9;
-  border-radius: 11px;
-
-  background: #eeefe9;
-}
-
-.question-number {
-  flex-shrink: 0;
-
-  padding-top: 2px;
-
-  color: #999d58;
-
-  font-size: 11px;
   font-weight: 800;
 }
 
-.interview-card h3 {
-  margin: 0 0 9px;
+.practice-option.wrong-option .practice-option-status {
+  background: #e2ddd1;
+  color: #8a7d6c;
+}
 
-  color: #30332d;
+.practice-answer-message {
+  margin-top: 12px;
+  padding: 10px 12px;
 
-  font-size: 14px;
+  border-radius: 8px;
+
+  font-size: 11px;
   line-height: 1.5;
 }
 
-.interview-card p {
-  margin: 0;
-
-  color: #686c62;
-
-  font-size: 12px;
-  line-height: 1.7;
+.practice-answer-message.success {
+  background: #edf2e3;
+  color: #63734a;
 }
 
-/* =========================================================
-   RECAP
-   ========================================================= */
-
-.recap-table {
-  margin-top: 20px;
-
-  overflow: hidden;
-
-  border: 1px solid #dfe1d9;
-  border-radius: 11px;
+.practice-answer-message.error {
+  background: #f3f1eb;
+  color: #796f60;
 }
 
-.recap-row {
-  display: grid;
-  grid-template-columns: 180px minmax(0, 1fr);
-
-  gap: 15px;
-
-  padding: 14px 17px;
-
-  background: #eeefe9;
-
-  border-bottom: 1px solid #dfe1d9;
-}
-
-.recap-row:last-child {
-  border-bottom: none;
-}
-
-.recap-row strong {
-  color: #30332d;
-
-  font-size: 12px;
-}
-
-.recap-row span {
-  color: #686c62;
-
-  font-size: 12px;
-  line-height: 1.5;
-}
-
-/* =========================================================
-   REMEMBER BOX
-   ========================================================= */
-
-.remember-box {
-  margin-top: 38px;
-  margin-bottom: 40px;
-
-  padding: 25px;
-
-  border-radius: 13px;
-
-  background: #777b4c;
-
-  color: #ffffff;
-}
-
-.remember-box h2 {
-  margin: 0 0 17px;
-
-  font-size: 19px;
-  line-height: 1.3;
-}
-
-.remember-box ol {
-  margin: 0;
-  padding-left: 22px;
-}
-
-.remember-box li {
-  margin-bottom: 9px;
-
-  color: #f1f2e9;
-
-  font-size: 12px;
-  line-height: 1.65;
-}
-
-/* =========================================================
-   RIGHT SIDEBAR
-   ========================================================= */
-
-.technical-right-sidebar {
-  min-width: 0;
-}
-
-.sidebar-sticky {
-  position: sticky;
-  top: 28px;
-
-  padding: 19px;
-
-  border: 1px solid #dfe1d9;
-  border-radius: 14px;
-
-  background: #eeefe9;
-
-  box-shadow: 0 3px 10px rgba(32, 35, 31, 0.025);
-}
-
-.sidebar-title {
-  margin-bottom: 12px;
-
-  color: #999d8b;
-
-  font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 1.5px;
-}
-
-.side-option {
-  width: 100%;
-
+.practice-submit-area {
   display: flex;
   align-items: center;
-  gap: 11px;
-
-  padding: 11px 10px;
-  margin-bottom: 4px;
-
-  border: none;
-  border-radius: 9px;
-
-  background: transparent;
-
-  color: #5e6259;
-
-  text-align: left;
-
-  cursor: pointer;
-
-  transition:
-    background 0.2s ease,
-    color 0.2s ease;
-}
-
-.side-option:hover {
-  background: #e3e4da;
-}
-
-.side-option.active {
-  background: #dedfce;
-  color: #777b4c;
-}
-
-.side-option > span {
-  width: 27px;
-  height: 27px;
-  flex-shrink: 0;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  border-radius: 7px;
-
-  background: #e1e2d8;
-
-  font-size: 13px;
-}
-
-.side-option div {
-  min-width: 0;
-}
-
-.side-option strong {
-  display: block;
-
-  margin-bottom: 2px;
-
-  font-size: 11px;
-  line-height: 1.3;
-}
-
-.side-option small {
-  display: block;
-
-  color: #898d82;
-
-  font-size: 9px;
-  line-height: 1.3;
-}
-
-.side-divider {
-  height: 1px;
-
-  margin: 17px 0;
-
-  background: #d9dbd2;
-}
-
-.page-link {
-  display: block;
-
-  padding: 7px 4px;
-
-  border-left: 2px solid transparent;
-
-  color: #777b70;
-
-  text-decoration: none;
-
-  font-size: 10px;
-  line-height: 1.45;
-
-  transition:
-    color 0.2s ease,
-    border-color 0.2s ease,
-    padding-left 0.2s ease;
-}
-
-.page-link:hover {
-  padding-left: 9px;
-
-  border-left-color: #999d58;
-
-  color: #777b4c;
-}
-
-/* =========================================================
-   TOPIC NAVIGATION
-   ========================================================= */
-
-.topic-navigation {
-  display: flex;
   justify-content: space-between;
   gap: 15px;
 
-  padding-top: 28px;
+  margin-top: 22px;
+  padding-top: 20px;
+
+  border-top: 1px solid #e8ebe5;
 }
 
-.topic-navigation button {
-  padding: 11px 15px;
+.practice-submit-area p {
+  margin: 0;
 
-  border: 1px solid #d5d7ce;
-  border-radius: 9px;
+  color: #858c80;
 
-  background: #eeefe9;
-  color: #60645a;
+  font-size: 11px;
+}
 
+.practice-submit-button {
+  min-height: 38px;
+
+  padding: 0 18px;
+
+  border: 1px solid #71804d;
+  border-radius: 8px;
+
+  background: #7d8a58;
+  color: #ffffff;
+
+  font-family: inherit;
   font-size: 11px;
   font-weight: 700;
 
   cursor: pointer;
 
   transition:
-    border-color 0.2s ease,
-    color 0.2s ease,
-    background 0.2s ease;
+    background 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
 }
 
-.topic-navigation button:hover {
-  border-color: #999d58;
-
-  background: #e8e9df;
-  color: #777b4c;
+.practice-submit-button:hover:not(:disabled) {
+  background: #6f7d4e;
+  transform: translateY(-1px);
+  box-shadow: 0 5px 13px rgba(85, 99, 57, 0.15);
 }
+
+.practice-submit-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
 
 /* =========================================================
-   RESPONSIVE — TABLET
+   PRACTICE TEST — DARK MODE
    ========================================================= */
 
-@media (max-width: 1150px) {
-  .technical-subject-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .technical-detail-layout {
-    grid-template-columns: minmax(0, 1fr) 220px;
-    gap: 35px;
-  }
+.app-dark-mode .practice-question-card {
+  background: #1d211b;
+  border-color: #343a30;
 }
 
-/* =========================================================
-   RESPONSIVE — SMALL TABLET
-   ========================================================= */
-
-@media (max-width: 900px) {
-  .technical-page {
-    padding: 28px 25px 50px;
-  }
-
-  .technical-subject-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .technical-detail-layout {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .technical-right-sidebar {
-    order: -1;
-  }
-
-  .sidebar-sticky {
-    position: static;
-  }
-
-  .side-option {
-    width: auto;
-
-    display: inline-flex;
-
-    margin-right: 5px;
-    margin-bottom: 4px;
-  }
-
-  .side-option small {
-    display: none;
-  }
-
-  .technical-right-sidebar .sidebar-sticky {
-    padding: 14px;
-  }
-
-  .technical-right-sidebar
-  .sidebar-title:nth-of-type(2),
-  .technical-right-sidebar .page-link {
-    display: none;
-  }
-
-  .side-divider {
-    display: none;
-  }
+.app-dark-mode .practice-question-card.correct {
+  background: #28301f;
+  border-color: #465237;
 }
 
-/* =========================================================
-   RESPONSIVE — MOBILE
-   ========================================================= */
-
-@media (max-width: 650px) {
-  .technical-page {
-    padding: 22px 17px 40px;
-  }
-
-  .technical-top-heading h1,
-  .subject-course-header h1,
-  .technical-notes > h1 {
-    font-size: 31px;
-  }
-
-  .technical-top-heading p {
-    font-size: 13px;
-  }
-
-  .technical-subject-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .technical-subject-card {
-    min-height: 220px;
-  }
-
-  .subject-course-header {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: 18px;
-  }
-
-  .subject-course-header {
-    padding-bottom: 24px;
-    margin-bottom: 28px;
-  }
-
-  .topic-count-box {
-    text-align: left;
-  }
-
-  .technical-topic-badges {
-    margin-bottom: 30px;
-  }
-
-  .learn-box {
-    padding: 19px 20px;
-    margin-bottom: 38px;
-  }
-
-  .technical-note-section {
-    padding-bottom: 38px;
-  }
-
-  .technical-note-section h2 {
-    font-size: 22px;
-  }
-
-  .technical-note-section p {
-    font-size: 13px;
-    line-height: 1.75;
-  }
-
-  .pillar-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .recap-row {
-    grid-template-columns: 1fr;
-    gap: 6px;
-  }
-
-  .module-topic {
-    min-height: 75px;
-    padding: 13px 5px;
-  }
-
-  .module-topic-number {
-    width: 40px;
-  }
-
-  .module-topic-content h3 {
-    font-size: 13px;
-  }
-
-  .module-topic-content p {
-    font-size: 11px;
-  }
-
-  .module-topic-arrow {
-    width: 28px;
-    font-size: 16px;
-  }
-
-  .topic-navigation {
-    flex-direction: column;
-  }
-
-  .topic-navigation button {
-    width: 100%;
-  }
-
-  .code-wrapper pre {
-    padding: 16px;
-  }
-
-  .code-wrapper code {
-    font-size: 11.5px;
-  }
-
-  .interview-card {
-    padding: 16px;
-  }
+.app-dark-mode .practice-question-card.incorrect {
+  background: #242720;
+  border-color: #3d4137;
 }
 
-/* =========================================================
-   VERY SMALL MOBILE
-   ========================================================= */
+.app-dark-mode .practice-question-card h3 {
+  color: #e5e9df;
+}
 
-@media (max-width: 420px) {
-  .technical-page {
-    padding-left: 13px;
-    padding-right: 13px;
-  }
+.app-dark-mode .practice-option {
+  background: #20251e;
+  border-color: #363c32;
+  color: #aab1a5;
+}
 
-  .technical-subject-card {
-    padding: 18px;
-  }
+.app-dark-mode .practice-option:hover:not(:disabled) {
+  background: #2b3227;
+  border-color: #4a563a;
+  color: #d4dacb;
+}
 
-  .technical-notes > h1 {
-    font-size: 28px;
-  }
+.app-dark-mode .practice-option.selected {
+  background: #354027;
+  border-color: #596844;
+  color: #d0d9b8;
+}
 
-  .subject-course-header h1 {
-    font-size: 28px;
-  }
+.app-dark-mode .practice-option.correct-option {
+  background: #303a25;
+  border-color: #596a40;
+  color: #d1dcba;
+}
 
-  .module-heading h2 {
-    font-size: 18px;
-  }
+.app-dark-mode .practice-option.wrong-option {
+  background: #302e27;
+  border-color: #514c3e;
+}
 
-  .module-topic-number {
-    width: 34px;
-    font-size: 11px;
-  }
+.app-dark-mode .practice-option-letter {
+  background: #292e26;
+  border-color: #3d4438;
+  color: #aab49b;
+}
 
-  .module-topic-content h3 {
-    font-size: 12.5px;
-  }
+.app-dark-mode .practice-result {
+  background: #293321;
+  border-color: #4b5838;
+}
 
-  .module-topic-content p {
-    font-size: 10.5px;
-  }
+.app-dark-mode .practice-result-text strong {
+  color: #dce4ca;
+}
+
+.app-dark-mode .practice-result-text p,
+.app-dark-mode .practice-submit-area p {
+  color: #a7af9e;
+}
+
+.app-dark-mode .practice-submit-area {
+  border-color: #30362d;
 }

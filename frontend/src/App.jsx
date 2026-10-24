@@ -24,30 +24,85 @@ function App() {
     return localStorage.getItem("theme") === "dark";
   });
 
+  const [selectedQuestion, setSelectedQuestion] =
+    useState(null);
+
+  const [activityRefreshKey, setActivityRefreshKey] =
+    useState(0);
+
   const toggleTheme = () => {
-    const newMode = !darkMode;
-    setDarkMode(newMode);
-    localStorage.setItem("theme", newMode ? "dark" : "light");
+    setDarkMode((prevMode) => {
+      const newMode = !prevMode;
+
+      localStorage.setItem(
+        "theme",
+        newMode ? "dark" : "light"
+      );
+
+      return newMode;
+    });
   };
 
-  const [selectedQuestion, setSelectedQuestion] = useState(null);
-
-  /* ================= LOGIN ================= */
-
+  // =========================================================
+  // LOGIN
+  // =========================================================
   const handleLogin = (userData) => {
     setUser(userData);
+
+    /*
+     * Save the date from which this login session
+     * should start showing activity/inactivity.
+     *
+     * Example:
+     * User logs in on 25 October 2026
+     * → calendar tracking starts from 25 October 2026.
+     */
+
+   if (userData?.id) {
+  const today = new Date();
+
+  const loginDate =
+    `${today.getFullYear()}-${String(
+      today.getMonth() + 1
+    ).padStart(2, "0")}-${String(
+      today.getDate()
+    ).padStart(2, "0")}`;
+
+  const existingLoginDate = localStorage.getItem(
+    `prepmate_login_date_${userData.id}`
+  );
+
+  if (!existingLoginDate) {
+    localStorage.setItem(
+      `prepmate_login_date_${userData.id}`,
+      loginDate
+    );
+  }
+}
+
     setPage("dashboard");
   };
 
-  /* ================= LOGOUT ================= */
-
+  // =========================================================
+  // LOGOUT
+  // =========================================================
   const handleLogout = () => {
     setUser(null);
     setPage("login");
   };
 
-  /* ================= NAVIGATION ================= */
+  // =========================================================
+  // ACTIVITY REFRESH
+  // =========================================================
+  const handleActivityRecorded = () => {
+    setActivityRefreshKey(
+      (previous) => previous + 1
+    );
+  };
 
+  // =========================================================
+  // NAVIGATION
+  // =========================================================
   const handleOpenDashboard = () => {
     setPage("dashboard");
   };
@@ -72,10 +127,6 @@ function App() {
     setPage("profile");
   };
 
-  const handleOpenProgress = () => {
-    setPage("progress");
-  };
-
   const handleOpenRoadmap = () => {
     setPage("roadmap");
   };
@@ -88,8 +139,6 @@ function App() {
     setPage("strings");
   };
 
-  /* ================= QUESTIONS ================= */
-
   const handleOpenQuestion = (question) => {
     setSelectedQuestion(question);
     setPage("question");
@@ -100,156 +149,224 @@ function App() {
   };
 
   return (
-    <div className={darkMode ? "app-dark-mode" : "app-light-mode"}>
-
-      {/* ================= LOGIN ================= */}
+    <div
+      className={
+        darkMode
+          ? "app-dark-mode"
+          : "app-light-mode"
+      }
+    >
+      {/* =====================================================
+          LOGIN
+      ===================================================== */}
 
       {page === "login" && (
         <Login
           onLogin={handleLogin}
-          onShowRegister={() => setPage("register")}
+          onShowRegister={() =>
+            setPage("register")
+          }
         />
       )}
 
-      {/* ================= REGISTER ================= */}
+      {/* =====================================================
+          REGISTER
+      ===================================================== */}
 
       {page === "register" && (
         <Register
-          onRegister={() => setPage("login")}
-          onShowLogin={() => setPage("login")}
+          onRegister={() =>
+            setPage("login")
+          }
+          onShowLogin={() =>
+            setPage("login")
+          }
         />
       )}
 
-      {/* =================================================
-          MAIN APPLICATION
-      ================================================= */}
+      {/* =====================================================
+          MAIN APP
+      ===================================================== */}
 
-      {page !== "login" && page !== "register" && (
+      {page !== "login" &&
+        page !== "register" && (
+          <div className="app-shell">
 
-        <div className="app-shell">
+            <Sidebar
+              user={user}
+              activePage={page}
+              onOpenDashboard={
+                handleOpenDashboard
+              }
+              onOpenDSA={handleOpenDSA}
+              onOpenAptitude={
+                handleOpenAptitude
+              }
+              onOpenTechnical={
+                handleOpenTechnical
+              }
+              onOpenProfile={
+                handleOpenProfile
+              }
+              onOpenRoadmap={
+                handleOpenRoadmap
+              }
+              onLogout={handleLogout}
+              darkMode={darkMode}
+              toggleTheme={toggleTheme}
+            />
 
-          {/* ================= GLOBAL SIDEBAR ================= */}
+            <main className="app-page-content">
 
-          <Sidebar
-            user={user}
-            activePage={page}
+              {/* =================================================
+                  DASHBOARD
+              ================================================= */}
 
-            onOpenDashboard={handleOpenDashboard}
-            onOpenDSA={handleOpenDSA}
-            onOpenAptitude={handleOpenAptitude}
-            onOpenTechnical={handleOpenTechnical}
-            onOpenProfile={handleOpenProfile}
-            onOpenRoadmap={handleOpenRoadmap}
+              {page === "dashboard" && (
+                <Dashboard
+                  key={`${user?.id || "guest"}-${activityRefreshKey}`}
+                  user={user}
+                  onLogout={handleLogout}
+                  onOpenDSA={handleOpenDSA}
+                  onOpenAptitude={
+                    handleOpenAptitude
+                  }
+                  onOpenTechnical={
+                    handleOpenTechnical
+                  }
+                  onOpenProfile={
+                    handleOpenProfile
+                  }
+                  onOpenRoadmap={
+                    handleOpenRoadmap
+                  }
+                  darkMode={darkMode}
+                  activityRefreshKey={
+                    activityRefreshKey
+                  }
+                />
+              )}
 
-            onLogout={handleLogout}
-          />
+              {/* =================================================
+                  ROADMAP
+              ================================================= */}
 
-          {/* ================= PAGE CONTENT ================= */}
+              {page === "roadmap" && (
+                <Roadmap
+                  onBack={
+                    handleOpenDashboard
+                  }
+                />
+              )}
 
-          <main className="app-page-content">
+              {/* =================================================
+                  DSA
+              ================================================= */}
 
-            {/* ================= DASHBOARD ================= */}
+              {page === "dsa" && (
+                <DSA
+                  onOpenArrays={
+                    handleOpenArrays
+                  }
+                  onOpenStrings={
+                    handleOpenStrings
+                  }
+                />
+              )}
 
-            {page === "dashboard" && (
-              <Dashboard
-                user={user}
-                onLogout={handleLogout}
-                onOpenDSA={handleOpenDSA}
-                onOpenAptitude={handleOpenAptitude}
-                onOpenTechnical={handleOpenTechnical}
-                onOpenProfile={handleOpenProfile}
-                onOpenRoadmap={handleOpenRoadmap}
-                darkMode={darkMode}
-                toggleTheme={toggleTheme}
-              />
-            )}
+              {/* =================================================
+                  APTITUDE
+              ================================================= */}
 
-            {/* ================= ROADMAP ================= */}
+              {page === "aptitude" && (
+                <Aptitude
+                  user={user}
+                  onBack={
+                    handleOpenDashboard
+                  }
+                  onActivityRecorded={
+                    handleActivityRecorded
+                  }
+                />
+              )}
 
-            {page === "roadmap" && (
-              <Roadmap
-                onBack={handleOpenDashboard}
-              />
-            )}
+              {/* =================================================
+                  TECHNICAL
+              ================================================= */}
 
-            {/* ================= DSA ================= */}
+              {page === "technical" && (
+                <Technical
+                  onBack={
+                    handleOpenDashboard
+                  }
+                />
+              )}
 
-            {page === "dsa" && (
-              <DSA
-                onOpenArrays={handleOpenArrays}
-                onOpenStrings={handleOpenStrings}
-              />
-            )}
+              {/* =================================================
+                  PROFILE
+              ================================================= */}
 
-            {/* ================= APTITUDE ================= */}
+              {page === "profile" && (
+                <Profile user={user} />
+              )}
 
-            {page === "aptitude" && (
-              <Aptitude
-                onBack={handleOpenDashboard}
-              />
-            )}
+              {/* =================================================
+                  ARRAYS
+              ================================================= */}
 
-            {/* ================= TECHNICAL ================= */}
+              {page === "arrays" && (
+                <ArrayPractice
+                  onOpenQuestion={
+                    handleOpenQuestion
+                  }
+                />
+              )}
 
-            {page === "technical" && (
-              <Technical
-                onBack={handleOpenDashboard}
-              />
-            )}
+              {/* =================================================
+                  STRINGS
+              ================================================= */}
 
-            {/* ================= PROFILE ================= */}
+              {page === "strings" && (
+                <TopicPractice
+                  topic="Strings"
+                  onOpenQuestion={
+                    handleOpenQuestion
+                  }
+                  onBack={handleOpenDSA}
+                />
+              )}
 
-            {page === "profile" && (
-              <Profile
-                user={user}
-                onBack={handleOpenDashboard}
-              />
-            )}
+              {/* =================================================
+                  QUESTION
+              ================================================= */}
 
-            {/* ================= ARRAYS ================= */}
+              {page === "question" && (
+                <Question
+                  question={selectedQuestion}
+                  user={user}
+                  onBack={
+                    handleBackToArrays
+                  }
+                />
+              )}
 
-            {page === "arrays" && (
-              <ArrayPractice
-                onOpenQuestion={handleOpenQuestion}
-              />
-            )}
+              {/* =================================================
+                  COMPANY
+              ================================================= */}
 
-            {/* ================= STRINGS ================= */}
+              {page === "company" && (
+                <Company
+                  onBack={
+                    handleOpenDashboard
+                  }
+                />
+              )}
 
-            {page === "strings" && (
-              <TopicPractice
-                topic="Strings"
-                onOpenQuestion={handleOpenQuestion}
-                onBack={handleOpenDSA}
-              />
-            )}
-
-            {/* ================= QUESTION ================= */}
-
-            {page === "question" && (
-              <Question
-                question={selectedQuestion}
-                user={user}
-                onBack={handleBackToArrays}
-              />
-            )}
-
-            {/* ================= COMPANY ================= */}
-
-            {page === "company" && (
-              <Company
-                onBack={handleOpenDashboard}
-              />
-            )}
-
-          </main>
-
-        </div>
-      )}
-
+            </main>
+          </div>
+        )}
     </div>
   );
 }
 
 export default App;
-

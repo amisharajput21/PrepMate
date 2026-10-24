@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import axios from "axios";
 import "./Dashboard.css";
 
 function Dashboard({
@@ -10,306 +11,758 @@ function Dashboard({
   onOpenProfile,
   onOpenRoadmap,
   darkMode,
-  toggleTheme,
+  activityRefreshKey,
 }) {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const [activity, setActivity] = useState([]);
+  const [streak, setStreak] = useState(0);
+  const [activityLoading, setActivityLoading] =
+    useState(true);
 
-  const [selectedSheet, setSelectedSheet] = useState(1);
+  const [calendarDate, setCalendarDate] =
+    useState(new Date());
+
+  // =========================================================
+  // GET USER LOGIN DATE
+  // =========================================================
+  const loginDate = useMemo(() => {
+    if (!user?.id) {
+      return null;
+    }
+
+    return localStorage.getItem(
+      `prepmate_login_date_${user.id}`
+    );
+  }, [user?.id]);
+
+  // =========================================================
+  // FETCH REAL ACTIVITY + STREAK
+  // =========================================================
+  useEffect(() => {
+    if (!user?.id) {
+      setActivity([]);
+      setStreak(0);
+      setActivityLoading(false);
+      return;
+    }
+
+    const fetchActivity = async () => {
+      try {
+        setActivityLoading(true);
+
+        const year =
+          calendarDate.getFullYear();
+
+        const month =
+          calendarDate.getMonth() + 1;
+
+        const [
+          activityResponse,
+          streakResponse,
+        ] = await Promise.all([
+          axios.get(
+            `http://localhost:8080/api/activity/${user.id}/month`,
+            {
+              params: {
+                year,
+                month,
+              },
+            }
+          ),
+
+          axios.get(
+            `http://localhost:8080/api/activity/${user.id}/streak`
+          ),
+        ]);
+
+        console.log(
+          "Monthly activity:",
+          activityResponse.data
+        );
+
+        console.log(
+          "Current streak:",
+          streakResponse.data
+        );
+
+        setActivity(
+          Array.isArray(
+            activityResponse.data
+          )
+            ? activityResponse.data
+            : []
+        );
+
+        setStreak(
+          Number(
+            streakResponse.data?.streak ||
+              0
+          )
+        );
+      } catch (error) {
+        console.error(
+          "Failed to load activity:",
+          error.response?.data ||
+            error.message
+        );
+
+        setActivity([]);
+        setStreak(0);
+      } finally {
+        setActivityLoading(false);
+      }
+    };
+
+    fetchActivity();
+  }, [
+    user?.id,
+    calendarDate,
+    activityRefreshKey,
+  ]);
+
+  // =========================================================
+  // ACTIVE DATES LOOKUP
+  // =========================================================
+  const activityDates = useMemo(() => {
+    return new Set(
+      activity.map(
+        (item) => item.activityDate
+      )
+    );
+  }, [activity]);
+
+  // =========================================================
+  // CALENDAR
+  // =========================================================
+  const calendarDays = useMemo(() => {
+    const year =
+      calendarDate.getFullYear();
+
+    const month =
+      calendarDate.getMonth();
+
+    const firstDay =
+      new Date(year, month, 1);
+
+    const daysInMonth =
+      new Date(
+        year,
+        month + 1,
+        0
+      ).getDate();
+
+    const startDay =
+      firstDay.getDay();
+
+    const days = [];
+
+    // =======================================================
+    // PREVIOUS MONTH DAYS
+    // =======================================================
+    const previousMonthDays =
+      new Date(
+        year,
+        month,
+        0
+      ).getDate();
+
+    for (
+      let i = startDay - 1;
+      i >= 0;
+      i--
+    ) {
+      days.push({
+        day:
+          previousMonthDays - i,
+        muted: true,
+      });
+    }
+
+    // =======================================================
+    // CURRENT MONTH DAYS
+    // =======================================================
+    for (
+      let day = 1;
+      day <= daysInMonth;
+      day++
+    ) {
+      const dateString =
+        `${year}-${String(
+          month + 1
+        ).padStart(
+          2,
+          "0"
+        )}-${String(day).padStart(
+          2,
+          "0"
+        )}`;
+
+      const today = new Date();
+
+      const isToday =
+        day === today.getDate() &&
+        month === today.getMonth() &&
+        year === today.getFullYear();
+
+      const isActive =
+        activityDates.has(
+          dateString
+        );
+
+      // -------------------------------------------------------
+      // Has this date arrived yet?
+      // -------------------------------------------------------
+
+      const currentDate =
+        new Date(
+          year,
+          month,
+          day
+        );
+
+      const todayDate =
+        new Date(
+          today.getFullYear(),
+          today.getMonth(),
+          today.getDate()
+        );
+
+      const isPastOrToday =
+        currentDate <= todayDate;
+
+      // -------------------------------------------------------
+      // IMPORTANT:
+      // Inactive sticker should ONLY start from
+      // user's login date.
+      // -------------------------------------------------------
+
+      const isAfterLogin =
+        loginDate &&
+        dateString >= loginDate;
+
+      const isInactive =
+        isAfterLogin &&
+        isPastOrToday &&
+        !isActive;
+
+      days.push({
+        day,
+        dateString,
+        streak: isActive,
+        today: isToday,
+        inactive: isInactive,
+      });
+    }
+
+    // =======================================================
+    // NEXT MONTH DAYS
+    // =======================================================
+    let nextDay = 1;
+
+    while (
+      days.length % 7 !== 0
+    ) {
+      days.push({
+        day: nextDay++,
+        muted: true,
+      });
+    }
+
+    return days;
+  }, [
+    calendarDate,
+    activityDates,
+    loginDate,
+  ]);
+
+  // =========================================================
+  // MONTH NAME
+  // =========================================================
+  const currentMonthName =
+    calendarDate.toLocaleDateString(
+      "en-US",
+      {
+        month: "long",
+        year: "numeric",
+      }
+    );
+
+  // =========================================================
+  // PREVIOUS MONTH
+  // =========================================================
+  const handlePreviousMonth = () => {
+    setCalendarDate(
+      new Date(
+        calendarDate.getFullYear(),
+        calendarDate.getMonth() - 1,
+        1
+      )
+    );
+  };
+
+  // =========================================================
+  // NEXT MONTH
+  // =========================================================
+  const handleNextMonth = () => {
+    setCalendarDate(
+      new Date(
+        calendarDate.getFullYear(),
+        calendarDate.getMonth() + 1,
+        1
+      )
+    );
+  };
 
   return (
-    <div className={`dashboard-layout ${darkMode ? "dark-mode" : ""}`}>
-
-      {/* ================= SIDEBAR ================= */}
-
-      {/* ================= MAIN CONTENT ================= */}
+    <div
+      className={`dashboard-layout ${
+        darkMode
+          ? "dark-mode"
+          : ""
+      }`}
+    >
       <main className="dashboard-main">
-
-        <header className="dashboard-topbar">
-
-          <div className="topbar-title">
-            <span>
-              Good Morning, {user?.name || "Amisha"}! 👋
-            </span>
-          </div>
-
-          <div className="topbar-actions">
-
-            <div
-              className={`theme-toggle ${darkMode ? "dark" : ""}`}
-              onClick={toggleTheme}
-              title={
-                darkMode
-                  ? "Switch to Day Mode"
-                  : "Switch to Night Mode"
-              }
-            >
-              <span className="theme-icon">
-                {darkMode ? "☀️" : "🌙"}
-              </span>
-            </div>
-
-            <div
-              className="topbar-profile"
-              onClick={onOpenProfile}
-            >
-              <div className="topbar-avatar">
-                {user?.name
-                  ? user.name.charAt(0).toUpperCase()
-                  : "A"}
-              </div>
-
-              <div className="topbar-profile-info">
-                <strong>
-                  {user?.name || "Amisha Rajput"}
-                </strong>
-
-                <span>Placement Candidate</span>
-              </div>
-
-              <span className="profile-arrow">⌄</span>
-            </div>
-
-          </div>
-
-        </header>
-
-        {/* ================= DASHBOARD CONTENT ================= */}
-
         <div className="dashboard-container">
+          <div className="dashboard-grid">
 
-          {/* ================= WELCOME SECTION ================= */}
+            {/* =================================================
+                MAIN CONTENT
+            ================================================= */}
 
-          <section className="welcome-section">
+            <section className="main-content-card">
 
-            {/* ================= LEFT COLUMN ================= */}
+              <div className="hero-section">
 
-            <div className="dashboard-left-column">
+                <span className="hero-label">
+                  PREP SMARTER
+                </span>
 
-              <div className="dashboard-thought">
+                <h1>
+                  Build skills that make
+                  <span>
+                    opportunities easier
+                    to reach.
+                  </span>
+                </h1>
 
-                <p className="thought-text">
-                  <span>Master</span> patterns,
+                <p>
+                  Learn consistently,
+                  practice smartly,
                   <br />
-
-                  not <span>memory.</span>
-                  <br />
-
-                  Real <span>problem-solving</span>
-                  <br />
-
-                  starts with <span>understanding</span>
-                  <br />
-
-                  core structures.
+                  and stay one step
+                  ahead.
                 </p>
 
               </div>
 
-              {/* ================= UPCOMING ================= */}
+              <div className="section-divider"></div>
 
-              <div className="upcoming-section">
+              <div className="courses-section">
 
-                <div className="upcoming-header">
+                <div className="courses-heading">
 
                   <div>
-                    <span className="upcoming-label">
+
+                    <span className="section-label">
                       UPCOMING
                     </span>
 
-                    <h2>Placement Events</h2>
-                  </div>
-
-                  <span className="upcoming-count">
-                    3 Events
-                  </span>
-
-                </div>
-
-                <div className="upcoming-list">
-
-                  <div className="upcoming-item">
-
-                    <div className="company-icon">T</div>
-
-                    <div className="upcoming-info">
-                      <strong>TCS</strong>
-                      <span>Aptitude + Coding</span>
-                    </div>
-
-                    <div className="upcoming-date">
-                      <strong>24</strong>
-                      <span>SEP</span>
-                    </div>
-
-                    <span className="upcoming-arrow">→</span>
+                    <h2>
+                      Courses
+                    </h2>
 
                   </div>
 
-                  <div className="upcoming-item">
-
-                    <div className="company-icon">I</div>
-
-                    <div className="upcoming-info">
-                      <strong>Infosys</strong>
-                      <span>Online Assessment</span>
-                    </div>
-
-                    <div className="upcoming-date">
-                      <strong>28</strong>
-                      <span>SEP</span>
-                    </div>
-
-                    <span className="upcoming-arrow">→</span>
-
-                  </div>
-
-                  <div className="upcoming-item">
-
-                    <div className="company-icon">C</div>
-
-                    <div className="upcoming-info">
-                      <strong>Cognizant</strong>
-                      <span>Technical Round</span>
-                    </div>
-
-                    <div className="upcoming-date">
-                      <strong>02</strong>
-                      <span>OCT</span>
-                    </div>
-
-                    <span className="upcoming-arrow">→</span>
-
-                  </div>
+                  <button
+                    type="button"
+                    className="view-all-btn"
+                  >
+                    View All{" "}
+                    <span>›</span>
+                  </button>
 
                 </div>
 
-              </div>
+                <div className="course-feature-card">
 
-            </div>
+                  <div className="course-feature-content">
 
-            {/* ================= RIGHT COLUMN ================= */}
-
-            <div className="calendar-column">
-
-              {/* ================= QUICK CALENDAR ================= */}
-
-              <div className="calendar-card">
-
-                <div className="calendar-header">
-
-                  <div>
-                    <span className="calendar-label">
-                      TODAY
-                    </span>
-
-                    <h3>September 2026</h3>
-                  </div>
-
-                  <span className="calendar-icon">
-                    📅
-                  </span>
-
-                </div>
-
-                <div className="calendar-days">
-
-                  <span>MON</span>
-                  <span>TUE</span>
-                  <span>WED</span>
-                  <span>THU</span>
-                  <span>FRI</span>
-                  <span>SAT</span>
-                  <span>SUN</span>
-
-                </div>
-
-                <div className="calendar-dates">
-
-                  <span></span>
-                  <span>1</span>
-                  <span>2</span>
-                  <span>3</span>
-                  <span>4</span>
-                  <span>5</span>
-                  <span>6</span>
-
-                  <span>7</span>
-                  <span>8</span>
-                  <span>9</span>
-                  <span>10</span>
-                  <span>11</span>
-                  <span>12</span>
-                  <span>13</span>
-
-                  <span>14</span>
-                  <span>15</span>
-                  <span>16</span>
-                  <span>17</span>
-
-                  <span className="today">
-                    18
-                  </span>
-
-                  <span>19</span>
-                  <span>20</span>
-
-                  <span>21</span>
-                  <span>22</span>
-                  <span>23</span>
-                  <span>24</span>
-                  <span>25</span>
-                  <span>26</span>
-                  <span>27</span>
-
-                  <span>28</span>
-                  <span>29</span>
-                  <span>30</span>
-
-                </div>
-
-              </div>
-
-              {/* ================= MONTHLY STREAK ================= */}
-
-              <div className="streak-card">
-
-                <div className="streak-header">
-
-                  <div>
-
-                    <span className="streak-label">
-                      MONTHLY STREAK
-                    </span>
+                    <div className="coming-soon-badge">
+                      <span>◷</span>
+                      Coming Soon
+                    </div>
 
                     <h3>
-                      12 Days
+                      Explore our upcoming
+                      courses
                     </h3>
+
+                    <p>
+                      Build in-demand
+                      skills with curated
+                      learning paths,
+                      designed for your
+                      placement journey.
+                    </p>
+
+                    <div className="course-tags">
+
+                      <span>
+                        <b>
+                          &lt;/&gt;
+                        </b>
+                        DSA &amp; Algorithms
+                      </span>
+
+                      <span>
+                        <b>◉</b>
+                        Web Development
+                      </span>
+
+                      <span>
+                        <b>▱</b>
+                        System Design
+                      </span>
+
+                      <span>
+                        <b>◉</b>
+                        Aptitude
+                      </span>
+
+                    </div>
 
                   </div>
 
-                  <div className="streak-icon">
-                    🔥
+                  <div className="course-illustration">
+
+                    <span className="spark spark-one">
+                      ✦
+                    </span>
+
+                    <span className="spark spark-two">
+                      ✦
+                    </span>
+
+                    <div className="course-back-card"></div>
+
+                    <div className="course-front-card">
+                      <span>
+                        🎓
+                      </span>
+                    </div>
+
                   </div>
 
                 </div>
 
-                <p>
-                  Keep your learning streak alive!
-                </p>
+                <button
+                  type="button"
+                  className="dsa-sheet-btn"
+                  onClick={
+                    onOpenDSA
+                  }
+                >
+
+                  <span className="dsa-sheet-icon">
+                    &lt;/&gt;
+                  </span>
+
+                  <span className="dsa-sheet-text">
+                    DSA Sheet
+                  </span>
+
+                  <span className="dsa-sheet-arrow">
+                    →
+                  </span>
+
+                </button>
 
               </div>
 
-            </div>
+            </section>
 
-          </section>
+            {/* =================================================
+                RIGHT SIDE
+            ================================================= */}
 
+            <aside className="dashboard-right">
+
+              {/* =================================================
+                  STREAK
+              ================================================= */}
+
+              <section className="streak-card">
+
+                <div className="streak-title-row">
+
+                  <div className="streak-title">
+
+                    <span className="streak-fire">
+                      🔥
+                    </span>
+
+                    <h2>
+                      Streak
+                    </h2>
+
+                  </div>
+
+                  <span className="streak-link">
+
+                    {streak}{" "}
+
+                    {streak === 1
+                      ? "Day"
+                      : "Days"}{" "}
+
+                    Streak{" "}
+                    <b>›</b>
+
+                  </span>
+
+                </div>
+
+                <div className="calendar-box">
+
+                  {/* MONTH */}
+
+                  <div className="calendar-month-row">
+
+                    <button
+                      type="button"
+                      onClick={
+                        handlePreviousMonth
+                      }
+                      aria-label="Previous month"
+                    >
+                      ‹
+                    </button>
+
+                    <strong>
+                      {currentMonthName}
+                    </strong>
+
+                    <button
+                      type="button"
+                      onClick={
+                        handleNextMonth
+                      }
+                      aria-label="Next month"
+                    >
+                      ›
+                    </button>
+
+                  </div>
+
+                  {/* WEEK */}
+
+                  <div className="calendar-week">
+
+                    <span>SUN</span>
+                    <span>MON</span>
+                    <span>TUE</span>
+                    <span>WED</span>
+                    <span>THU</span>
+                    <span>FRI</span>
+                    <span>SAT</span>
+
+                  </div>
+
+                  {/* CALENDAR */}
+
+                  <div className="calendar-grid">
+
+                    {activityLoading ? (
+
+                      Array.from({
+                        length: 35,
+                      }).map(
+                        (_, index) => (
+                          <div
+                            key={
+                              index
+                            }
+                            className="calendar-cell"
+                          >
+                            <span></span>
+                          </div>
+                        )
+                      )
+
+                    ) : (
+
+                      calendarDays.map(
+                        (
+                          item,
+                          index
+                        ) => (
+
+                          <div
+                            key={`${item.day}-${index}`}
+                            className={[
+                              "calendar-cell",
+
+                              item.muted
+                                ? "muted"
+                                : "",
+
+                              item.streak
+                                ? "streak"
+                                : "",
+
+                              item.inactive
+                                ? "inactive"
+                                : "",
+
+                              item.today
+                                ? "today"
+                                : "",
+                            ]
+                              .filter(
+                                Boolean
+                              )
+                              .join(
+                                " "
+                              )}
+
+                            style={
+                              !item.muted
+                                ? {
+                                    display:
+                                      "flex",
+                                    alignItems:
+                                      "center",
+                                    justifyContent:
+                                      "center",
+                                  }
+                                : undefined
+                            }
+                          >
+
+                            {/* ACTIVE */}
+
+                            {item.streak ? (
+
+                              <span
+                                style={{
+                                  fontSize:
+                                    "20px",
+                                  lineHeight:
+                                    "20px",
+                                  display:
+                                    "block",
+                                  filter:
+                                    "drop-shadow(0 2px 3px rgba(0, 0, 0, 0.3))",
+                                }}
+                                aria-label="Active learning day"
+                                title="Active learning day"
+                              >
+                                🔥
+                              </span>
+
+                            ) : item.inactive ? (
+
+                              /* INACTIVE */
+
+                              <span
+                                style={{
+                                  fontSize:
+                                    "17px",
+                                  lineHeight:
+                                    "17px",
+                                  display:
+                                    "block",
+                                  opacity:
+                                    0.65,
+                                  filter:
+                                    "grayscale(0.25)",
+                                }}
+                                aria-label="No activity"
+                                title="No activity"
+                              >
+                                😴
+                              </span>
+
+                            ) : (
+
+                              /* BEFORE LOGIN / FUTURE */
+
+                              <span>
+                                {item.day}
+                              </span>
+
+                            )}
+
+                          </div>
+
+                        )
+                      )
+
+                    )}
+
+                  </div>
+
+                </div>
+
+                {/* LEGEND */}
+
+                <div className="calendar-legend">
+
+                  <span>
+                    <i className="legend-streak"></i>
+                    Learning streak
+                  </span>
+
+                  <span>
+                    <i className="legend-today"></i>
+                    Today
+                  </span>
+
+                  <span>
+                    <i className="legend-inactive"></i>
+                    No activity
+                  </span>
+
+                </div>
+
+              </section>
+
+              {/* =================================================
+                  TODAY CARD
+              ================================================= */}
+
+              <section className="today-card">
+
+                <div className="today-content">
+
+                  <span className="section-label">
+                    TODAY
+                  </span>
+
+                  <h3>
+                    Keep the streak going!
+                  </h3>
+
+                  <p>
+                    {streak > 0
+                      ? `You're on a ${streak} day streak. Great momentum!`
+                      : "Start solving today to build your streak!"}
+                  </p>
+
+                </div>
+
+                <div className="today-icon">
+                  🔥
+                </div>
+
+              </section>
+
+            </aside>
+
+          </div>
         </div>
-
       </main>
-
     </div>
   );
 }
 
 export default Dashboard;
-
