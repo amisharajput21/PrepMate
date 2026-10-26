@@ -896,7 +896,6 @@ button {
 .app-shell .app-page-content {
   transition: all 0.25s ease;
 }
-```css
 /* =========================================================
    SIDEBAR THEME TOGGLE
 ========================================================= */
@@ -1223,4 +1222,3 @@ button {
     color 0.2s ease,
     border-color 0.2s ease;
 }
-```

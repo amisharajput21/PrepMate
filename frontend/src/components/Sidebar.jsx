@@ -11,18 +11,19 @@ function Sidebar({
   onOpenProfile,
   onLogout,
   onOpenRoadmap,
+  onOpenInterview,
   darkMode,
   toggleTheme
 }) {
   const [collapsed, setCollapsed] = useState(false);
 
   return (
-    <aside className={`global-sidebar ${collapsed ? "collapsed" : ""}`}>
-
-      {/* ================= BRAND ================= */}
-
+    <aside
+      className={`global-sidebar ${
+        collapsed ? "collapsed" : ""
+      }`}
+    >
       <div className="global-sidebar-brand">
-
         <div className="global-sidebar-logo">
           P
         </div>
@@ -36,33 +37,40 @@ function Sidebar({
 
         <button
           className="sidebar-toggle-btn"
-          onClick={() => setCollapsed(!collapsed)}
-          title={collapsed ? "Expand Sidebar" : "Collapse Sidebar"}
+          onClick={() =>
+            setCollapsed(!collapsed)
+          }
+          title={
+            collapsed
+              ? "Expand Sidebar"
+              : "Collapse Sidebar"
+          }
         >
           {collapsed ? "›" : "‹"}
         </button>
-
       </div>
 
-
-      {/* ================= MENU ================= */}
-
       <div className="global-sidebar-menu">
-
         {/* Dashboard */}
         <button
           className={`global-sidebar-item ${
-            activePage === "dashboard" ? "active" : ""
+            activePage === "dashboard"
+              ? "active"
+              : ""
           }`}
           onClick={() => {
             setCollapsed(true);
             onOpenDashboard();
           }}
         >
-          <span className="sidebar-icon">⚡</span>
-          <span className="sidebar-label">Dashboard</span>
-        </button>
+          <span className="sidebar-icon">
+            ⚡
+          </span>
 
+          <span className="sidebar-label">
+            Dashboard
+          </span>
+        </button>
 
         {/* DSA */}
         <button
@@ -79,76 +87,119 @@ function Sidebar({
             onOpenDSA();
           }}
         >
-          <span className="sidebar-icon">💻</span>
-          <span className="sidebar-label">DSA Sheets</span>
+          <span className="sidebar-icon">
+            💻
+          </span>
+
+          <span className="sidebar-label">
+            DSA Sheets
+          </span>
         </button>
 
+        {/* AI Interview */}
+        <button
+          type="button"
+          className={`global-sidebar-item ${
+            activePage === "interview"
+              ? "active"
+              : ""
+          }`}
+          onClick={() => {
+            setCollapsed(true);
+            onOpenInterview();
+          }}
+        >
+          <span className="sidebar-icon">
+            AI
+          </span>
+
+          <span className="sidebar-label">
+            AI Interview
+          </span>
+        </button>
 
         {/* Roadmap */}
         <button
           className={`global-sidebar-item ${
-            activePage === "roadmap" ? "active" : ""
+            activePage === "roadmap"
+              ? "active"
+              : ""
           }`}
           onClick={() => {
             setCollapsed(true);
             onOpenRoadmap();
           }}
         >
-          <span className="sidebar-icon">🗺️</span>
-          <span className="sidebar-label">Roadmap</span>
-        </button>
+          <span className="sidebar-icon">
+            🗺️
+          </span>
 
+          <span className="sidebar-label">
+            Roadmap
+          </span>
+        </button>
 
         {/* Aptitude */}
         <button
           className={`global-sidebar-item ${
-            activePage === "aptitude" ? "active" : ""
+            activePage === "aptitude"
+              ? "active"
+              : ""
           }`}
           onClick={() => {
             setCollapsed(true);
             onOpenAptitude();
           }}
         >
-          <span className="sidebar-icon">🧠</span>
-          <span className="sidebar-label">Aptitude</span>
+          <span className="sidebar-icon">
+            🧠
+          </span>
+
+          <span className="sidebar-label">
+            Aptitude
+          </span>
         </button>
 
-
-        {/* Core Subjects */}
+        {/* Technical */}
         <button
           className={`global-sidebar-item ${
-            activePage === "technical" ? "active" : ""
+            activePage === "technical"
+              ? "active"
+              : ""
           }`}
           onClick={() => {
             setCollapsed(true);
             onOpenTechnical();
           }}
         >
-          <span className="sidebar-icon">📚</span>
-          <span className="sidebar-label">Core Subjects</span>
-        </button>
+          <span className="sidebar-icon">
+            📚
+          </span>
 
+          <span className="sidebar-label">
+            Core Subjects
+          </span>
+        </button>
       </div>
 
-
-      {/* ================= BOTTOM ================= */}
-
       <div className="global-sidebar-bottom">
-
         {/* Profile */}
         <button
           className={`global-sidebar-profile ${
-            activePage === "profile" ? "active" : ""
+            activePage === "profile"
+              ? "active"
+              : ""
           }`}
           onClick={() => {
             setCollapsed(true);
             onOpenProfile();
           }}
         >
-
           <div className="global-sidebar-avatar">
             {user?.name
-              ? user.name.charAt(0).toUpperCase()
+              ? user.name
+                  .charAt(0)
+                  .toUpperCase()
               : "A"}
           </div>
 
@@ -157,14 +208,13 @@ function Sidebar({
               {user?.name || "Amisha Rajput"}
             </strong>
 
-            <span>Placement Candidate</span>
+            <span>
+              Placement Candidate
+            </span>
           </div>
-
         </button>
 
-
-        {/* ================= THEME TOGGLE ================= */}
-
+        {/* Theme */}
         <button
           type="button"
           className="sidebar-theme-btn"
@@ -176,16 +226,17 @@ function Sidebar({
           }
         >
           <span className="sidebar-theme-icon">
-            {darkMode ? "☀️" : "☾"}
+            {darkMode ? "☀️" : "◐"}
           </span>
 
           {!collapsed && (
             <span>
-              {darkMode ? "Light Mode" : "Dark Mode"}
+              {darkMode
+                ? "Light Mode"
+                : "Dark Mode"}
             </span>
           )}
         </button>
-
 
         {/* Logout */}
         <button
@@ -195,9 +246,7 @@ function Sidebar({
           <span>🚪</span>
           <span>Logout</span>
         </button>
-
       </div>
-
     </aside>
   );
 }
